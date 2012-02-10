@@ -65,6 +65,6 @@ AutoGenerateAegisFile
 
 	</request>
 
-	<for path="/opt/redak/bin/redak" />
+	<for path="/opt/redakqml/bin/redakqml" />
 	<for path="applauncherd-launcher::/usr/bin/applauncherd.bin" id="" />
 </aegis>
