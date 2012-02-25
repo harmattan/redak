@@ -28,7 +28,7 @@ build-stamp: configure-stamp
 
 	# Add here commands to compile the package.
 	# $(MAKE) # Uncomment this line for use without Qt Creator
-	#docbook-to-man debian/redakqml.sgml > redakqml.1
+	#docbook-to-man debian/redakqml.sgml > redak.1
 
 	touch $@
 
