@@ -13,6 +13,9 @@ PageStackWindow {
     property alias content: mainPage.content
     property string filename: "unknown.txt"
 
+
+    //Component.onCompleted: { theme.inverted = true }
+
     Core {
         id: core
     }
@@ -24,21 +27,6 @@ PageStackWindow {
         //height: parent.height - commonTools.height
     }
 
-
-    // http://www.developer.nokia.com/Community/Discussion/showthread.php?229427-How-to-hide-virtual-keyboard-in-Meego
-    // http://nokiamobileblog.com/nokia-n9-tips-tricks/
-//    Rectangle {
-//        visible: false
-//        Text {
-//            id: currentFileNameView
-//            text: qsTr("redak")
-//        }
-
-//        color: "red"
-//        width: parent.width
-//        height: currentFileNameView.height + Script.g_font_pixelSize
-//    }
-
     Menu {
         id: myMenu
         visualParent: pageStack
@@ -48,32 +36,32 @@ PageStackWindow {
             MenuItem {
                 text: qsTr("Load")
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("BrowserPage.qml"))
+                    //console.debug("loading:" + content );
+                    var component = Qt.resolvedUrl("BrowserPage.qml");
+                    pageStack.push( component ,  { content: content , mode: 0 } )
                 }
             }
 
             MenuItem {
                 text: qsTr("Save")
                 onClicked: {
-                    //pageStack.push(Qt.resolvedUrl("BrowserPage.qml"))
-                    core.save( mainPage.content , currentFileNameView.text);
+                    core.save( mainPage.content , filename );
                 }
             }
 
-            MenuItem { // http://forum.meego.com/showthread.php?t=3800
-                text: qsTr("SaveAs")
+            MenuItem {
+                text: qsTr("Save As")
                 onClicked: {
-                    var component = Qt.resolvedUrl("SavePage.qml");
+                    var component = Qt.resolvedUrl("BrowserPage.qml");
                     component.parent = pageStack.parent
-                    //component.content = content;
-                    pageStack.push( component ,  { content: content } )
+                    pageStack.push( component ,  { content: content , mode: 1 } )
                 }
             }
 
-            MenuItem { // http://forum.meego.com/showthread.php?t=3800
-                text: qsTr("Select Toggle")
+            MenuItem {
+                text: qsTr("Edit Toggle")
                 onClicked: {
-                    mainPage.editView.selectByMouse = !mainPage.editView.selectByMouse;
+                    mainPage.editView.enabled =!mainPage.editView.enabled ;
                 }
             }
 

@@ -5,12 +5,17 @@ import "../common/script.js" as Script
 import "../common"
 import "./"
 
+
 Page {
     id: pageView
     property alias editView: edit
     property alias content: edit.text
-    tools: commonTools
     property string info: "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\n"
+
+    tools: commonTools
+
+    //Component.onCompleted: { theme.inverted = true }
+
     Flickable {
         id: flick
 
@@ -37,6 +42,8 @@ Page {
             id: edit
             width: flick.width
             height: flick.height
+            //anchors.leftMargin: Script.g_font_pixelSize/3;
+            //anchors.rightMargin: Script.g_font_pixelSize/3;
             focus: true
             cursorVisible: true
             selectByMouse: false
@@ -45,6 +52,6 @@ Page {
             wrapMode: TextEdit.Wrap
             font.pixelSize: Script.g_font_pixelSize
             onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
-        }
+         }
     }
 }

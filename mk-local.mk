@@ -22,10 +22,16 @@ distclean: clean
 	find . -iname "*~" -exec rm -v '{}' \;
 
 
-release: distclean
+release: distclean COPYING
 	~/bin/arc.sh -e debian_
 	debuild -S
 
 
 meld: qml/${package}/harmattan qml/${package}/symbian
 	$@ $^
+
+COPYING: /usr/share/common-licenses/GPL-3
+	cp -a $< $@
+
+diff: debian qtc_packaging/debian_harmattan
+	meld $^

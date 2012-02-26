@@ -7,14 +7,21 @@ import "../common/script.js" as Script
 import "../common"
 import "./"
 
+
 Page {
+    property variant content: content
+    property int mode: 0 //0=load 1=save
+
+    signal loaded()
+
     anchors.fill: parent
-    tools: //commonTools
+    //Component.onCompleted: { theme.inverted = !true }
+
+    tools: // commonTools
            ToolBarLayout {
         ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); }  }
     }
 
-    signal loaded()
     onLoaded: {
         Script.handleLoaded()
     }
@@ -34,9 +41,19 @@ Page {
                 folderModel.folder = text;
             }
             Keys.onReturnPressed: {
-                platformCloseSoftwareInputPanel();
-                Script.load( dir.text );
-                listView.focus = true;
+                if ( 0 == mode ) {
+                    platformCloseSoftwareInputPanel();
+                    Script.load( dir.text );
+                    listView.focus = true;
+                    //              pageStack.pop();
+                } else {
+                    var filename = ( null === dir ) ? "unknown.txt" : dir.text;
+                    console.log("saving:" + dir.text );
+                    core.save( content, filename );
+                    listView.focus = true;
+                    pageStack.pop();
+
+                }
             }
             onFocusChanged:  {
                 var start = dir.text.length;
@@ -115,7 +132,12 @@ Page {
                                 dir.text = filePath
                                 folderModel.folder = filePath;
                             } else {
-                                Script.load( filePath );
+                                if ( 0 == mode ) {
+                                    Script.load( filePath );
+                                } else {
+                                    core.save( content, filePath );
+                                    pageStack.pop();
+                                }
                             }
                         }
                     }

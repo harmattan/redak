@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QDeclarativeItem>
 
+
 class Core
         : public QDeclarativeItem
 {

@@ -7,10 +7,10 @@
 # This special exception was added by Craig Small in version 0.37 of dh-make.
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 
-
+package?=redak
 
 
 configure: configure-stamp
@@ -23,12 +23,11 @@ configure-stamp:
 
 build: build-stamp
 
-build-stamp: configure-stamp  
+build-stamp: configure-stamp
 	dh_testdir
-
 	# Add here commands to compile the package.
 	# $(MAKE) # Uncomment this line for use without Qt Creator
-	#docbook-to-man debian/redakqml.sgml > redakqml.1
+	#docbook-to-man debian/${package}.sgml > ${package}.1
 
 	touch $@
 
@@ -48,8 +47,8 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	# Add here commands to install the package into debian/redakqml.
-	$(MAKE) INSTALL_ROOT="$(CURDIR)"/debian/redakqml install
+	# Add here commands to install the package into debian/${package}.
+	$(MAKE) INSTALL_ROOT="$(CURDIR)"/debian/${package} install
 
 
 # Build architecture-independent files here.

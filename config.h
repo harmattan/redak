@@ -6,5 +6,4 @@
 #include <QObject>
 #include <QFile>
 
-
 #endif // CONFIG_H

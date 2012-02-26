@@ -1,3 +1,4 @@
+COPYING
 README.txt
 config.cpp
 config.h
@@ -10,7 +11,6 @@ qml/redak/common/config.qml
 qml/redak/common/script.js
 qml/redak/harmattan/BrowserPage.qml
 qml/redak/harmattan/MainPage.qml
-qml/redak/harmattan/SavePage.qml
 qml/redak/harmattan/Tools.qml
 qml/redak/harmattan/config.qml
 qml/redak/harmattan/main.qml
@@ -34,8 +34,10 @@ qtc_packaging/debian_harmattan/control
 qtc_packaging/debian_harmattan/copyright
 qtc_packaging/debian_harmattan/manifest.aegis
 qtc_packaging/debian_harmattan/rules
+redak-icon.svg
 redak.desktop
 redak.pro
+redak.pro.user
 redak.svg
 redak64.png
 redak80.png
