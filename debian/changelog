@@ -1,5 +1,11 @@
+redak (0.1.0-0) harmattan; urgency=low
+
+  * Fix: support harmattan qtsdk deploy
+
+ -- Philippe Coval <rzr@gna.org>  Sun, 26 Feb 2012 14:53:01 +0100
+
 redak (0.0.0-0) UNRELEASED; urgency=low
 
   * URL: http://rzr.online.fr/q/redak
 
- -- Philippe Coval <rzr@gna.org>  Fri, 10 Feb 2012 21:54:32 +0100
+ -- Philippe Coval <rzr@gna.org>  Sun, 26 Feb 2012 14:51:03 +0100
