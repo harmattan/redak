@@ -7,13 +7,16 @@
 
 
 Core::Core(QDeclarativeItem *parent)
+    : QDeclarativeItem(parent)
 {
+    FUNCT();
 }
 
 
 void Core::save(QString content, QString filename)
 {
     FUNCT();
+
     QUrl url(filename);
     filename = url.path();
     // qDebug()<<"save:" + filename;
@@ -30,12 +33,15 @@ void Core::save(QString content, QString filename)
 
 QString Core::load(QString filename)
 {
+    FUNCT();
+
     QString content;
 
     QUrl url(filename);
     filename = url.path();
     QFile file(filename); //TODO: on dir ?
     //qDebug()<<"open:" + filename;
+
     if ( file.exists() ) {
         file.open(QIODevice::ReadOnly | QIODevice::Text);
         QTextStream stream( &file );
@@ -44,7 +50,9 @@ QString Core::load(QString filename)
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         content = "# file://" + filename;
     }
+
     file.close();
     emit loaded();
+
     return content;
 }

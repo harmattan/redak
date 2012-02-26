@@ -1,0 +1,8 @@
+#!/bin/sh
+# postrm script for redak
+
+package=redak
+
+if [ -e "/usr/bin/${package}" ]; then
+	rm /usr/bin/${package}
+fi

@@ -3,6 +3,7 @@ var g_color_normal = "#00AAAAAA";
 var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
 
+
 function save(content, filename)
 {
     var content = "content";

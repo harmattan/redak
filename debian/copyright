@@ -4,7 +4,7 @@ Source: <http://rzr.online.fr/q/redak>
 
 Files: *
 Copyright: 2012 Philippe Coval <rzr@gna.org>
-           <years> <likewise for another author>
+
 License: GPL-3+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ License: GPL-3+
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
 
 Files: debian/*
 Copyright: 2012 Philippe Coval <rzr@gna.org>
