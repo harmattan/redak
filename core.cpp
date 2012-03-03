@@ -22,9 +22,13 @@ bool Core::save(QString content, QString filename)
 {
     FUNCT();
     bool status = true;
-
     QUrl url(filename);
     filename = url.path();
+
+#ifdef Q_OS_SYMBIAN
+    filename = filename.mid(1);  //TODO WORAROUND BUG
+#endif
+
     // qDebug()<<"save:" + filename;
     // qDebug()<<"content:" + content;
     QFile file( filename );
@@ -37,7 +41,7 @@ bool Core::save(QString content, QString filename)
     }
 
     if (!status) {
-        QString text = "error: io: "+filename;
+        QString text = "error: io: save: "+filename;
         emit error(QVariant(text));
     }
     return status;
@@ -47,14 +51,20 @@ bool Core::save(QString content, QString filename)
 QString Core::load(QString filename)
 {
     FUNCT();
+    // qDebug()<<"load: " + filename;
+
     bool status = true;
 
     QString content;
 
     QUrl url(filename);
     filename = url.path();
+
+#ifdef Q_OS_SYMBIAN
+    filename = filename.mid(1);  //TODO WORAROUND BUG
+#endif
+
     QFile file(filename); //TODO: on dir ?
-    //qDebug()<<"open:" + filename;
 
     if ( file.exists() ) {
         status &= file.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -63,8 +73,6 @@ QString Core::load(QString filename)
         file.close();
         emit loaded();
     } else {
-        QString text = "error: io: "+filename;
-        emit error(QVariant(text));
         status &= file.open(QIODevice::WriteOnly | QIODevice::Text);
         content = "# file://" + filename;
         file.close();
@@ -72,7 +80,7 @@ QString Core::load(QString filename)
     }
 
     if (!status) {
-        QString text = "error: io: "+filename;
+        QString text = "error: io: load: "+filename;
         emit error(QVariant(text));
     }
     return content;

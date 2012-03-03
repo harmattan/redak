@@ -19,7 +19,7 @@ ToolBar {
             anchors.right: (parent === undefined) ? undefined : parent.right
             onClicked: (myMenu.status == DialogStatus.Closed) ? myMenu.open() : myMenu.close()
             text: "menu"
-            //iconSource: "option"
+//            iconSource: "option"
         }
 
         ToolButton
@@ -27,6 +27,7 @@ ToolBar {
             onClicked: { Qt.quit(); }
             anchors.left: (parent === undefined) ? undefined : parent.left
             text: "quit"
+ //           iconSource: "close"
         }
     }
 }

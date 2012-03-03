@@ -19,8 +19,8 @@ Page {
     signal loaded()
     signal error(/*string message*/)
 
-//    property alias browserView: mColumn.browserView
-//    property alias folderModel: browserView.folderModel
+    //    property alias browserView: mColumn.browserView
+    //    property alias folderModel: browserView.folderModel
 
     anchors.fill: parent
     //Component.onCompleted: { theme.inverted = !true }
@@ -28,16 +28,17 @@ Page {
     tools: // commonTools
            ToolBarLayout {
         ToolButton {
-            text: qsTr("back")
+            //text: qsTr("back")
             //iconSource: "back"
+            iconSource: "toolbar-back"
             //platformIconId: "toolbar-view-menu"
             anchors.left: (parent === undefined) ? undefined : parent.left
             onClicked: { pageStack.pop(); }
         }
 
         ToolButton {
-            text: qsTr("parent")
-            //iconSource: "back"
+            text: qsTr("..")
+            // iconSource: "toolbar-up"
             //platformIconId: "toolbar-view-menu"
             anchors.right: (parent === undefined) ? undefined : parent.right
             onClicked: {
@@ -62,15 +63,12 @@ Page {
         //anchors.fill: parent
 
         //Row {
-        TextField{
+        TextField { //TextEdit{
             id: dir
             text: ( null == folderModel.folder ) ? "./" : folderModel.folder
             width:parent.width;
-            placeholderText: "Directory or File to load"
+            //placeholderText: "Directory or File to load"
             focus: false;
-//          onAccepted: {
-//              folderModel.folder = text;
-//          }
             Keys.onReturnPressed: {
                 if ( 0 == mode ) {
                     //platformCloseSoftwareInputPanel();
@@ -90,6 +88,52 @@ Page {
                 var start = dir.text.length;
                 dir.select( start , start);
                 dir.focus = true;
+            }
+            // https://bugreports.qt-project.org/browse/QTBUG-16870
+                      //onAccepted: {
+                      //    folderModel.folder = text;
+                      //}
+//            Keys.onReturnPressed: {
+  //          }
+            Rectangle {
+                anchors {
+                    top: parent.top;
+                    right: parent.right;
+                    margins: platformStyle.paddingMedium
+                }
+                id: valid
+                //fillMode: Image.PreserveAspectFit
+                smooth: true;
+ //               visible: dir.text
+                //source: "toolbar-back"
+                height: parent.height - platformStyle.paddingMedium * 2
+                width: parent.height - platformStyle.paddingMedium * 2
+                color: "blue"
+                MouseArea {
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter;
+                        verticalCenter: parent.verticalCenter
+                    }
+                    height: valid.height;
+                    width: valid.height
+                    onClicked: {
+//                         folderModel.folder = dir.text;
+                        if ( 0 == mode ) {
+                            platformCloseSoftwareInputPanel();
+                            Script.load( dir.text );
+                            listView.focus = true;
+                            //              pageStack.pop();
+                        } else {
+                            var filename = ( null === dir ) ? "unknown.txt" : dir.text;
+                            console.log("saving:" + dir.text );
+                            core.save( content, filename );
+                            listView.focus = true;
+                            pageStack.pop();
+
+                        }
+
+                    }
+                }
             }
 
         }
@@ -130,10 +174,10 @@ Page {
                         anchors.verticalCenter: parent.verticalCenter
 
                         smooth: true
-//                        source: folderModel.isFolder(index)
-//                                ? "image://theme/icon-s-invitation-pending"
-//                                : "image://theme/icon-s-invitation-accept"
-//                        visible: source != ''
+                        //                        source: folderModel.isFolder(index)
+                        //                                ? "image://theme/icon-s-invitation-pending"
+                        //                                : "image://theme/icon-s-invitation-accept"
+                        //                        visible: source != ''
                         color: folderModel.isFolder(index) ? "red" : "green"
                         x: Script.g_font_pixelSize / 2
                         width: Script.g_font_pixelSize
