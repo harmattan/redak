@@ -1,5 +1,5 @@
 Source: redak
-Section: user/other
+Section: user/utilities
 X-Debian-Section: utils
 Priority: optional
 Maintainer: Philippe Coval <rzr@gna.org>

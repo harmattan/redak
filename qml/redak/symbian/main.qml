@@ -10,6 +10,11 @@ PageStackWindow {
     id: appWindow
 
     initialPage: mainPage
+    property alias content: mainPage.content
+    property string filename: "unknown.txt"
+
+
+    //Component.onCompleted: { theme.inverted = true }
 
     Core {
         id: core
@@ -17,24 +22,9 @@ PageStackWindow {
 
     MainPage {
         id: mainPage
-        visible: true
         //    anchors.fill: parent
         tools: commonTools
         //height: parent.height - commonTools.height
-    }
-
-    // http://www.developer.nokia.com/Community/Discussion/showthread.php?229427-How-to-hide-virtual-keyboard-in-Meego
-    // http://nokiamobileblog.com/nokia-n9-tips-tricks/
-    Rectangle {
-        visible: false
-        Text {
-            id: currentFileNameView
-            text: qsTr("redak")
-        }
-
-        color: "red"
-        width: parent.width
-        height: currentFileNameView.height + Script.g_font_pixelSize
     }
 
     Menu {
@@ -46,20 +36,42 @@ PageStackWindow {
             MenuItem {
                 text: qsTr("Load")
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("BrowserPage.qml"))
+                    //console.debug("loading:" + content );
+                    var component = Qt.resolvedUrl("BrowserPage.qml");
+                    pageStack.push( component ,  { content: content , mode: 0 } )
                 }
             }
 
             MenuItem {
                 text: qsTr("Save")
                 onClicked: {
-                    //pageStack.push(Qt.resolvedUrl("BrowserPage.qml"))
-                    core.save( mainPage.content , currentFileNameView.text);
+                    core.save( mainPage.content , filename );
                 }
             }
 
             MenuItem {
-                text: qsTr("http://rzr.online.fr/q/redak")
+                text: qsTr("Save As")
+                onClicked: {
+                    var component = Qt.resolvedUrl("BrowserPage.qml");
+                    component.parent = pageStack.parent
+                    pageStack.push( component ,  { content: content , mode: 1 } )
+                }
+            }
+
+            MenuItem {
+                text: qsTr("Edit Toggle")
+                onClicked: {
+                    mainPage.editView.enabled =!mainPage.editView.enabled ;
+                }
+            }
+
+            MenuItem {
+                text: qsTr("About")
+                onClicked: {
+                    //myDialog.visible = true;
+                    //myDialog.focus = true;
+                    content = Script.g_info;
+                }
             }
 
             MenuItem {
@@ -72,7 +84,6 @@ PageStackWindow {
     Tools{
         id: commonTools
         visible: true
-//        focus: true
     }
 
 }

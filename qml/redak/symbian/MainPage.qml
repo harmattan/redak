@@ -5,20 +5,25 @@ import "../common/script.js" as Script
 import "../common"
 import "./"
 
+
 Page {
     id: pageView
-    property alias content: edit.text
+    property alias textEdit: textEdit
+    property alias content: textEdit.text
+
     tools: commonTools
 
+    //Component.onCompleted: { theme.inverted = true }
+
     Flickable {
-        id: flick
+        id: flickable
 
         width: parent.width
         height: parent.height
+        clip: true
 
         //        contentWidth: edit.paintedWidth
         //        contentHeight: edit.paintedHeight
-        clip: true
 
         function ensureVisible(r)
         {
@@ -33,14 +38,18 @@ Page {
         }
 
         TextArea {
-            id: edit
-            width: flick.width
-            height: flick.height
-            focus: true
+            id: textEdit
+            width: flickable.width
+            height: flickable.height
+            //anchors.leftMargin: Script.g_font_pixelSize/3;
+            //anchors.rightMargin: Script.g_font_pixelSize/3;
             //cursorVisible: true
-            //selectByMouse: true
+            //selectByMouse: false
+            focus: true
+            text: Script.g_info
             smooth: true
-            //wrapMode: TextArea.Wrap
+            wrapMode: TextArea.Wrap
+            textFormat: TextEdit.PlainText
             font.pixelSize: Script.g_font_pixelSize
             //onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
         }

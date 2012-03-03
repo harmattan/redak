@@ -1,6 +1,7 @@
 #! /usr/bin/make -f
 package?=redak
 
+#TODO: upgrade with yours
 qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
 
 default: help
@@ -22,16 +23,36 @@ distclean: clean
 	find . -iname "*~" -exec rm -v '{}' \;
 
 
-release: distclean COPYING
-	~/bin/arc.sh -e debian_
-	debuild -S
+dist: distclean COPYING release rule/local/release
+
 
 
 meld: qml/${package}/harmattan qml/${package}/symbian
 	$@ $^
 
+
 COPYING: /usr/share/common-licenses/GPL-3
 	cp -a $< $@
 
-diff: debian qtc_packaging/debian_harmattan
+
+debian/diff: debian qtc_packaging/debian_harmattan
 	meld $^
+
+
+diff: qml/${package}/harmattan qml/${package}/symbian
+	meld $^
+
+
+install:
+	-ls ../${package}*/*.sis
+	-ls ../redak-build-remote/redak_qt-4_7_4_symbianBelle.sis
+	ln -fs $(pwd)/../*/*.sis ~/public_html/pub/file/
+
+#%: rule/local/%
+
+release: rule/local/release
+
+rule/local/%:
+	echo "todo: $@"
+
+-include ~/bin/mk-local.mk

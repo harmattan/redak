@@ -8,7 +8,7 @@ import "../common"
 import "./"
 
 ListView {
-    id: listView
+    id: folderView
     anchors.fill: parent
     clip: true
     //anchors.top: browserView.top
@@ -18,7 +18,7 @@ ListView {
         id: folderModel
         nameFilters: ["*"]
         showDirs: true
-        showDotAndDotDot: true
+        //showDotAndDotDot: true
         //sortField: "Name"
     }
     Component {

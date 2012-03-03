@@ -3,8 +3,8 @@
 
 package=redak
 
-chmod 4755 /opt/${package}/${package}
+chmod 4755 /opt/${package}/bin/${package}
 	
 if [ ! -e "/usr/bin/${package}" ]; then
-	ln -s /opt/${package}/${package} /usr/bin/${package}
+	ln -s /opt/${package}/bin/${package} /usr/bin/${package}
 fi

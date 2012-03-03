@@ -8,23 +8,26 @@ import "./"
 
 Page {
     id: pageView
-    property alias editView: edit
-    property alias content: edit.text
-    property string info: "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\n"
+    property alias textArea: textArea
+    property alias content: textArea.text
 
     tools: commonTools
 
     //Component.onCompleted: { theme.inverted = true }
 
     Flickable {
-        id: flick
+        id: flickable
 
         width: parent.width
         height: parent.height
-
-        contentWidth: edit.paintedWidth
-        contentHeight: edit.paintedHeight
         clip: true
+
+
+        //contentWidth: textArea.width
+        //contentHeight: textArea.height
+
+        //contentWidth: textArea.paintedWidth
+        contentHeight: textArea.paintedHeight
 
         function ensureVisible(r)
         {
@@ -38,20 +41,35 @@ Page {
                 contentY = r.y+r.height-height;
         }
 
-        TextEdit {
-            id: edit
-            width: flick.width
-            height: flick.height
+        TextArea {
+            id: textArea
+            property int paintedHeight: ( textArea.height > pageView.height ) ? textArea.height : pageView.height
+            width: flickable.width
+            //height: flickable.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;
             //anchors.rightMargin: Script.g_font_pixelSize/3;
+            //cursorVisible: true
+            //selectByMouse: false
             focus: true
-            cursorVisible: true
-            selectByMouse: false
-            text: info
+            text: Script.g_info
             smooth: true
             wrapMode: TextEdit.Wrap
+            textFormat: TextEdit.PlainText
             font.pixelSize: Script.g_font_pixelSize
-            onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
-         }
+
+            // onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
+            //font.family: "Courier" //TODO
+            //            MouseArea {
+            //                onPressAndHold: textArea.closeSoftwareInputPanel();
+            //                onClicked: {
+            //                    if (!textArea.activeFocus) {
+            //                        textArea.forceActiveFocus();
+            //                        textArea.openSoftwareInputPanel();
+            //                    } else {
+            //                        textArea.focus = false;
+            //                    }
+            //                }
+            //            }
+        }
     }
 }
