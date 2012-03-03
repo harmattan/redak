@@ -19,7 +19,7 @@ clean:
 
 
 distclean: clean
-	rm -rvf *.user *.zip *.sis
+	rm -rvf *.user *.zip *.sis *~
 	find . -iname "*~" -exec rm -v '{}' \;
 
 

@@ -1,9 +1,9 @@
-redak (0.0.0-0) UNRELEASED; urgency=low
+redak (0.2.0-0) harmattan; urgency=low
 
-  * URL: http://rzr.online.fr/q/redak
-  * devel version should be on top and discarded on release
+  * Add: support cut and paste
+  * Add: support symbian simulator and start on device
 
- -- Philippe Coval <rzr@gna.org>  Sun, 26 Feb 2012 14:51:03 +0100
+ -- Philippe Coval <rzr@gna.org>  Sat, 03 Mar 2012 12:14:20 +0100
 
 redak (0.1.0-0) harmattan; urgency=low
 
