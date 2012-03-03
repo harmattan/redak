@@ -1,3 +1,7 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 var g_font_pixelSize = 30;
 
 /// http://doc.qt.nokia.com/qt-components-symbian/qml-style.html
@@ -30,6 +34,7 @@ function load( filename_arg )
 
     //mainPage.load( filename );//TODO
     mainPage.content = core.load( filename );
+
     //console.log("log: content: " + mainPage.content.length );
 
     appWindow.pageStack.pop();

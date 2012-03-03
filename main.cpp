@@ -1,3 +1,8 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
+
 #include "config.h"
 #include <QtGui/QApplication>
 #include "qmlapplicationviewer.h"
@@ -18,6 +23,11 @@ int main(int argc, char *argv[])
     QString platform("common");
 
 //#define Q_OS_SYMBIAN
+
+#if defined(Q_WS_MAEMO_5)
+#elif defined(Q_WS_S60)
+#endif
+
 #ifdef Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
     platform = QString("symbian");
 #else //if defined Q_WS_SYMBIAN

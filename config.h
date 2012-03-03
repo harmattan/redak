@@ -1,3 +1,8 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
+
 #ifndef CONFIG_H
 #define CONFIG_H
 

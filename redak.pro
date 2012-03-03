@@ -1,3 +1,9 @@
+#! /usr/bin/qmake .
+#* #ident "$Id: $"
+#* @author: rzr@gna.org - rev: $Author: rzr$
+#* Copyright: See README file that comes with this distribution
+#*****************************************************************************/
+
 # Add more folders to ship with the application, here
 folder_01.source = qml/redak
 folder_01.target = qml

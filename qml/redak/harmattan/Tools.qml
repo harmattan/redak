@@ -1,3 +1,7 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import Core 1.0
@@ -12,19 +16,19 @@ ToolBar {
 
         ToolIcon
         {
-            //text: "menu"
-            //iconId: "toolbar-view-menu"
-            platformIconId: "toolbar-view-menu"
             anchors.right: (parent === undefined) ? undefined : parent.right
             onClicked: (myMenu.status == DialogStatus.Closed) ? myMenu.open() : myMenu.close()
-        }
+            platformIconId: "toolbar-view-menu"
+           //text: "menu"
+            //iconId: "toolbar-view-menu"
+		}
 
         ToolIcon
         {
-            //text: "quit"
-            platformIconId: "toolbar-close";
             onClicked: { Qt.quit(); }
             anchors.left: (parent === undefined) ? undefined : parent.left
+            platformIconId: "toolbar-close";
+            //text: "quit"
         }
 
     }

@@ -1,3 +1,7 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 import QtQuick 1.1
 import Qt.labs.folderlistmodel 1.0
 import com.nokia.symbian 1.1
@@ -8,10 +12,12 @@ import "./"
 
 
 Page {
+    id: browserPage
     property variant content: content
     property int mode: 0 //0=load 1=save
 
     signal loaded()
+    signal error(/*string message*/)
 
 //    property alias browserView: mColumn.browserView
 //    property alias folderModel: browserView.folderModel
@@ -45,11 +51,15 @@ Page {
     onLoaded: {
         Script.handleLoaded()
     }
+    onError: {
+        console.log(message);
+    }
 
     Column {
         id: mColumn
         width: parent.width
         height: parent.height
+        //anchors.fill: parent
 
         //Row {
         TextField{
@@ -135,7 +145,7 @@ Page {
                         font.pixelSize: Script.g_font_pixelSize
                         anchors.verticalCenter: parent.verticalCenter
                         x: Script.g_font_pixelSize * 2
-//                      color: "white"
+                        color: "white"
                     }
 
                     MouseArea {

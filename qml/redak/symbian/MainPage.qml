@@ -1,3 +1,7 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.symbian 1.1
 import Core 1.0
@@ -8,8 +12,8 @@ import "./"
 
 Page {
     id: pageView
-    property alias textEdit: textEdit
-    property alias content: textEdit.text
+    property alias textArea: textArea
+    property alias content: textArea.text
 
     tools: commonTools
 
@@ -38,7 +42,7 @@ Page {
         }
 
         TextArea {
-            id: textEdit
+            id: textArea
             width: flickable.width
             height: flickable.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;
@@ -48,7 +52,7 @@ Page {
             focus: true
             text: Script.g_info
             smooth: true
-            wrapMode: TextArea.Wrap
+            wrapMode: TextEdit.Wrap
             textFormat: TextEdit.PlainText
             font.pixelSize: Script.g_font_pixelSize
             //onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)

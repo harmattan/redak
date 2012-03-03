@@ -1,7 +1,10 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 import QtQuick 1.1
 import Qt.labs.folderlistmodel 1.0
 import com.nokia.meego 1.0
-//import com.nokia.symbian 1.1
 import Core 1.0
 import "../common/script.js" as Script
 import "../common"
@@ -9,10 +12,12 @@ import "./"
 
 
 Page {
+    id: browserPage
     property variant content: content
     property int mode: 0 //0=load 1=save
 
     signal loaded()
+    signal error(/*string message*/)
 
     anchors.fill: parent
     //Component.onCompleted: { theme.inverted = !true }
@@ -36,6 +41,9 @@ Page {
 
     onLoaded: {
         Script.handleLoaded()
+    }
+    onError: {
+        console.log(message);
     }
 
     Column {

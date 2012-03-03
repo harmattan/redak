@@ -1,4 +1,8 @@
 #! /usr/bin/make -f
+#* #ident "$Id: $"
+#* @author: rzr@gna.org - rev: $Author: rzr$
+#* Copyright: See README file that comes with this distribution
+#*****************************************************************************
 package?=redak
 
 #TODO: upgrade with yours

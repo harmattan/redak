@@ -1,3 +1,7 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import Core 1.0
@@ -20,6 +24,20 @@ PageStackWindow {
         id: core
     }
 
+    QueryDialog {
+            id: error
+            titleText: "Error"
+            acceptButtonText: "Close"
+            message: "error" // "Popup count: " + platformPopupManager.popupStackDepth
+        }
+    Connections {
+            target:core
+            onError: {
+                console.debug(text);
+                error.message = text;
+                error.open();
+            }
+        }
     MainPage {
         id: mainPage
         //    anchors.fill: parent
