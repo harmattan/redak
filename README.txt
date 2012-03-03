@@ -2,15 +2,24 @@ Package: redak
 URL: http://rzr.online.fr/q/redak
 Contact: Philippe Coval <rzr@gna.org>
 
+Redak is just a simple text editor to be used on touchscreen
+Basic features are Load, Save, Save As, Browse and Edit text
+It has been tested on maemo/meego harmattan n950 and n9 ...
+
 
 ### TODO ###
 
-* cut and paste
-* symbian | lighthouse port
-* error handling
-* path : filename/ dir / parent
-* XB-Maemo-Flags: visible  XB-MeeGo-Desktop-Entry-Name
-* margin : edit / menu
+* Task : Bugs / Features / Wishes
+** TODO : path : filename/ dir / parent
+** TODO : error handling
+** TODO : margin : edit / menu
+** DONE : cut and paste
+
+* Task : Support
+** TODO : WIP symbian
+** TODO : lighthouse port nescessitas
+** TODO : harmattan : uninstall : XB-Maemo-Flags: visible  XB-MeeGo-Desktop-Entry-Name
+
 
 ### NOTES ###
 

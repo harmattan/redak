@@ -17,9 +17,21 @@ Page {
     anchors.fill: parent
     //Component.onCompleted: { theme.inverted = !true }
 
-    tools: // commonTools
-           ToolBarLayout {
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); }  }
+    tools:
+        ToolBarLayout {
+        ToolIcon {
+            iconId: "toolbar-back";
+            anchors.left: (parent === undefined) ? undefined : parent.left;
+            onClicked: { pageStack.pop();}
+        }
+        ToolIcon {
+            iconId: "toolbar-up";
+            anchors.right: (parent === undefined) ? undefined : parent.right
+            onClicked: {
+                dir.text = folderModel.parentFolder
+                folderModel.folder = folderModel.parentFolder ;
+            }
+        }
     }
 
     onLoaded: {
@@ -27,9 +39,11 @@ Page {
     }
 
     Column {
+        id: mColumn
         width: parent.width
         height: parent.height
         //anchors.fill: parent
+
         //Row {
         TextField{
             id: dir
@@ -61,16 +75,9 @@ Page {
                 dir.focus = true;
             }
 
-            //Image{
-            //   source :"toolbar-home"
-            //}
-
         }
         //}
 
-        // FolderView {
-        //     id: folderView
-        //}
         ListView {
             id: listView
             clip: true
@@ -84,7 +91,7 @@ Page {
                 id: folderModel
                 nameFilters: ["*"]
                 showDirs: true
-                showDotAndDotDot: true
+                showDotAndDotDot: false
                 //sortField: "Name"
             }
             Component {
@@ -118,6 +125,7 @@ Page {
                         font.pixelSize: Script.g_font_pixelSize
                         anchors.verticalCenter: parent.verticalCenter
                         x: Script.g_font_pixelSize * 2
+//                      color: "white"
                     }
 
                     MouseArea {
@@ -150,5 +158,4 @@ Page {
 
         }
     }
-
 }

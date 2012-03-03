@@ -61,7 +61,9 @@ PageStackWindow {
             MenuItem {
                 text: qsTr("Edit Toggle")
                 onClicked: {
-                    mainPage.editView.enabled =!mainPage.editView.enabled ;
+                    //mainPage.textArea.enabled =!mainPage.textArea.enabled ;
+                    mainPage.textArea.enableSoftwareInputPanel  = !mainPage.textArea.enableSoftwareInputPanel;
+                    flickable.focus = !flickable.focus;
                 }
             }
 
@@ -70,7 +72,7 @@ PageStackWindow {
                 onClicked: {
                     //myDialog.visible = true;
                     //myDialog.focus = true;
-                    content = mainPage.info;
+                    content = Script.g_info;
                 }
             }
 
@@ -84,7 +86,6 @@ PageStackWindow {
     Tools{
         id: commonTools
         visible: true
-        //        focus: true
     }
 
 }

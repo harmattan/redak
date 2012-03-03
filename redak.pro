@@ -7,6 +7,9 @@ DEPLOYMENTFOLDERS = folder_01
 QML_IMPORT_PATH =
 
 symbian:TARGET.UID3 = 0xE65F5F5E
+symbian {
+PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
+}
 
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
@@ -15,7 +18,8 @@ symbian:TARGET.UID3 = 0xE65F5F5E
 # 0x2002CCCF value if protected UID is given to the application
 #symbian:DEPLOYMENT.installer_header = 0x2002CCCF
 
-symbian:TARGET.CAPABILITY += AllFiles
+#symbian:TARGET.CAPABILITY += AllFiles
+#symbian:TARGET.CAPABILITY += WriteUserData ReadUserData
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
@@ -24,6 +28,7 @@ symbian:TARGET.CAPABILITY += AllFiles
 
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 CONFIG += qdeclarative-boostable
+CONFIG += qt-components
 
 INCLUDEPATH += /usr/include/applauncherd
 
@@ -43,7 +48,7 @@ qtcAddDeployment()
 OTHER_FILES += \
     README.txt \
     mk-local.mk \
-    debian/control \
+    debian/ \
     qtc_packaging/debian_harmattan/rules \
     qtc_packaging/debian_harmattan/README \
     qtc_packaging/debian_harmattan/manifest.aegis \

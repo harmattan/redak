@@ -1,3 +1,4 @@
+#include "config.h"
 #include <QtGui/QApplication>
 #include "qmlapplicationviewer.h"
 
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
 
     QString platform("common");
 
+//#define Q_OS_SYMBIAN
 #ifdef Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
     platform = QString("symbian");
 #else //if defined Q_WS_SYMBIAN
