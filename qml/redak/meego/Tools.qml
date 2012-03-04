@@ -3,7 +3,7 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
-import com.nokia.symbian 1.1
+import com.nokia.meego 1.0
 import Core 1.0
 import "../common/script.js" as Script
 import "../common"
@@ -14,30 +14,24 @@ ToolBar {
     tools:
         ToolBarLayout {
 
-        ToolButton
+        ToolIcon
         {
-			// text: "quit"
+            // text: "quit"
             onClicked: { Qt.quit(); }
-            iconSource: "toolbar-home"
+            platformIconId: "toolbar-close";
         }
 
-//        ToolButton
-//        {
-//            // text: "view"
-//            iconSource: ( mainPage.isEdit ) ? "toolbar-search"
-//                                            : "toolbar-search"; //TODO
+        ToolIcon
+        {
+            // text: "view"
+            platformIconId: ( mainPage.isEdit ) ? "toolbar-search" : "toolbar-search-selected";
+            onClicked: { mainPage.toggleEdit(); }
+        }
 
-//                                            // : "toolbar-search-selected";
-//            onClicked: {
-//        //console.log( iconSource );
-//            mainPage.toggleEdit(); }
-//        }
-
-
-        ToolButton
+        ToolIcon
         {
             // text: "menu"
-            iconSource: "toolbar-menu"
+            platformIconId: "toolbar-view-menu"
             onClicked: (myMenu.status == DialogStatus.Closed) ? myMenu.open() : myMenu.close()
         }
 

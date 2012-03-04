@@ -1,6 +1,7 @@
 Source: redak
 Section: user/utilities
-X-Debian-Section: utils
+XS-Meego-Section: user/utilities
+XS-Debian-Section: utils
 Priority: optional
 Maintainer: Philippe Coval <rzr@gna.org>
 Build-Depends: debhelper (>= 5),

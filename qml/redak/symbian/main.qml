@@ -20,6 +20,15 @@ PageStackWindow {
 
     //Component.onCompleted: { theme.inverted = true }
 
+    function browse(mode)
+    {
+        //console.debug("loading:" + content );
+        var component = Qt.resolvedUrl("BrowserPage.qml");
+        component.parent = pageStack.parent
+        pageStack.push( component ,  { content: content , mode: mode } )
+    }
+
+
     Core {
         id: core
     }
@@ -54,9 +63,7 @@ PageStackWindow {
             MenuItem {
                 text: qsTr("Load")
                 onClicked: {
-                    //console.debug("loading:" + content );
-                    var component = Qt.resolvedUrl("BrowserPage.qml");
-                    pageStack.push( component ,  { content: content , mode: 0 } )
+                    browse(0);
                 }
             }
 
@@ -70,16 +77,7 @@ PageStackWindow {
             MenuItem {
                 text: qsTr("Save As")
                 onClicked: {
-                    var component = Qt.resolvedUrl("BrowserPage.qml");
-                    component.parent = pageStack.parent
-                    pageStack.push( component ,  { content: content , mode: 1 } )
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Edit Toggle")
-                onClicked: {
-                    mainPage.editView.enabled =!mainPage.editView.enabled ;
+                    browse(1);
                 }
             }
 

@@ -12,11 +12,18 @@ import "./"
 
 Page {
     id: pageView
-    property alias textArea: textArea
     property alias content: textArea.text
-
+    property alias isEdit : textArea.enabled;
     tools: commonTools
 
+    function toggleEdit()
+    {
+        textArea.enabled = !textArea.enabled ;
+        textArea.enableSoftwareInputPanel  = textArea.enabled;
+        textArea.focus = textArea.enabled;
+        flickable.focus = !textArea.focus;
+        return textArea.enabled;
+    }
     //Component.onCompleted: { theme.inverted = true }
 
     Flickable {
@@ -25,10 +32,6 @@ Page {
         width: parent.width
         height: parent.height
         clip: true
-
-
-        //contentWidth: textArea.width
-        //contentHeight: textArea.height
 
         //contentWidth: textArea.paintedWidth
         contentHeight: textArea.paintedHeight

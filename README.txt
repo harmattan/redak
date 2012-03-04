@@ -16,6 +16,7 @@ It has been tested on maemo/meego harmattan n950 and n9 ...
 ** DONE : cut and paste
 ** TODO : load large file scroll down , menu about, scroll up :-(
 ** TODO : uninstall on desktop
+** TODO : argv[1] : http://stackoverflow.com/questions/5770154/qt-qapplication-appargc-argv
 
 * Task : Support
 ** TODO : WIP symbian
@@ -32,3 +33,5 @@ http://rzr.online.fr/q/redak# [Announce] redak : text editor (Qt/QML, harmattan,
 check online
 
 thanks to itsnotabigtruck for testing on n9
+
+LocalThemeDaemonClient: Looking for assets in "/usr/local/opt/QtSDK/Simulator/Qt/gcc//harmattanthemes/blanco/meegotouch"

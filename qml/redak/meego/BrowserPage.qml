@@ -22,19 +22,49 @@ Page {
     anchors.fill: parent
     //Component.onCompleted: { theme.inverted = !true }
 
+
+    function handlePath(path)
+    {                        //                         folderModel.folder = dir.text;
+        if ( 0 == mode ) {
+            //platformCloseSoftwareInputPanel(); //TODO
+            Script.load( dir.text );
+            listView.focus = true;
+            //              pageStack.pop();
+        } else {
+            var filename = ( null === dir ) ? "unknown.txt" : dir.text;
+            console.log("saving:" + dir.text );
+            core.save( content, filename );
+            listView.focus = true;
+            pageStack.pop();
+
+        }
+    }
+
+
     tools:
         ToolBarLayout {
         ToolIcon {
+            //text: qsTr("back")
             iconId: "toolbar-back";
-            anchors.left: (parent === undefined) ? undefined : parent.left;
             onClicked: { pageStack.pop();}
         }
+
         ToolIcon {
-            iconId: "toolbar-up";
-            anchors.right: (parent === undefined) ? undefined : parent.right
+            iconId: "toolbar-backspace";
+            //platformIconId: "toolbar-view-menu"
             onClicked: {
+                //console.log( folderModel.parentFolder  );
                 dir.text = folderModel.parentFolder
                 folderModel.folder = folderModel.parentFolder ;
+            }
+        }
+
+        ToolIcon {
+            // text: qsTr("..")
+            iconId: "toolbar-search"
+            //platformIconId: "toolbar-view-menu"
+            onClicked: {
+                handlePath( dir.text );
             }
         }
     }
@@ -53,7 +83,7 @@ Page {
         //anchors.fill: parent
 
         //Row {
-        TextField{
+        TextField {
             id: dir
             text: ( null == folderModel.folder ) ? "./" : folderModel.folder
             width:parent.width;

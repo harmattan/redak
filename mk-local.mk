@@ -23,6 +23,7 @@ clean:
 
 
 distclean: clean
+	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
 	rm -rvf *.user *.zip *.sis *~
 	find . -iname "*~" -exec rm -v '{}' \;
 
@@ -31,7 +32,7 @@ dist: distclean COPYING release rule/local/release
 
 
 
-meld: qml/${package}/harmattan qml/${package}/symbian
+meld: qml/${package}/meego qml/${package}/symbian
 	$@ $^
 
 
@@ -43,7 +44,7 @@ debian/diff: debian qtc_packaging/debian_harmattan
 	meld $^
 
 
-diff: qml/${package}/harmattan qml/${package}/symbian
+diff: qml/${package}/meego qml/${package}/symbian
 	meld $^
 
 
@@ -54,7 +55,7 @@ install:
 
 #%: rule/local/%
 
-release: rule/local/release
+release: distclean rule/local/release
 
 rule/local/%:
 	echo "todo: $@"

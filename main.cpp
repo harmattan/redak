@@ -15,14 +15,23 @@ int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
 
+    if ( argc > 1 ) {
+        char const * const tmp = argv[1];
+        qDebug()<<tmp;
+    }
+
     qmlRegisterType<Core>("Core", 1, 0, "Core");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
 
-    QString platform("common");
+    // QString platform("common");
+    QString platform("meego");
 
-//#define Q_OS_SYMBIAN
+#if defined Q_WS_SIMULATOR
+# define Q_OS_SYMBIAN
+//# define Q_WS_HARMATTAN
+#endif
 
 #if defined(Q_WS_MAEMO_5)
 #elif defined(Q_WS_S60)
@@ -30,8 +39,10 @@ int main(int argc, char *argv[])
 
 #ifdef Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
     platform = QString("symbian");
-#else //if defined Q_WS_SYMBIAN
-    platform = QString("harmattan");
+#endif
+
+#if defined Q_WS_HARMATTAN
+    platform = QString("meego");
 #endif
 
     QString filename("qml/redak/");

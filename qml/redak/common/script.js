@@ -12,6 +12,15 @@ var g_color_bg_pressed = "steelblue";
 var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\n";
 
 
+function image(filename)
+{
+    //    "image://theme/icon-m-common-drilldown-arrow"
+    //                                + (theme.inverted ? "-inverse" : "")
+    var res = filename; //
+    //res += ( platformInverted )  ? "-inverse" : "";
+    return res;
+}
+
 function save(content, filename)
 {
     var content = "content";

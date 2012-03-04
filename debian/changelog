@@ -1,4 +1,4 @@
-redak (0.0.0-0) harmattan; urgency=low
+redak (0.0.0-0) UNRELEASED; urgency=low
 
   * URL: http://rzr.online.fr/q/redak
   * devel version should be on top and discarded on release

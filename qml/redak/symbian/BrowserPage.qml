@@ -19,32 +19,55 @@ Page {
     signal loaded()
     signal error(/*string message*/)
 
-    //    property alias browserView: mColumn.browserView
-    //    property alias folderModel: browserView.folderModel
-
     anchors.fill: parent
     //Component.onCompleted: { theme.inverted = !true }
 
-    tools: // commonTools
+
+    function handlePath(path)
+    {                        
+	    // folderModel.folder = dir.text;
+        if ( 0 == mode ) {
+            //platformCloseSoftwareInputPanel(); //TODO
+            Script.load( dir.text );
+            listView.focus = true;
+            //              pageStack.pop();
+        } else {
+            var filename = ( null === dir ) ? "unknown.txt" : dir.text;
+            console.log("saving:" + dir.text );
+            core.save( content, filename );
+            listView.focus = true;
+            pageStack.pop();
+
+        }
+    }
+
+
+    tools:
            ToolBarLayout {
         ToolButton {
             //text: qsTr("back")
-            //iconSource: "back"
             iconSource: "toolbar-back"
-            //platformIconId: "toolbar-view-menu"
-            anchors.left: (parent === undefined) ? undefined : parent.left
             onClicked: { pageStack.pop(); }
         }
 
         ToolButton {
-            text: qsTr("..")
-            // iconSource: "toolbar-up"
+            // text: qsTr("..")
+            iconSource: "toolbar-previous"
             //platformIconId: "toolbar-view-menu"
-            anchors.right: (parent === undefined) ? undefined : parent.right
             onClicked: {
                 //console.log( folderModel.parentFolder  );
                 dir.text = folderModel.parentFolder
                 folderModel.folder = folderModel.parentFolder ;
+            }
+        }
+
+        ToolButton {
+            // text: qsTr("..")
+            iconSource: "toolbar-search"
+            //platformIconId: "toolbar-view-menu"
+
+            onClicked: {
+                handlePath( dir.text );
             }
         }
     }
@@ -63,7 +86,7 @@ Page {
         //anchors.fill: parent
 
         //Row {
-        TextField { //TextEdit{
+        TextField {
             id: dir
             text: ( null == folderModel.folder ) ? "./" : folderModel.folder
             width:parent.width;
@@ -90,51 +113,37 @@ Page {
                 dir.focus = true;
             }
             // https://bugreports.qt-project.org/browse/QTBUG-16870
-                      //onAccepted: {
-                      //    folderModel.folder = text;
-                      //}
-//            Keys.onReturnPressed: {
-  //          }
-            Rectangle {
-                anchors {
-                    top: parent.top;
-                    right: parent.right;
-                    margins: platformStyle.paddingMedium
-                }
-                id: valid
-                //fillMode: Image.PreserveAspectFit
-                smooth: true;
- //               visible: dir.text
-                //source: "toolbar-back"
-                height: parent.height - platformStyle.paddingMedium * 2
-                width: parent.height - platformStyle.paddingMedium * 2
-                color: "blue"
-                MouseArea {
-                    anchors {
-                        horizontalCenter: parent.horizontalCenter;
-                        verticalCenter: parent.verticalCenter
-                    }
-                    height: valid.height;
-                    width: valid.height
-                    onClicked: {
-//                         folderModel.folder = dir.text;
-                        if ( 0 == mode ) {
-                            platformCloseSoftwareInputPanel();
-                            Script.load( dir.text );
-                            listView.focus = true;
-                            //              pageStack.pop();
-                        } else {
-                            var filename = ( null === dir ) ? "unknown.txt" : dir.text;
-                            console.log("saving:" + dir.text );
-                            core.save( content, filename );
-                            listView.focus = true;
-                            pageStack.pop();
-
-                        }
-
-                    }
-                }
-            }
+            //onAccepted: {
+            //    folderModel.folder = text;
+            //}
+            //            Keys.onReturnPressed: {
+            //          }
+//            Rectangle {
+//                anchors {
+//                    top: parent.top;
+//                    right: parent.right;
+//                    margins: platformStyle.paddingMedium
+//                }
+//                id: valid
+//                //fillMode: Image.PreserveAspectFit
+//                smooth: true;
+//                //               visible: dir.text
+//                //source: "toolbar-back"
+//                height: parent.height - platformStyle.paddingMedium * 2
+//                width: parent.height - platformStyle.paddingMedium * 2
+//                color: "blue"
+//                MouseArea {
+//                    anchors {
+//                        horizontalCenter: parent.horizontalCenter;
+//                        verticalCenter: parent.verticalCenter
+//                    }
+//                    height: valid.height;
+//                    width: valid.height
+//                    onClicked: {
+//                        handlePath( dir.text );
+//                    }
+//                }
+//            }
 
         }
         //}

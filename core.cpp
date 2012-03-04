@@ -7,9 +7,6 @@
 
 #include "core.h"
 
-#define FUNCT(...) \
-    if ( false ) qDebug()<<__FILE__<<":"<<__LINE__<<":"
-
 
 Core::Core(QDeclarativeItem *parent)
     : QDeclarativeItem(parent)
