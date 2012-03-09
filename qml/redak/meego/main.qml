@@ -3,7 +3,7 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
-import com.nokia.symbian 1.1
+import com.nokia.meego 1.0
 import Core 1.0
 import "../common/script.js" as Script
 import "../common"
@@ -41,8 +41,8 @@ PageStackWindow {
         browserPage.parent = pageStack.parent;
         folderPath = ( null != folderPath ) ? folderPath : "/";
         pageStack.push
-	( browserPage , 
- { content: content , mode: mode , folderPath: folderPath} );
+( browserPage , 
+ { content: content , mode: mode , folderPath: folderPath} )
     }
 
 
@@ -81,7 +81,7 @@ PageStackWindow {
 
     Menu {
         id: myMenu
-        visualParent: appWindow
+        visualParent: pageStack
 
         MenuLayout {
 
@@ -123,4 +123,11 @@ PageStackWindow {
         }
     }
 
+    //    Connections {
+    //        target: browserPage
+    //        onFileSelected: {
+    //            console.log("main:onFileSelected: " + path );
+    //            //Script.handlePath( filename ); //TODO
+    //        }
+    //    }
 }

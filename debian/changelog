@@ -1,3 +1,13 @@
+redak (0.3.0-0) harmattan; urgency=low
+
+  * Add: popup on errors
+  * Add: port symbian tested on e7
+  * Add: support meego (build at least)
+  * open file from command line
+  * more features
+
+ -- Philippe Coval <rzr@gna.org>  Fri, 09 Mar 2012 11:36:59 +0100
+
 redak (0.2.0-0) harmattan; urgency=low
 
   * Add: support cut and paste

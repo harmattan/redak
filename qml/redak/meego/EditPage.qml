@@ -1,32 +1,52 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import Core 1.0
 import "../common/script.js" as Script
 import "../common"
 import "./"
 
 
 Page {
-    id: pageView
-    property alias textArea: textArea
+    id: editPage
     property alias content: textArea.text
+    property alias isEdit : textArea.enabled;
+    signal contents(string contents)
+    property string folderPath: ""
 
     tools: commonTools
 
+    onContents:{
+        textArea.height = 0;
+        textArea.text = contents;
+    }
+
+    function setContents(contents)
+    {
+        textArea.height = 0;
+        textArea.text = contents;
+    }
+
+    function toggleEdit()
+    {
+        textArea.enabled = !textArea.enabled ;
+        textArea.enableSoftwareInputPanel  = textArea.enabled;
+        textArea.focus = textArea.enabled;
+        flickable.focus = !textArea.focus;
+        return textArea.enabled;
+    }
     //Component.onCompleted: { theme.inverted = true }
 
     Flickable {
         id: flickable
-
+        anchors.margins: Script.g_font_pixelSize
         width: parent.width
         height: parent.height
         clip: true
 
-
-        //contentWidth: textArea.width
-        //contentHeight: textArea.height
-
-        //contentWidth: textArea.paintedWidth
+        // contentWidth: textArea.paintedWidth
         contentHeight: textArea.paintedHeight
 
         function ensureVisible(r)
@@ -43,7 +63,7 @@ Page {
 
         TextArea {
             id: textArea
-            property int paintedHeight: ( textArea.height > pageView.height ) ? textArea.height : pageView.height
+            property int paintedHeight: ( textArea.height > editPage.height ) ? textArea.height : editPage.height
             width: flickable.width
             //height: flickable.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;

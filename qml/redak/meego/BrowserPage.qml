@@ -1,42 +1,82 @@
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
 import QtQuick 1.1
 import Qt.labs.folderlistmodel 1.0
 import com.nokia.meego 1.0
-//import com.nokia.symbian 1.1
-import Core 1.0
 import "../common/script.js" as Script
-import "../common"
-import "./"
 
 
 Page {
+    id: browserPage
     property variant content: content
     property int mode: 0 //0=load 1=save
+    property variant filename: dir.text
+    property alias folderPath: folderModel.folder;
 
     signal loaded()
+    signal error(/*string message*/)
+    signal fileSelected(string path);
+
+    signal folderChanged(string path);
+
+    onFolderChanged: {
+        Script.handleFolderChanged(path); //TODO: path param on pop
+        dir.text = path
+        folderModel.folder = path ;
+    }
+
+    onFileSelected: {
+        Script.handlePath( path ); //TODO: use signal
+    }
 
     anchors.fill: parent
+
     //Component.onCompleted: { theme.inverted = !true }
+
+    //    Connections {
+    //        target: browserPage
+    //        onFileSelected: {
+    //            Script.handlePath( filename );
+    //        }
+    //    }
 
     tools:
         ToolBarLayout {
         ToolIcon {
-            iconId: "toolbar-back";
-            anchors.left: (parent === undefined) ? undefined : parent.left;
-            onClicked: { pageStack.pop();}
+            //text: qsTr("back")
+            iconId: "toolbar-back"
+            onClicked: { pageStack.pop(); }
         }
+
         ToolIcon {
-            iconId: "toolbar-up";
-            anchors.right: (parent === undefined) ? undefined : parent.right
+            // text: qsTr("..")
+            iconId: "toolbar-backspace"
+            //platformIconId: "toolbar-view-menu"
+
             onClicked: {
-                dir.text = folderModel.parentFolder
-                folderModel.folder = folderModel.parentFolder ;
+                folderChanged(folderModel.parentFolder);
+            }
+        }
+
+        ToolIcon {
+            // text: qsTr("..")
+            iconId: "toolbar-search"
+            //platformIconId: "toolbar-view-menu"
+
+            onClicked: {
+                fileSelected( dir.text );
             }
         }
     }
 
-    onLoaded: {
-        Script.handleLoaded()
-    }
+    //    onLoaded: {
+    //        Script.handleLoaded()
+    //    }
+    //    onError: {
+    //        console.log(message);
+    //    }
 
     Column {
         id: mColumn
@@ -45,36 +85,27 @@ Page {
         //anchors.fill: parent
 
         //Row {
-        TextField{
+        TextField {
             id: dir
             text: ( null == folderModel.folder ) ? "./" : folderModel.folder
             width:parent.width;
             placeholderText: "Directory or File to load"
             focus: false;
-            onAccepted: {
-                folderModel.folder = text;
-            }
-            Keys.onReturnPressed: {
-                if ( 0 == mode ) {
-                    platformCloseSoftwareInputPanel();
-                    Script.load( dir.text );
-                    listView.focus = true;
-                    //              pageStack.pop();
-                } else {
-                    var filename = ( null === dir ) ? "unknown.txt" : dir.text;
-                    console.log("saving:" + dir.text );
-                    core.save( content, filename );
-                    listView.focus = true;
-                    pageStack.pop();
 
-                }
+            Keys.onReturnPressed: {
+                fileSelected(filename);
             }
+
             onFocusChanged:  {
                 var start = dir.text.length;
                 dir.select( start , start);
                 dir.focus = true;
             }
 
+            // https://bugreports.qt-project.org/browse/QTBUG-16870
+            onAccepted: {
+                folderModel.folder = text;
+            }
         }
         //}
 
@@ -85,7 +116,7 @@ Page {
             //anchors.bottom: parent.bottom
             //anchors.fill: parent
             height: parent.height - dir.height
-            width:parent.width;
+            width: parent.width;
 
             FolderListModel {
                 id: folderModel
@@ -94,6 +125,7 @@ Page {
                 showDotAndDotDot: false
                 //sortField: "Name"
             }
+
             Component {
                 id: fileDelegate
 
@@ -102,30 +134,30 @@ Page {
 
                     width: parent.width
                     height: fileNameView.height * 1.5
-                    color: mouseArea.pressed ? Script.g_color_bg_pressed : Script.g_color_bg_normal;
-                    border.color: "black"
+                    border.color: Script.g_color_border
                     border.width: 5
                     radius: 10
-
+                    color: ( mouseArea.pressed )
+                           ? Script.g_color_bg_pressed
+                           : folderModel.isFolder(index) ? "#E0D0D0" : "#D0E0D0" //TODO
                     Image
                     {
                         id: icon
                         anchors.verticalCenter: parent.verticalCenter
-
+                        x: Script.g_font_pixelSize / 2
                         smooth: true
                         source: folderModel.isFolder(index)
                                 ? "image://theme/icon-s-invitation-pending"
                                 : "image://theme/icon-s-invitation-accept"
                         visible: source != ''
-                        x: Script.g_font_pixelSize / 2
                     }
+
                     Text {
                         id: fileNameView
                         text: fileName
                         font.pixelSize: Script.g_font_pixelSize
                         anchors.verticalCenter: parent.verticalCenter
                         x: Script.g_font_pixelSize * 2
-//                      color: "white"
                     }
 
                     MouseArea {
@@ -133,20 +165,16 @@ Page {
                         anchors.fill: parent
 
                         onClicked: {
-                            fileNameView.color="red";
+                            fileNameView.color="red"
                             color: platformStyle.colorNormalLight
+                            dir.text = filePath
 
                             if ( folderModel.isFolder(index) ) {
-                                dir.text = filePath
-                                folderModel.folder = filePath;
+                                folderChanged(filePath);
                             } else {
-                                if ( 0 == mode ) {
-                                    Script.load( filePath );
-                                } else {
-                                    core.save( content, filePath );
-                                    pageStack.pop();
-                                }
+                                fileSelected( filePath );
                             }
+
                         }
                     }
                 }
