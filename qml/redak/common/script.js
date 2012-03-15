@@ -12,12 +12,12 @@ var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
 var g_color_border = "gray"
 
-var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: 0.3.0\n\n";
+var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: 0.4.0\n\n";
 
 
 function log(text)
 {
-    if ( !false ) {
+    if ( false ) {
         console.log(text);
     }
 }
@@ -65,20 +65,22 @@ function handlePath(filepath)
     var content = editPage.filepath;
     if ( null != filepath ) { filename = filepath; }
 
-    //log("log: io: mode="+ editPage.mode + " path=" +  filename );
+    log("log: Script.handlePath: io: mode="+ appWindow.mode + " path=" +  filename );
 
-    if ( 1 == browserPage.mode ) {
+    if ( 1 == appWindow.mode ) {
         log("saving:" + filename );
         content = editPage.content;
         res &= core.save( content, filename );
+        appWindow.filePath = filename;
+
     } else {
         //platformCloseSoftwareInputPanel(); //TODO
         content = core.load( filename );
         editPage.content = content; //todo
+        appWindow.filePath = filename;
     }
 
     //editPage.listView.focus = true;
     if ( res ) { /*appWindow.*/ pageStack.pop(); }
-
     return res;
 }

@@ -14,7 +14,7 @@ Page {
     property alias content: textArea.text
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
-    property string folderPath: ""
+    property string folderPath: "" //or / ?
 
     tools: commonTools
 

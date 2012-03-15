@@ -4,8 +4,8 @@
  *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.symbian 1.1
-import Core 1.0
-import "../common/script.js" as Script
+import Core 1.0 //TODO
+import "../common/script.js" as Script //TODO
 import "../common"
 import "./"
 
@@ -16,22 +16,22 @@ ToolBar {
 
         ToolButton
         {
-			// text: "quit"
-            onClicked: { Qt.quit(); }
+            // text: "quit"
             iconSource: "toolbar-home"
+            onClicked: { Qt.quit(); }
         }
 
-//        ToolButton
-//        {
-//            // text: "view"
-//            iconSource: ( editPage.isEdit ) ? "toolbar-search"
-//                                            : "toolbar-search"; //TODO
+        //        ToolButton
+        //        {
+        //            // text: "view"
+        //            iconSource: ( editPage.isEdit ) ? "toolbar-search"
+        //                                            : "toolbar-search"; //TODO
 
-//                                            // : "toolbar-search-selected";
-//            onClicked: {
-//        //console.log( iconSource );
-//            editPage.toggleEdit(); }
-//        }
+        //                                            // : "toolbar-search-selected";
+        //            onClicked: {
+        //        //console.log( iconSource );
+        //            editPage.toggleEdit(); }
+        //        }
 
 
         ToolButton

@@ -73,7 +73,7 @@ QString  Core::load(QString filename)
         emit loaded(content);
     } else {
         status &= file.open(QIODevice::WriteOnly | QIODevice::Text);
-        content = "# file://" + filename;
+        content = "# file://" + filename + "\n";
         file.close();
         emit loaded(content);
     }

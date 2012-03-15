@@ -17,32 +17,36 @@ PageStackWindow {
     initialPage: editPage
     property alias content: editPage.content
     property alias folderPath: editPage.folderPath
-    // property variant filePath: ( null != filePath ) ? filePath : "default.txt";
+    property variant filePath: ( null != parentFilePath ) ? parentFilePath : "default.txt";
     signal filenameSelected(string filename)
+    property int mode: 0 //0=load 1=save
 
     Component.onCompleted: {
-        // console.log("onCompleted:" + filePath );
+        Script.log("onCompleted:" + filePath );
         if ( null != filePath ) { filenameSelected( filePath ); }
         // theme.inverted = true
     }
 
     onFilenameSelected: {
+        Script.log("onFilenameSelected:" + filename );
         var res = true;
-        //Script.log("onFilenameSelected:" + filename );
         if ( (null != filename) && ( "" != filename ) ) {
             content = core.load( filename );
+            filePath = filename;
         }
     }
 
     function browse(mode)
     {
-        // console.debug("loading:" + content );
+        Script.log("browse:" + content );
+        appWindow.mode = mode;
         var browserPage = Qt.resolvedUrl("BrowserPage.qml");
         browserPage.parent = pageStack.parent;
         folderPath = ( null != folderPath ) ? folderPath : "/";
+
         pageStack.push
-( browserPage , 
- { content: content , mode: mode , folderPath: folderPath} )
+                ( browserPage ,
+                 { content: content , folderPath: folderPath} )
     }
 
 
@@ -95,7 +99,7 @@ PageStackWindow {
             MenuItem {
                 text: qsTr("Save")
                 onClicked: {
-                    core.save( editPage.content , filename );
+                    core.save( editPage.content , filePath );
                 }
             }
 

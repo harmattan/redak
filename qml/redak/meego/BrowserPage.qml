@@ -11,7 +11,6 @@ import "../common/script.js" as Script
 Page {
     id: browserPage
     property variant content: content
-    property int mode: 0 //0=load 1=save
     property variant filename: dir.text
     property alias folderPath: folderModel.folder;
 
