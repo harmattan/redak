@@ -1,38 +1,35 @@
-var g_font_pixelSize = 30;
+/* #ident "$Id: $"
+ * @author: rzr@gna.org - rev: $Author: rzr$
+ * Copyright: See README file that comes with this distribution
+ *****************************************************************************/
+//import Core 1.0
+
+var g_font_pixelSize = 26;
 
 /// http://doc.qt.nokia.com/qt-components-symbian/qml-style.html
 var g_color_normal = "#00AAAAAA";
 var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
+var g_color_border = "gray"
 
-var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\n";
+var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: 0.3.0\n\n";
 
 
-function save(content, filename)
+function log(text)
 {
-    var content = "content";
-    var filename = "filename";
-
-    filename = currentFileNameView.text;
-
-    //content = mainPage.textView.text; //TODO
-    //core.save(content,filename);
-
-    core.save( mainPage.content , currentFileNameView.text);
-
+    if ( !false ) {
+        console.log(text);
+    }
 }
 
 
-function load( filename_arg )
+function image(filename)
 {
-    //console.log("log: filename: " + filename);
-    filename = filename_arg;
-
-    //mainPage.load( filename );//TODO
-    mainPage.content = core.load( filename );
-    //console.log("log: content: " + mainPage.content.length );
-
-    appWindow.pageStack.pop();
+    //    "image://theme/icon-m-common-drilldown-arrow"
+    //                                + (theme.inverted ? "-inverse" : "")
+    var res = filename; //
+    //res += ( platformInverted )  ? "-inverse" : "";
+    return res;
 }
 
 
@@ -50,4 +47,38 @@ function loadUrl(filename)
                     textView.text = loader.responseText;
                 } }
     loader.send();
+}
+
+
+function handleFolderChanged(path)
+{
+    //console.log("handleFolderChanged: "+path);
+    editPage.folderPath=path;
+    //appWindow.folderPath=path;
+}
+
+
+function handlePath(filepath)
+{
+    var res = true;
+    var filename = "unknown.txt"
+    var content = editPage.filepath;
+    if ( null != filepath ) { filename = filepath; }
+
+    //log("log: io: mode="+ editPage.mode + " path=" +  filename );
+
+    if ( 1 == browserPage.mode ) {
+        log("saving:" + filename );
+        content = editPage.content;
+        res &= core.save( content, filename );
+    } else {
+        //platformCloseSoftwareInputPanel(); //TODO
+        content = core.load( filename );
+        editPage.content = content; //todo
+    }
+
+    //editPage.listView.focus = true;
+    if ( res ) { /*appWindow.*/ pageStack.pop(); }
+
+    return res;
 }

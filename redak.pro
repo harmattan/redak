@@ -1,3 +1,9 @@
+#! /usr/bin/qmake .
+#* #ident "$Id: $"
+#* @author: rzr@gna.org - rev: $Author: rzr$
+#* Copyright: See README file that comes with this distribution
+#*****************************************************************************/
+
 # Add more folders to ship with the application, here
 folder_01.source = qml/redak
 folder_01.target = qml
@@ -7,6 +13,10 @@ DEPLOYMENTFOLDERS = folder_01
 QML_IMPORT_PATH =
 
 symbian:TARGET.UID3 = 0xE65F5F5E
+symbian:VER_MAJ=0
+symbian:VER_MIN=3
+symbian:VER_PAT=0
+
 symbian {
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
 }
@@ -47,8 +57,12 @@ qtcAddDeployment()
 
 OTHER_FILES += \
     README.txt \
+    TODO.txt \
     mk-local.mk \
     debian/ \
+    debian/changelog \
+    debian/rules \
+    debian/links \
     qtc_packaging/debian_harmattan/rules \
     qtc_packaging/debian_harmattan/README \
     qtc_packaging/debian_harmattan/manifest.aegis \

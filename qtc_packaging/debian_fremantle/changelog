@@ -1,5 +1,6 @@
-redak (0.0.1) unstable; urgency=low
+redak (0.0.0-0maemo0+fremantle0) unstable; urgency=low
 
   * Initial Release.
+  * URL: http://rzr.online.fr/q/redak
 
- -- Philippe Coval <rzr@gna.org>  Sat, 11 Feb 2012 23:31:00 +0100
+ -- Philippe Coval <rzr@gna.org>  Fri, 10 Feb 2012 02:13:59 +0100
