@@ -166,9 +166,9 @@ Page {
                     border.color: Script.g_color_border
                     border.width: 5 // Script.g_font_pixelSize / 10;
                     radius: 10 //Script.g_font_pixelSize / 5;
-                    color: mouseArea.pressed 
-? Script.g_color_bg_pressed
- : Script.g_color_bg_normal;
+                    color: mouseArea.pressed
+                           ? Script.g_color_bg_pressed
+                           : Script.g_color_bg_normal;
 
 
                     Rectangle
@@ -181,7 +181,7 @@ Page {
                         // ? "image://theme/icon-s-invitation-pending"
                         // : "image://theme/icon-s-invitation-accept"
                         color: folderModel.isFolder(index)
-						 ? "red" : "green"
+                               ? "red" : "green"
                         // visible: source != ''
 
                         width: Script.g_font_pixelSize
@@ -190,11 +190,11 @@ Page {
                         border.width: Script.g_font_pixelSize / 10;
                         radius: Script.g_font_pixelSize / 4;
 
-  //                      Text { text: folderModel.isFolder(index) ? "+" : "-" ;
-    //                    	font.pixelSize:Script.g_font_pixelSize;
-      //                  	anchors.verticalCenter: parent.verticalCenter
-        //                	anchors.horizontalCenter: parent.horizontalCenter
-          //              }
+                        //                      Text { text: folderModel.isFolder(index) ? "+" : "-" ;
+                        //                    	font.pixelSize:Script.g_font_pixelSize;
+                        //                  	anchors.verticalCenter: parent.verticalCenter
+                        //                	anchors.horizontalCenter: parent.horizontalCenter
+                        //              }
                     }
 
                     Text {

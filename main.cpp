@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     QString platform("meego");
 
 #if defined Q_WS_SIMULATOR
-//# define Q_OS_SYMBIAN 1
+# define Q_OS_SYMBIAN 1
 //# define Q_WS_HARMATTAN 1
 #endif
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     }
 
     QVariant variant(string); // variant
-    viewer.rootContext()->setContextProperty("filePath", variant );
+    viewer.rootContext()->setContextProperty("parentFilePath", variant );
     //TODO: folderPath
 
     viewer.setMainQmlFile( filename );

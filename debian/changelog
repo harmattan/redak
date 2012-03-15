@@ -1,3 +1,10 @@
+redak (0.4.0-0) harmattan; urgency=low
+
+  * Add: popup on errors
+  * Add: port symbian tested on e7
+
+ -- Philippe Coval <rzr@gna.org>  Thu, 15 Mar 2012 21:13:28 +0100
+
 redak (0.3.0-0) harmattan; urgency=low
 
   * Add: popup on errors

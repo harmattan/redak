@@ -13,9 +13,10 @@ DEPLOYMENTFOLDERS = folder_01
 QML_IMPORT_PATH =
 
 symbian:TARGET.UID3 = 0xE65F5F5E
-symbian:VER_MAJ=0
-symbian:VER_MIN=3
-symbian:VER_PAT=0
+#symbian:VER_MAJ=0
+#symbian:VER_MIN=0
+#symbian:VER_PAT=0
+symbian:VERSION=0.4.0
 
 symbian {
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")

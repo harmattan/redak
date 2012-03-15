@@ -16,8 +16,8 @@ ToolBar {
 
         ToolIcon {
             // text: "quit"
+            platformIconId: "toolbar-close"
             onClicked: { Qt.quit(); }
-            iconSource: "toolbar-close"
         }
 
         ToolIcon
@@ -33,5 +33,6 @@ ToolBar {
             platformIconId: "toolbar-view-menu"
             onClicked: (DialogStatus.Closed == myMenu.status) ? myMenu.open() : myMenu.close()
         }
+
     }
 }
