@@ -3,12 +3,13 @@
 #* @author: rzr@gna.org - rev: $Author: rzr$
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************
+default: help
+
 package?=redak
 
 #TODO: upgrade with yours
 qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
 
-default: help
 
 help:
 	@echo "edit"
@@ -53,7 +54,26 @@ install:
 	-ls ../redak-build-remote/redak_qt-4_7_4_symbianBelle.sis
 	ln -fs $(pwd)/../*/*.sis ~/public_html/pub/file/
 
+all:
+	qmake-qt4
+	make CXXFLAGS=-fPIC
+	${CXX} -shared -fPIC -o Core.so core.o
+	ln -fs ../Core.so lib/libCore.so
+	ln -fs ../Core.so lib/Core.so
 
+
+run: qml/${package}/common/main.qml all
+	qmlviewer -maximized -P ${CURDIR}/ $<
+#	qmlviewer -P . $<
+#	qmlviewer -P ${<D} $<
+
+
+test:distclean all run clean
+
+
+dep:
+	sudo aptitude install -t experimental \
+	  libqt4-declarative-folderlistmodel libqt4-dev
 #%: rule/local/%
 
 

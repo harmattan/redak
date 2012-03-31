@@ -8,10 +8,11 @@
 
 #include <QObject>
 #include <QDeclarativeItem>
-
+#include <QDeclarativeExtensionPlugin>
 
 class Core
-        : public QDeclarativeItem
+//        : public QDeclarativeItem
+: public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
 
@@ -20,6 +21,9 @@ public:
     Q_INVOKABLE bool save(QString content , QString filemame);
     Q_INVOKABLE QString load(QString filemame);
 
+
+    void registerTypes(const char *uri);
+ 
 signals:
     void saved();
     void loaded(QString content);

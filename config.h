@@ -6,7 +6,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <QObject>
+#include <QtCore/QObject>
 #include <QFile>
 #include <QDebug>
 #include <QDeclarativeItem>

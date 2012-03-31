@@ -6,12 +6,22 @@
 #include "config.h"
 
 #include "core.h"
-
+#include <QtPlugin>
 
 Core::Core(QDeclarativeItem *parent)
-    : QDeclarativeItem(parent)
+//    : QDeclarativeItem(parent)
 {
     FUNCT();
+}
+
+
+void Core::registerTypes(const char *uri)
+{
+    FUNCT();
+    qDebug()<<uri;
+    // Q_ASSERT(uri == QLatin1String("redak"));
+    uri="redak";
+    qmlRegisterType<Core>(uri, 1, 0, "redak");
 }
 
 
@@ -85,3 +95,5 @@ QString  Core::load(QString filename)
 
     return content;
 }
+
+Q_EXPORT_PLUGIN2(redak, Core);

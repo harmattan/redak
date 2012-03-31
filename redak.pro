@@ -40,6 +40,9 @@ PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 CONFIG += qdeclarative-boostable
 CONFIG += qt-components
+CONFIG += plugin
+
+TEMPLATE = lib
 
 INCLUDEPATH += /usr/include/applauncherd
 
