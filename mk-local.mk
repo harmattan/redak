@@ -80,7 +80,7 @@ dep:
 
 
 release: distclean rule/local/release
-
+# check version in script.js debian/changelog
 
 rule/local/%:
 	echo "todo: $@"
