@@ -1,10 +1,3 @@
-redak (0.0.0-0) UNRELEASED; urgency=low
-
-  * URL: http://rzr.online.fr/q/redak
-  * devel version should be on top and discarded on release
-
- -- Philippe Coval <rzr@gna.org>  Sun, 26 Feb 2012 14:51:03 +0100
-
 redak (0.4.0-0) harmattan; urgency=low
 
   * Add: popup on errors
