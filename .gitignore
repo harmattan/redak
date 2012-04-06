@@ -1,7 +1,0 @@
-*.o
-*~
-*.so
-main
-moc_*.cpp
-*.zip
-*.user
