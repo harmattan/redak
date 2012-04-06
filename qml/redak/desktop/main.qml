@@ -3,6 +3,7 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
+import QtDesktop 0.1
 
 //import Redak 1.0
 import "../common/script.js" as Script
@@ -10,7 +11,7 @@ import "../common"
 import "./"
 
 
-Rectangle {
+ApplicationWindow {
 
     id: appWindow
 

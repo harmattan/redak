@@ -4,10 +4,9 @@
  *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import Core 1.0
+import Redak 1.0
 import "../common/script.js" as Script
-import "../common"
-import "./"
+
 
 ToolBar {
     anchors.bottom: parent.bottom
@@ -17,7 +16,7 @@ ToolBar {
         ToolIcon {
             // text: "quit"
             platformIconId: "toolbar-close"
-            onClicked: { Qt.quit(); }
+            onClicked: { quitDialog.open(); }
         }
 
         ToolIcon
@@ -27,8 +26,7 @@ ToolBar {
             onClicked: { editPage.toggleEdit(); }
         }
 
-        ToolIcon
-        {
+        ToolIcon {
             // text: "menu"
             platformIconId: "toolbar-view-menu"
             onClicked: (DialogStatus.Closed == myMenu.status) ? myMenu.open() : myMenu.close()

@@ -25,16 +25,15 @@ clean:
 
 distclean: clean
 	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
-	rm -rvf *.user *.zip *.sis *~
+	rm -rvf *.user *.zip *.sis *~ *.so
 	find . -iname "*~" -exec rm -v '{}' \;
 
 
 dist: distclean COPYING release rule/local/release
 
 
-
-meld: qml/${package}/meego qml/${package}/symbian
-	$@ $^
+rule/diff/common: qml/${package}/meego qml/${package}/common
+	meld $^
 
 
 COPYING: /usr/share/common-licenses/GPL-3
@@ -57,15 +56,14 @@ install:
 all:
 	qmake-qt4
 	make CXXFLAGS=-fPIC
-	${CXX} -shared -fPIC -o Core.so core.o
-	ln -fs ../Core.so lib/libCore.so
-	ln -fs ../Core.so lib/Core.so
 
 
 run: qml/${package}/common/main.qml all
 	qmlviewer -maximized -P ${CURDIR}/ $<
-#	qmlviewer -P . $<
-#	qmlviewer -P ${<D} $<
+
+
+run/py: ${package}.py
+	${<D}/${<F}
 
 
 test:distclean all run clean

@@ -3,13 +3,14 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
+import QtDesktop 0.1
 import "../common/script.js" as Script
 import "../common"
 import "./"
 
 
-Rectangle {
-    anchors.bottom: parent.bottom
+ToolBar {
+    anchors.top: parent.bottom
     width: parent.width
     height: menu.height
 
@@ -19,7 +20,7 @@ Rectangle {
 
         id: row
 
-        Text {
+        ToolButton {
             id: quit
             text: "quit"
             //          platformIconId: "toolbar-close"
@@ -33,7 +34,7 @@ Rectangle {
             }
         }
 
-        Text
+        ToolButton
         {
             id: view
             text: "view"
@@ -45,7 +46,7 @@ Rectangle {
                 onClicked: { editPage.toggleEdit(); } }
         }
 
-        Text
+        ToolButton
         {
             id: test
             text: "test"
@@ -56,7 +57,7 @@ Rectangle {
             }
         }
 
-        Text
+        ToolButton
         {
             id: menu
             text: "menu"

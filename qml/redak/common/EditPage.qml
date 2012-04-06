@@ -15,10 +15,10 @@ Rectangle {
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
     property string folderPath: "" //or / ?
-        width: parent.width
-        height: parent.height
+    width: parent.width
+    height: parent.height
 
-//    tools: commonTools
+    //    tools: commonTools
 
     onContents:{
         textArea.height = 0;
@@ -39,6 +39,7 @@ Rectangle {
         flickable.focus = !textArea.focus;
         return textArea.enabled;
     }
+
     //Component.onCompleted: { theme.inverted = true }
 
     Flickable {

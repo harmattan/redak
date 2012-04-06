@@ -4,21 +4,19 @@
  *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.symbian 1.1
-import Core 1.0 //TODO
-import "../common/script.js" as Script //TODO
-import "../common"
-import "./"
+import Redak 1.0
+import "../common/script.js" as Script
+
 
 ToolBar {
     anchors.bottom: parent.bottom
     tools:
         ToolBarLayout {
 
-        ToolButton
-        {
+        ToolButton {
             // text: "quit"
             iconSource: "toolbar-home"
-            onClicked: { Qt.quit(); }
+            onClicked: { quitDialog.open(); }
         }
 
         //        ToolButton
@@ -34,8 +32,7 @@ ToolBar {
         //        }
 
 
-        ToolButton
-        {
+        ToolButton {
             // text: "menu"
             iconSource: "toolbar-menu"
             onClicked: (DialogStatus.Closed == myMenu.status) ? myMenu.open() : myMenu.close()
