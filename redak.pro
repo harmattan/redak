@@ -17,10 +17,13 @@ symbian:TARGET.UID3 = 0xE65F5F5E
 #symbian:VER_MAJ=0
 #symbian:VER_MIN=0
 #symbian:VER_PAT=0
-symbian:VERSION=0.4.0
+symbian:VERSION=0.5.1
 
 symbian {
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
+my_deployment.pkg_prerules += vendorinfo
+DEPLOYMENT += my_deployment
+vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 }
 
 # Smart Installer package's UID
@@ -95,3 +98,5 @@ OTHER_FILES += \
 HEADERS += \
     redak.h \
     config.h
+
+#eof
