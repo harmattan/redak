@@ -7,6 +7,7 @@
 # Add more folders to ship with the application, here
 folder_01.source = qml/redak
 folder_01.target = qml
+
 DEPLOYMENTFOLDERS = folder_01
 
 # Additional import path used to resolve QML modules in Creator's code model
@@ -40,6 +41,18 @@ PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 CONFIG += qdeclarative-boostable
 CONFIG += qt-components
+CONFIG += plugin
+
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+       QT += widgets
+       QT += quick1
+} else {
+       QT += declarative
+}
+
+
+#TEMPLATE = lib
 
 INCLUDEPATH += /usr/include/applauncherd
 
@@ -49,7 +62,7 @@ INCLUDEPATH += /usr/include/applauncherd
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    core.cpp \
+    redak.cpp \
     config.cpp
 
 # Please do not modify the following two lines. Required for deployment.
@@ -76,8 +89,9 @@ OTHER_FILES += \
     qtc_packaging/debian_fremantle/copyright \
     qtc_packaging/debian_fremantle/control \
     qtc_packaging/debian_fremantle/compat \
-    qtc_packaging/debian_fremantle/changelog
+    qtc_packaging/debian_fremantle/changelog \
+    redak64.png
 
 HEADERS += \
-    core.h \
+    redak.h \
     config.h

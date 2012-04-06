@@ -5,8 +5,6 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import "../common/script.js" as Script
-import "../common"
-import "./"
 
 
 Page {
@@ -14,7 +12,7 @@ Page {
     property alias content: textArea.text
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
-    property string folderPath: "" //or / ?
+    property bool isChanged: false;
 
     tools: commonTools
 
@@ -23,10 +21,15 @@ Page {
         textArea.text = contents;
     }
 
+    onContentChanged:  {
+        isChanged = true;
+    }
+
     function setContents(contents)
     {
         textArea.height = 0;
         textArea.text = contents;
+        isChanged = false;
     }
 
     function toggleEdit()
@@ -63,9 +66,9 @@ Page {
 
         TextArea {
             id: textArea
+            width: parent.width
+            //height: parent.height
             property int paintedHeight: ( textArea.height > editPage.height ) ? textArea.height : editPage.height
-            width: flickable.width
-            //height: flickable.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;
             //anchors.rightMargin: Script.g_font_pixelSize/3;
             //cursorVisible: true
@@ -90,6 +93,7 @@ Page {
             //                    }
             //                }
             //            }
+
         }
     }
 }

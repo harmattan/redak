@@ -10,22 +10,26 @@ It has been tested on maemo/meego harmattan n950 and n9 ...
 ### TODO ###
 
 * Task : Bugs / Features / Wishes
-** TODO : path : filename/ dir / parent
-** TODO : error handling
-** TODO : margin : edit / menu
+** TODO [#A] : confirm popups on discarding, overwrite file
+** TODO [#C] : mkdir in browser view
+** TODO [#C] : path : filename/ dir / parent
+** TODO [#C] : margin : edit / menu
+** TODO [#B] : load large file scroll down , menu about, scroll up :-(
+** TODO [#C] : uninstall on desktop
+** TODO [#B] : argv[1] : http://stackoverflow.com/questions/5770154/qt-qapplication-appargc-argv
 ** DONE : cut and paste
-** TODO : load large file scroll down , menu about, scroll up :-(
-** TODO : uninstall on desktop
-** TODO : argv[1] : http://stackoverflow.com/questions/5770154/qt-qapplication-appargc-argv
+** DONE : error handling
 
 * Task : Refatoring
-** Tabs vs pagestak...
+** Tabs vs pagestack ?
 
 * Task : Support
-** TODO : WIP symbian
+** DONE : WIP symbian
 ** TODO : lighthouse port nescessitas
 ** TODO : harmattan : uninstall : XB-Maemo-Flags: visible  XB-MeeGo-Desktop-Entry-Name
 
+** TODO : desktop : http://doc.qt.nokia.com/4.7-snapshot/declarative-tutorials-extending-chapter6-plugins.html
+** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
 ### NOTES ###
 

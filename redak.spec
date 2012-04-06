@@ -3,33 +3,44 @@
 %define qmake qmake
 
 Name: redak
-Version: 0.0.0
-Release:0%{?dist}
-Summary: TODO
+Version: 0.4.0
+Release:%{patchversion}%{?dist}
+Summary: Basic text editor to be used on touchscreen using QML
 Group: Utils
-License: TODO
-URL: http://rzr.online.fr/q/contrib#${package}
+License: GPL-3
+URL: http://rzr.online.fr/q/redak
 Source0: http://rzr.online.fr/ubuntu/pool/main/%{package_letter}/%{name}/%{name}_%{version}.orig.tar.gz
 Patch0: http://rzr.online.fr/ubuntu/pool/main/%{package_letter}/%{name}/%{name}_%{version}-%{patchversion}.debian.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires: qt-qmake 
-BuildRequires: libqt-devel
-BuildRequires: libqtdeclarative4
+BuildRequires:  pkgconfig(QtCore) >= 4.7.0
+BuildRequires:  pkgconfig(QtGui)
+BuildRequires:  pkgconfig(QtQuick)
+BuildRequires:  desktop-file-utils
+#BuildRequires: qt-qmake
+#BuildRequires: libqt-devel
+#BuildRequires: libqtdeclarative4
 #BuildRequires: QtDeclarative-devel
 
+
 %description
-TODO
+Finger friendly text editor to load save and edit text on your handset
+
 
 %prep
 #zypper help
 %setup -q
+
+%patch0 -p1
+
+
 %build
 qmake -makefile %{name}.pro
 qmake
 #configure
 make %{?_smp_mflags}
+
 
 %install
 rm -rf %{buildroot}
@@ -43,6 +54,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /opt/%{name}
 %doc
+
 
 %changelog
 

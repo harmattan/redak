@@ -3,44 +3,44 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
-import com.nokia.symbian 1.1
+
 import "../common/script.js" as Script
+import "../common"
+import "./"
 
 
-Page {
+Rectangle {
     id: editPage
     property alias content: textArea.text
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
-    property bool isChanged: false;
+    property string folderPath: "" //or / ?
+    width: parent.width
+    height: parent.height
 
-    tools: commonTools
+    //    tools: commonTools
 
     onContents:{
         textArea.height = 0;
         textArea.text = contents;
     }
 
-    onContentChanged:  {
-        isChanged = true;
-    }
-
     function setContents(contents)
     {
-        //textArea.height = 0;
+        textArea.height = 0;
         textArea.text = contents;
-        isChanged = false;
         Script.log("#} setContents " + textArea.height );
     }
 
     function toggleEdit()
     {
         textArea.enabled = !textArea.enabled ;
-        // textArea.enableSoftwareInputPanel  = textArea.enabled;
+        textArea.enableSoftwareInputPanel  = textArea.enabled;
         textArea.focus = textArea.enabled;
         flickable.focus = !textArea.focus;
         return textArea.enabled;
     }
+
     //Component.onCompleted: { theme.inverted = true }
 
     Flickable {
@@ -51,7 +51,7 @@ Page {
         clip: true
 
         // contentWidth: textArea.paintedWidth
-        // contentHeight: textArea.paintedHeight
+        contentHeight: textArea.paintedHeight
 
         function ensureVisible(r)
         {
@@ -65,10 +65,11 @@ Page {
                 contentY = r.y+r.height-height;
         }
 
-        TextArea {
+        TextEdit {
             id: textArea
-            width: parent.width
-            height: parent.height
+            property int paintedHeight: ( textArea.height > editPage.height ) ? textArea.height : editPage.height
+            width: flickable.width
+            //height: flickable.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;
             //anchors.rightMargin: Script.g_font_pixelSize/3;
             //cursorVisible: true
@@ -93,7 +94,6 @@ Page {
             //                    }
             //                }
             //            }
-
         }
     }
 }

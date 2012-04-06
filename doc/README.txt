@@ -1,34 +1,7 @@
-{{Note|This is an entry in the [[Symbian Qt Quick Components Competition 2012Q1]]}}
-
-{{note|This page is unfinished, I will finish it before 17 March, 2012. if you are interested, add your e-mail here, please}}
-
-{{ArticleMetaData <!-- v1.1 -->
-|sourcecode= <!-- Link to example source code e.g. [[Media:The Code Example ZIP.zip]] -->
-|installfile= <!-- Link to installation file (e.g. [[Media:The Installation File.sis]]) -->
-|devices= Nokia E7,
-|platform=Meego Harmattan, Symbian Belle, Qt 4.7.4
-|devicecompatability= <!-- Compatible devices e.g.: All* (must have internal GPS) -->
-|dependencies= Qt Quick Components 1.1
-|signing=<!-- Signing requirements - empty or one of: Self-Signed, DevCert, Manufacturer -->
-|capabilities= <!-- Capabilities required by the article/code example (e.g. Location, NetworkServices. -->
-|keywords= Redak, Text.Editor
-|id= <!-- Article Id (Knowledge base articles only) -->
-|language= <!-- Language category code for non-English topics - e.g. Lang-Chinese -->
-|translated-by= <!-- [[User:XXXX]] -->
-|translated-from-title= <!-- Title only -->
-|translated-from-id= <!-- Id of translated revision -->
-|review-by=<!-- After re-review: [[User:username]] -->
-|review-timestamp= <!-- After re-review: YYYYMMDD -->
-|update-by= <!-- After significant update: [[User:username]]-->
-|update-timestamp= <!-- After significant update: YYYYMMDD -->
-|creationdate= 20120207  <!-- Format YYYYMMDD -->
-|author= [[User:www.rzr.online.fr]]
-}}
-
-  Package: redak
+Package: redak
   URL:  http://rzr.online.fr/q/redak
   Contact: Philippe Coval <rzr@gna.org>
-  Licence: GPL-3 (OpenSource Free Libre Software)
+  Licence: GPL-3 (OpenSource Free Libre Software)<sub>Subscript text</sub>
 
 
 Redak is just a simple text editor to be used on touchscreen. Basic features are Load, Save, Save As, Browse and Edit text. It has been tested on maemo/meego harmattan n950 and n9 ...
@@ -57,6 +30,13 @@ so I can promise i will make efforts to merge patches ?
 
 The project is mostly based on QmL and uses C++/Qt for io.(load/save)...
 
+== ScreenShots ==
+
+[[File:1-redak-edit.png]]
+
+[[File:3-redak-browse.png]]
+
+http://www.developer.nokia.com/Community/Wiki/Redak#ScreenShots
 
 == Components==
 
@@ -102,6 +82,16 @@ I'll also plan to use it to test Qt lighthouse ports
 
 == Download ==
 
+Just open this link I tested "redak_qt-4_7_4_symbianBelle-0.4.0.sis" on NokiaE7
+
+https://projects.developer.nokia.com/redak/downloads/2
+
+Also track featured download at :
+
+https://projects.developer.nokia.com/redak
+
+Random files :
+
 https://projects.developer.nokia.com/redak/files
 
 ScreenShot: https://projects.developer.nokia.com/redak/files/screenshot.png
@@ -114,10 +104,43 @@ but feel free to build form sources too...
 
 == MORE ==
 
+* http://rzr.online.fr/q/redak
+* http://rzr.online.fr/q/qt
+* http://rzr.online.fr/q/handset
+* http://rzr.online.fr/q/harmattan
+* http://rzr.online.fr/q/symbian
+* http://www.developer.nokia.com/Community/Wiki/Special:WhatLinksHere/Redak
 * http://stackoverflow.com/questions/8696448/emit-signals-from-javascript-to-qml
 * http://www.developer.nokia.com/Community/Discussion/showthread.php?173714-how-to-create-XB-Maemo-Icon-26
 * http://wiki.maemo.org/Packaging_a_Qt_application#Finding_your_package_in_debian
 * http://kunalmaemo.blogspot.com/2011/04/signal-slot-connection-with-qml-and-qt.html
 * http://doc.qt.nokia.com/4.7-snapshot/qml-variant.html
 * http://harmattan-dev.nokia.com/docs/library/html/qt-components/qt-components-meego-dialog.html
-* http://www.developer.nokia.com/Community/Wiki/Special:WhatLinksHere/Redak
+
+
+{{Note|This is an entry in the [[Symbian Qt Quick Components Competition 2012Q1]]}}
+
+
+{{ArticleMetaData <!-- v1.1 -->
+|sourcecode= <!-- Link to example source code e.g. [[Media:The Code Example ZIP.zip]] -->
+|installfile= <!-- Link to installation file (e.g. [[Media:The Installation File.sis]]) -->
+|devices= Nokia E7,
+|platform=Meego Harmattan, Symbian Belle, Qt 4.7.4
+|devicecompatability= <!-- Compatible devices e.g.: All* (must have internal GPS) -->
+|dependencies= Qt Quick Components 1.1
+|signing=<!-- Signing requirements - empty or one of: Self-Signed, DevCert, Manufacturer -->
+|capabilities= <!-- Capabilities required by the article/code example (e.g. Location, NetworkServices. -->
+|keywords= Redak, Text.Editor
+|id= <!-- Article Id (Knowledge base articles only) -->
+|language= <!-- Language category code for non-English topics - e.g. Lang-Chinese -->
+|translated-by= <!-- [[User:XXXX]] -->
+|translated-from-title= <!-- Title only -->
+|translated-from-id= <!-- Id of translated revision -->
+|review-by=<!-- After re-review: [[User:username]] -->
+|review-timestamp= <!-- After re-review: YYYYMMDD -->
+|update-by= <!-- After significant update: [[User:username]]-->
+|update-timestamp= <!-- After significant update: YYYYMMDD -->
+|creationdate= 20120207  <!-- Format YYYYMMDD -->
+|author= [[User:www.rzr.online.fr]]
+}}
+

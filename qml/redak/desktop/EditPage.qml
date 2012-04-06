@@ -3,70 +3,71 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
-import com.nokia.symbian 1.1
+import QtDesktop 0.1
+
 import "../common/script.js" as Script
+import "../common"
+import "./"
 
 
-Page {
+Rectangle {
     id: editPage
     property alias content: textArea.text
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
-    property bool isChanged: false;
+    property string folderPath: "" //or / ?
+    width: parent.width
+    height: parent.height
 
-    tools: commonTools
+    //    tools: commonTools
 
     onContents:{
         textArea.height = 0;
         textArea.text = contents;
     }
 
-    onContentChanged:  {
-        isChanged = true;
-    }
-
     function setContents(contents)
     {
-        //textArea.height = 0;
+        textArea.height = 0;
         textArea.text = contents;
-        isChanged = false;
-        Script.log("#} setContents " + textArea.height );
     }
 
     function toggleEdit()
     {
         textArea.enabled = !textArea.enabled ;
-        // textArea.enableSoftwareInputPanel  = textArea.enabled;
+        textArea.enableSoftwareInputPanel  = textArea.enabled;
         textArea.focus = textArea.enabled;
         flickable.focus = !textArea.focus;
         return textArea.enabled;
     }
+
     //Component.onCompleted: { theme.inverted = true }
 
-    Flickable {
-        id: flickable
-        anchors.margins: Script.g_font_pixelSize
-        width: parent.width
-        height: parent.height
-        clip: true
+//    Flickable {
+//        id: flickable
+//        anchors.margins: Script.g_font_pixelSize
+//        width: parent.width
+//        height: parent.height
+//        clip: true
 
-        // contentWidth: textArea.paintedWidth
-        // contentHeight: textArea.paintedHeight
+//        // contentWidth: textArea.paintedWidth
+//        contentHeight: textArea.paintedHeight
 
-        function ensureVisible(r)
-        {
-            if (contentX >= r.x)
-                contentX = r.x;
-            else if (contentX+width <= r.x+r.width)
-                contentX = r.x+r.width-width;
-            if (contentY >= r.y)
-                contentY = r.y;
-            else if (contentY+height <= r.y+r.height)
-                contentY = r.y+r.height-height;
-        }
+//        function ensureVisible(r)
+//        {
+//            if (contentX >= r.x)
+//                contentX = r.x;
+//            else if (contentX+width <= r.x+r.width)
+//                contentX = r.x+r.width-width;
+//            if (contentY >= r.y)
+//                contentY = r.y;
+//            else if (contentY+height <= r.y+r.height)
+//                contentY = r.y+r.height-height;
+//        }
 
         TextArea {
             id: textArea
+            property int paintedHeight: ( textArea.height > editPage.height ) ? textArea.height : editPage.height
             width: parent.width
             height: parent.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;
@@ -77,7 +78,7 @@ Page {
             text: Script.g_info
             smooth: true
             wrapMode: TextEdit.Wrap
-            textFormat: TextEdit.PlainText
+//            textFormat: TextEdit.PlainText
             font.pixelSize: Script.g_font_pixelSize
 
             // onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
@@ -93,7 +94,6 @@ Page {
             //                    }
             //                }
             //            }
-
         }
-    }
+//    }
 }
