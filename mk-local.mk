@@ -53,6 +53,10 @@ install:
 	-ls ../redak-build-remote/redak_qt-4_7_4_symbianBelle.sis
 	ln -fs $(pwd)/../*/*.sis ~/public_html/pub/file/
 
+deploy:
+	find ${CURDIR}-build-remote/ -type f -iname "*.sis" \
+	| while read t ; do ln -fs $${t} ~/public_html/pub/file/ ; done
+
 all:
 	qmake-qt4
 	make CXXFLAGS=-fPIC
@@ -84,6 +88,9 @@ rule/local/%:
 
 redak64.png: redak.svg  mk-local.mk
 	convert -resize 64x64  $< $@
+
+convert/%: redak.svg  mk-local.mk
+	convert -resize ${@F}x${@F}  $< tmp-${@F}.png
 
 
 icon.txt.tmp: redak.svg  mk-local.mk

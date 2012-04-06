@@ -5,6 +5,8 @@
 
 var g_font_pixelSize = 26;
 
+var g_verbose = false;
+
 /// http://doc.qt.nokia.com/qt-components-symbian/qml-style.html
 var g_color_normal = "#00AAAAAA";
 var g_color_bg_normal = "#00000000";
@@ -16,7 +18,7 @@ var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense:
 
 function log(text)
 {
-    if ( false ) {
+    if ( g_verbose ) {
         console.log(text);
     }
 }
@@ -51,9 +53,8 @@ function loadUrl(filename)
 
 function handleFolderChanged(path)
 {
-    //console.log("handleFolderChanged: "+path);
-    editPage.folderPath=path;
-    //appWindow.folderPath=path;
+    console.log("handleFolderChanged: "+path);
+    appWindow.folderPath=path;
 }
 
 
@@ -61,13 +62,12 @@ function handlePath(filepath)
 {
     var res = true;
     var filename = "unknown.txt"
-    var content = editPage.filepath;
+    var content = appWindow.filepath;
     if ( null != filepath ) { filename = filepath; }
 
     log("log: Script.handlePath: io: mode="+ appWindow.mode + " path=" +  filename );
 
     if ( 1 == appWindow.mode ) {
-        log("saving:" + filename );
         content = editPage.content;
         res &= redak.save( content, filename );
         appWindow.filePath = filename;
@@ -80,6 +80,6 @@ function handlePath(filepath)
     }
 
     //editPage.listView.focus = true;
-    if ( res ) { /*appWindow.*/ pageStack.pop(); }
+    if ( res ) { pageStack.pop(); }
     return res;
 }

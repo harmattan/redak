@@ -29,6 +29,7 @@ Rectangle {
     {
         textArea.height = 0;
         textArea.text = contents;
+        Script.log("#} setContents " + textArea.height );
     }
 
     function toggleEdit()

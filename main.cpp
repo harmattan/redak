@@ -20,11 +20,20 @@ int main(int argc, char *argv[])
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
 
-    // QString platform("common");
-    QString platform("meego");
+    QString string="";
+    if ( argc > 1 ) {
+        char const * const p = argv[1];
+        string = QString(p);
+    }
+    QVariant variant(string); // variant
+    viewer.rootContext()->setContextProperty("parentFilePath", variant );
+
+    QString platform("common");
+
+    platform = QString("meego");
 
 #if defined Q_WS_SIMULATOR
-# define Q_OS_SYMBIAN 1
+//# define Q_OS_SYMBIAN 1
 # define Q_WS_HARMATTAN 1
 #endif
 
@@ -32,7 +41,7 @@ int main(int argc, char *argv[])
 #elif defined(Q_WS_S60)
 #endif
 
-#if defined Q_WS_HARMATTAN
+#if defined Q_WS_HARMATTAN && defined Q_OS_LINUX
     platform = QString("meego");
 #elif defined Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
     platform = QString("symbian");
@@ -41,17 +50,6 @@ int main(int argc, char *argv[])
     QString filename("qml/redak/");
     filename += platform;
     filename += "/main.qml";
-
-    QString string="";
-    if ( argc > 1 ) {
-        char const * const p = argv[1];
-        string = QString(p);
-    }
-
-
-    QVariant variant(string); // variant
-    viewer.rootContext()->setContextProperty("parentFilePath", variant );
-    //TODO: folderPath
 
     viewer.setMainQmlFile( filename );
     viewer.showExpanded();

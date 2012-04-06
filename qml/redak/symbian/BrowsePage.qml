@@ -11,7 +11,7 @@ import "../common/script.js" as Script
 Page {
     id: browserPage
     property variant content: content
-    property variant filename: dir.text
+    property variant filename: location.text
     property alias folderPath: folderModel.folder;
 
     signal loaded()
@@ -21,7 +21,7 @@ Page {
     signal folderChanged(string path);
 
     onFolderChanged: {
-        dir.text = path
+        location.text = path
         folderModel.folder = path ;
     }
 
@@ -31,7 +31,12 @@ Page {
 
     anchors.fill: parent
 
-    //Component.onCompleted: { theme.inverted = !true }
+    Component.onCompleted: {
+        //theme.inverted = !true
+        Script.log("BrowsePage: " + folderPath );
+        //location.text = folderPath ;
+        //folderModel.submit ;
+    }
 
     //    Connections {
     //        target: browserPage
@@ -64,7 +69,7 @@ Page {
             //platformIconId: "toolbar-view-menu"
 
             onClicked: {
-                fileSelected( dir.text );
+                fileSelected( location.text );
             }
         }
     }
@@ -84,7 +89,7 @@ Page {
 
         //Row {
         TextField {
-            id: dir
+            id: location
             text: ( null == folderModel.folder ) ? "./" : folderModel.folder
             width:parent.width;
             // placeholderText: "Directory or File to load"
@@ -95,9 +100,9 @@ Page {
             }
 
             onFocusChanged:  {
-                var start = dir.text.length;
-                dir.select( start , start);
-                dir.focus = true;
+                var start = location.text.length;
+                location.select( start , start);
+                location.focus = true;
             }
 
             // https://bugreports.qt-project.org/browse/QTBUG-16870
@@ -142,7 +147,7 @@ Page {
             //anchors.top: path.bottom
             //anchors.bottom: parent.bottom
             //anchors.fill: parent
-            height: parent.height - dir.height
+            height: parent.height - location.height
             width: parent.width;
 
             FolderListModel {
@@ -164,7 +169,7 @@ Page {
                     border.color: Script.g_color_border
                     border.width: 5 // Script.g_font_pixelSize / 10;
                     radius: 10 //Script.g_font_pixelSize / 5;
-                    color: mouseArea.pressed
+                    color: ( mouseArea.pressed )
                            ? Script.g_color_bg_pressed
                            : Script.g_color_bg_normal;
 
@@ -210,7 +215,7 @@ Page {
                         onClicked: {
                             fileNameView.color="red"
                             color: platformStyle.colorNormalLight
-                            dir.text = filePath
+                            location.text = filePath
 
                             if ( folderModel.isFolder(index) ) {
                                 folderChanged(filePath);

@@ -3,7 +3,7 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.symbian 1.1
 import Redak 1.0
 import "../common/script.js" as Script
 import "../common"
@@ -44,15 +44,6 @@ Menu {
                 if  ( ( null == content ) || ("" == content ) ) { content = Script.g_info; }
             }
         }
-
-        //            MenuItem {
-        //                text: qsTr("Exec")
-        //                onClicked: {
-        //                    var content = editPage.content;
-        //                    var content = redak.process( content );
-        //                    editPage.setContents( content );
-        //                }
-        //            }
 
         MenuItem {
             text: qsTr("Quit")

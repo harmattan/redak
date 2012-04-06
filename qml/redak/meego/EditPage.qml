@@ -12,7 +12,6 @@ Page {
     property alias content: textArea.text
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
-    property string folderPath: "" //or / ?
     property bool isChanged: false;
 
     tools: commonTools
@@ -67,9 +66,9 @@ Page {
 
         TextArea {
             id: textArea
-            property int paintedHeight: ( textArea.height > editPage.height ) ? textArea.height : editPage.height
             width: parent.width
             //height: parent.height
+            property int paintedHeight: ( textArea.height > editPage.height ) ? textArea.height : editPage.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;
             //anchors.rightMargin: Script.g_font_pixelSize/3;
             //cursorVisible: true

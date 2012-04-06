@@ -14,7 +14,7 @@ PageStackWindow {
 
     initialPage: editPage
     property alias content: editPage.content
-    property alias folderPath: editPage.folderPath
+    property alias folderPath: browsePage.folderPath
     property variant filePath: ( null != parentFilePath ) ? parentFilePath : "default.txt";
     signal filenameSelected(string filename)
     property int mode: 0 //0=load 1=save
@@ -22,6 +22,7 @@ PageStackWindow {
     Component.onCompleted: {
         Script.log("onCompleted:" + filePath );
         if ( null != filePath ) { filenameSelected( filePath ); }
+        folderPath = ( null != folderPath ) ? folderPath : "file:///";
         // theme.inverted = true
     }
 
@@ -37,14 +38,15 @@ PageStackWindow {
 
     function browse(mode)
     {
-        Script.log("browse:" + content );
+        Script.log("#{ browse: " + folderPath );
         appWindow.mode = mode;
-        //var browsePage = Qt.resolvedUrl("BrowsePage.qml");
-        folderPath = ( null != folderPath ) ? folderPath : "/";
+        folderPath = ( null != folderPath || "" == folderPath ) ? folderPath : "file:///";
 
         pageStack.push
                 ( browsePage ,
-                 { content: content , folderPath: folderPath} )
+                 { content: content , folderPath: folderPath} );
+
+        Script.log("#} browse: " + folderPath );
     }
 
 
@@ -116,7 +118,7 @@ PageStackWindow {
     QueryDialog {
         id: quitDialog
         titleText: "Quit: Are you sure ?"
-        message: "please Confirm"
+        message: "Please Confirm"
         acceptButtonText: "Yes"
         rejectButtonText: "No"
         onAccepted: {
@@ -126,67 +128,21 @@ PageStackWindow {
 
     QueryDialog {
         id: ioDialog
-        titleText: "Io: Are you sure ?"
-        message: "please Confirm"
+        titleText: "IO: Are you sure ?"
+        message: "Please Confirm"
         acceptButtonText: "Yes"
         rejectButtonText: "No"
         onAccepted: {
             Script.handlePath( filePath ); //TODO: use signal
         }
     }
-    Menu {
+
+    MainMenu
+    {
         id: myMenu
         visualParent: pageStack
-
-        MenuLayout {
-
-            MenuItem {
-                text: qsTr("Load")
-                onClicked: {
-                    browse(0);
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Save")
-                onClicked: {
-                    redak.save( editPage.content , filePath );
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Save As")
-                onClicked: {
-                    browse(1);
-                }
-            }
-
-            MenuItem {
-                text: qsTr("About")
-                onClicked: {
-                    aboutDialog.open();
-                    if  ( ( null == content ) || ("" == content ) ) { content = Script.g_info; }
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Exec")
-                onClicked: {
-                    var content = editPage.content;
-                    var content = redak.process( content );
-                    editPage.setContents( content );
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Quit")
-                onClicked: {
-                    quitDialog.open();
-                }
-            }
-
-        }
     }
+
 
     //    Connections {
     //        target: browserPage

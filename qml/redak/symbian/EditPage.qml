@@ -12,7 +12,6 @@ Page {
     property alias content: textArea.text
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
-    property string folderPath: "" //or / ?
     property bool isChanged: false;
 
     tools: commonTools
@@ -28,9 +27,10 @@ Page {
 
     function setContents(contents)
     {
-        textArea.height = 0;
+        //textArea.height = 0;
         textArea.text = contents;
         isChanged = false;
+        Script.log("#} setContents " + textArea.height );
     }
 
     function toggleEdit()

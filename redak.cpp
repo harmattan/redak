@@ -9,6 +9,7 @@
 #include <QtPlugin>
 #include <QProcess>
 
+
 Redak::Redak(QDeclarativeItem *parent)
 : QDeclarativeItem(parent)
 //: QDeclarativeExtensionPlugin(parent)

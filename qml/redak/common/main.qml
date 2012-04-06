@@ -41,6 +41,7 @@ Rectangle {
         }
     }
 
+
     //    onContentChanged: {
     //        Script.log("#{ onContentChanged: " + arg );
     //	handleContent( arg);
@@ -54,11 +55,11 @@ Rectangle {
 
     function browse(mode)
     {
-        Script.log("browse:" + content );
+        Script.log("browse: " + folderPath );
         appWindow.mode = mode;
         var browserPage = Qt.resolvedUrl("BrowsePage.qml");
         browserPage.parent = pageStack.parent;
-        folderPath = ( null != folderPath ) ? folderPath : "/";
+        folderPath = ( null != folderPath ) ? folderPath : "file:///";
 
         pageStack.push
                 ( browserPage ,
