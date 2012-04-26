@@ -13,7 +13,11 @@ DEPLOYMENTFOLDERS = folder_01
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-symbian:TARGET.UID3 = 0xE65F5F5E
+# default version for selfsigned binaries :
+# symbian:TARGET.UID3 = 0xE65F5F5E
+
+symbian:TARGET.UID3 = 0x20062277
+
 #symbian:VER_MAJ=0
 #symbian:VER_MIN=0
 #symbian:VER_PAT=0

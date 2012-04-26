@@ -21,6 +21,7 @@ edit: clean
 
 clean:
 	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile 
+	cat 'debian/clean' | while read t ; do rm -rv "$${t}" ; done
 
 
 distclean: clean
@@ -80,7 +81,12 @@ dep:
 
 
 release: distclean rule/local/release
-# check version in script.js debian/changelog
+
+
+check/release:
+	@echo "# check version in script.js debian/changelog "
+	grep -r -i version .
+
 
 rule/local/%:
 	echo "todo: $@"

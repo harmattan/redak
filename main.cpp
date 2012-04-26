@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
     platform = QString("meego");
 
 #if defined Q_WS_SIMULATOR
-//# define Q_OS_SYMBIAN 1
-# define Q_WS_HARMATTAN 1
+# define Q_OS_SYMBIAN 1
+//# define Q_WS_HARMATTAN 1
 #endif
 
 #if defined(Q_WS_MAEMO_5)

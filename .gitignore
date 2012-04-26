@@ -1,0 +1,16 @@
+*~
+
+.make.cache
+Makefile
+bld.inf
+moc/
+redak.loc
+redak.pro.user
+redak.rss
+redak_exe.mmp
+redak_installer.pkg
+redak_reg.rss
+redak_stub.pkg
+redak_template.pkg
+
+*_unsigned.sis
