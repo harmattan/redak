@@ -1,3 +1,4 @@
+MANIFEST
 *~
 
 .make.cache
@@ -14,3 +15,9 @@ redak_stub.pkg
 redak_template.pkg
 
 *_unsigned.sis
+
+android/assets/
+android/libs/
+*.o
+*.so
+moc_*.cpp

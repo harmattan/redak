@@ -18,6 +18,9 @@ help:
 edit: clean
 	${qtcreator} *.pro
 
+android/edit: clean
+	/usr/local/opt/necessitas/QtCreator/bin/qtcreator \
+	*.pro
 
 clean:
 	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile 

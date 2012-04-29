@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
         char const * const p = argv[1];
         filepath = QString(p);
     }
-    QVariant variant(string); // variant
-    viewer.rootContext()->setContextProperty("parentFilePath", filepath );
+    QVariant variant(filepath); // variant
+    viewer.rootContext()->setContextProperty("parentFilePath", variant );
 
     QString platform("common");
 

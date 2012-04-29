@@ -25,6 +25,9 @@ public:
     };
 
     explicit QmlApplicationViewer(QWidget *parent = 0);
+
+    explicit QmlApplicationViewer(QDeclarativeView * view, QWidget *parent = 0);
+
     virtual ~QmlApplicationViewer();
 
     static QmlApplicationViewer *create();
