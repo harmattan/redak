@@ -36,6 +36,8 @@ It has been tested on maemo/meego harmattan n950 and n9 ...
 
 http://rzr.online.fr/q/redak# [Announce] redak : text editor (Qt/QML, harmattan, n950, n9, opensource, GPL-3) 
 
+http://developer.qt.nokia.com/wiki/Qt_4_7_4_Compatibility_Issues#a43452ddef3f92d193dbca3b139a01b2
+
 
 check online
 

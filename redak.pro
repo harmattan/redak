@@ -5,14 +5,16 @@
 #*****************************************************************************/
 
 # Add more folders to ship with the application, here
-folder_01.source = qml/redak
-folder_01.target = qml
+qmlfiles.source = qml/redak
+qmlfiles.target = qml
 
-DEPLOYMENTFOLDERS = folder_01
+DEPLOYMENTFOLDERS = qmlfiles
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
+
+symbian {
 # default version for selfsigned binaries :
 # symbian:TARGET.UID3 = 0xE65F5F5E
 
@@ -23,12 +25,11 @@ symbian:TARGET.UID3 = 0x20062277
 #symbian:VER_PAT=0
 symbian:VERSION=0.5.1
 
-symbian {
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
 my_deployment.pkg_prerules += vendorinfo
 DEPLOYMENT += my_deployment
 vendorinfo += "%{\"rzr\"}" ":\"rzr\""
-}
+
 
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
@@ -39,6 +40,8 @@ vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
 #symbian:TARGET.CAPABILITY += AllFiles
 #symbian:TARGET.CAPABILITY += WriteUserData ReadUserData
+}
+
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
@@ -50,6 +53,8 @@ CONFIG += qdeclarative-boostable
 CONFIG += qt-components
 CONFIG += plugin
 
+# Add dependency to Symbian components
+# CONFIG += qt-components
 
 greaterThan(QT_MAJOR_VERSION, 4) {
        QT += widgets
@@ -64,23 +69,28 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 INCLUDEPATH += /usr/include/applauncherd
 
 
-# Add dependency to Symbian components
-# CONFIG += qt-components
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     redak.cpp \
     config.cpp
 
-# Please do not modify the following two lines. Required for deployment.
-include(qmlapplicationviewer/qmlapplicationviewer.pri)
-qtcAddDeployment()
+HEADERS += \
+    redak.h \
+    config.h
+
+#maemo5 {
+contains(MEEGO_EDITION,harmattan) {
+
+qmlfiles.source = qml/redak/common qml/redak/meego
+qmlfiles.target = qml
 
 OTHER_FILES += \
     README.txt \
     TODO.txt \
     mk-local.mk \
     debian/ \
+    debian/control \
     debian/changelog \
     debian/rules \
     debian/links \
@@ -98,9 +108,12 @@ OTHER_FILES += \
     qtc_packaging/debian_fremantle/compat \
     qtc_packaging/debian_fremantle/changelog \
     redak64.png
+}
+#}
 
-HEADERS += \
-    redak.h \
-    config.h
+
+# Please do not modify the following two lines. Required for deployment.
+include(qmlapplicationviewer/qmlapplicationviewer.pri)
+qtcAddDeployment()
 
 #eof

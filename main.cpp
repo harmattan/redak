@@ -20,13 +20,13 @@ int main(int argc, char *argv[])
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
 
-    QString string="";
+    QString filepath="";
     if ( argc > 1 ) {
         char const * const p = argv[1];
-        string = QString(p);
+        filepath = QString(p);
     }
     QVariant variant(string); // variant
-    viewer.rootContext()->setContextProperty("parentFilePath", variant );
+    viewer.rootContext()->setContextProperty("parentFilePath", filepath );
 
     QString platform("common");
 

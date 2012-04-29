@@ -17,6 +17,9 @@
 * Task Meego
 ** QGraphicsItem::ungrabMouse: not a mouse grabber
 
+* Task Symbian
+** https://publish.ovi.com/download_items/show/475539#item
+
 
 ### NOTES ###
 
