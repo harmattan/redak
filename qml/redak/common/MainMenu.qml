@@ -4,8 +4,8 @@
  *****************************************************************************/
 import QtQuick 1.1
 import "../common/script.js" as Script
-import "../common"
-import "./"
+//import "../common"
+//import "./"
 
 
 Rectangle {

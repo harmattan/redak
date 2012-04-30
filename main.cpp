@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
 
     QString platform("common");
 
-    platform = QString("meego");
 
 #if defined Q_WS_SIMULATOR
 # define Q_OS_SYMBIAN 1
@@ -45,6 +44,8 @@ int main(int argc, char *argv[])
     platform = QString("meego");
 #elif defined Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
     platform = QString("symbian");
+#elif defined CONFIG_LOCAL_PLATFORM_ANDROID
+//  platform = QString("symbian");
 #endif
 
     QString filename("qml/redak/");

@@ -16,8 +16,12 @@ redak_template.pkg
 
 *_unsigned.sis
 
-android/assets/
-android/libs/
 *.o
 *.so
 moc_*.cpp
+
+android/assets/
+android/libs/
+android/bin/
+android/gen/
+android/proguard-project.txt

@@ -18,13 +18,17 @@ help:
 edit: clean
 	${qtcreator} *.pro
 
-android/edit: clean
-	/usr/local/opt/necessitas/QtCreator/bin/qtcreator \
+rule/android/edit: clean
+	/usr/local/opt/necessitas/QtCreator/bin/necessitas \
 	*.pro
+
+#TODO
+rule/android/configure:
+	/usr/local/opt/android-sdk-linux/tools/android  update project -t android-7 -p android
 
 clean:
 	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile 
-	cat 'debian/clean' | while read t ; do rm -rv "$${t}" ; done
+	-cat 'debian/clean' | while read t ; do rm -rv "$${t}" ; done
 
 
 distclean: clean
