@@ -10,12 +10,13 @@ It has been tested on maemo/meego harmattan n950 and n9 ...
 ### TODO ###
 
 * Task : Bugs / Features / Wishes
-** TODO [#A] : confirm popups on discarding, overwrite file
+** TODO [#A] : QGraphicsItem::ungrabMouse: not a mouse grabber on NokiaN9
 ** TODO [#C] : mkdir in browser view
 ** TODO [#C] : path : filename/ dir / parent
 ** TODO [#C] : margin : edit / menu
 ** TODO [#B] : load large file scroll down , menu about, scroll up :-(
 ** TODO [#C] : uninstall on desktop
+** TODO [#C] : confirm popups on discarding, overwrite file
 ** TODO [#B] : argv[1] : http://stackoverflow.com/questions/5770154/qt-qapplication-appargc-argv
 ** DONE : cut and paste
 ** DONE : error handling

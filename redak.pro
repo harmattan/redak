@@ -4,6 +4,15 @@
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************/
 
+# The .cpp file which was generated for your project. Feel free to hack it.
+SOURCES += main.cpp \
+    redak.cpp \
+    config.cpp
+
+HEADERS += \
+    redak.h \
+    config.h
+
 # Add more folders to ship with the application, here
 qmlfiles.source = qml/redak
 qmlfiles.target = qml
@@ -13,35 +22,9 @@ DEPLOYMENTFOLDERS = qmlfiles
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
+#TEMPLATE = lib
 
-symbian {
-# default version for selfsigned binaries :
-# symbian:TARGET.UID3 = 0xE65F5F5E
-
-symbian:TARGET.UID3 = 0x20062277
-
-#symbian:VER_MAJ=0
-#symbian:VER_MIN=0
-#symbian:VER_PAT=0
-symbian:VERSION=0.5.1
-
-PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
-my_deployment.pkg_prerules += vendorinfo
-DEPLOYMENT += my_deployment
-vendorinfo += "%{\"rzr\"}" ":\"rzr\""
-
-
-# Smart Installer package's UID
-# This UID is from the protected range and therefore the package will
-# fail to install if self-signed. By default qmake uses the unprotected
-# range value if unprotected UID is defined for the application and
-# 0x2002CCCF value if protected UID is given to the application
-#symbian:DEPLOYMENT.installer_header = 0x2002CCCF
-
-#symbian:TARGET.CAPABILITY += AllFiles
-#symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
-}
-
+INCLUDEPATH += /usr/include/applauncherd
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
@@ -64,26 +47,43 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 }
 
 
-#TEMPLATE = lib
+symbian {
+# default version for selfsigned binaries :
+symbian:TARGET.UID3 = 0xE65F5F5E
 
-INCLUDEPATH += /usr/include/applauncherd
+# symbian:TARGET.UID3 = 0x20062277
+
+#symbian:VER_MAJ=0
+#symbian:VER_MIN=0
+#symbian:VER_PAT=0
+#symbian:VERSION=0.5.1
+symbian:VERSION=0.0.0
 
 
+PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
+my_deployment.pkg_prerules += vendorinfo
+DEPLOYMENT += my_deployment
+vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
-# The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp \
-    redak.cpp \
-    config.cpp
 
-HEADERS += \
-    redak.h \
-    config.h
+# Smart Installer package's UID
+# This UID is from the protected range and therefore the package will
+# fail to install if self-signed. By default qmake uses the unprotected
+# range value if unprotected UID is defined for the application and
+# 0x2002CCCF value if protected UID is given to the application
+#symbian:DEPLOYMENT.installer_header = 0x2002CCCF
 
-#maemo5 {
-contains(MEEGO_EDITION,harmattan) {
+#symbian:TARGET.CAPABILITY += AllFiles
+#symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
 
-qmlfiles.source = qml/redak/common qml/redak/meego
-qmlfiles.target = qml
+} #else
+
+contains(MEEGO_EDITION,harmattan) { #maemo6
+
+#qmlfiles.source = qml/redak/common qml/redak/meego
+#qmlfiles.target = /opt/redak/qml
+
+DEFINES += Q_WS_HARMATTAN=1
 
 OTHER_FILES += \
     README.txt \
@@ -108,13 +108,8 @@ OTHER_FILES += \
     qtc_packaging/debian_fremantle/compat \
     qtc_packaging/debian_fremantle/changelog \
     redak64.png
-}
-#}
 
-
-# Please do not modify the following two lines. Required for deployment.
-include(qmlapplicationviewer/qmlapplicationviewer.pri)
-qtcAddDeployment()
+} else:android {
 
 OTHER_FILES += \
     android/res/values-zh-rCN/strings.xml \
@@ -151,3 +146,9 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/version.xml
 
+}
+
+
+# Please do not modify the following two lines. Required for deployment.
+include(qmlapplicationviewer/qmlapplicationviewer.pri)
+qtcAddDeployment()

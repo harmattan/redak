@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 #elif defined(Q_WS_S60)
 #endif
 
-#if defined Q_WS_HARMATTAN && defined Q_OS_LINUX
+#if defined Q_WS_X11 && defined Q_OS_LINUX && defined Q_WS_HARMATTAN
     platform = QString("meego");
 #elif defined Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
     platform = QString("symbian");

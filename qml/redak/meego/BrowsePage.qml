@@ -106,8 +106,19 @@ Page {
             }
 
             // https://bugreports.qt-project.org/browse/QTBUG-16870
-            onAccepted: {
-                folderModel.folder = text;
+            // onAccepted: { //BUG: RM696-34-1_PR_005
+            //    folderModel.folder = text;
+            // } // Cannot assign to non-existent property "onAccepted"
+
+            Item { //WORKAROUND:
+                anchors.fill: parent
+                focus: true
+                Keys.onPressed: {
+                    if (event.key == Qt.Key_Return) {
+                        folderModel.folder = text;
+                        event.accepted = true;
+                    }
+                }
             }
         }
         //}

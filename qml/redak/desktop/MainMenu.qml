@@ -88,11 +88,11 @@ ContextMenu {
     MenuItem {
         text: qsTr("Quit")
         //            MouseArea {
-        //                width: parent.width
-        //                height: parent.width
-        //                onClicked: { handleQuit(); }
-        //            }
-        //        }
+  //                   width: parent.width
+    //                 height: parent.width
+    //      onClicked: { Script.log("handleQuit"); }
+                //    }
+                //}
     }
 }
-//}
+

@@ -3,8 +3,8 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
-import Qt.labs.folderlistmodel 1.1
 import com.nokia.symbian 1.1
+import Qt.labs.folderlistmodel 1.1
 import "../common/script.js" as Script
 
 
