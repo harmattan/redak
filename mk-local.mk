@@ -6,6 +6,8 @@
 default: help
 
 package?=redak
+version?=0.0.0
+
 
 #TODO: upgrade with yours
 qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
@@ -34,7 +36,11 @@ clean:
 distclean: clean
 	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
 	rm -rvf *.user *.zip *.sis *~ *.so
+	rm -rvf obj
 	find . -iname "*~" -exec rm -v '{}' \;
+	chmod a-rx *.cpp *.h *.pro *.png *.svg *.spec *.txt
+	chmod a-rx COPYING
+	chmod -Rv a+rX .
 
 
 dist: distclean COPYING release rule/local/release
@@ -89,10 +95,17 @@ dep:
 
 release: distclean rule/local/release
 
+rule/version:
+#	echo '${version}' | tee -a VERSION.txt
+	sed -e "s/^g_version.*/g_version = '${version}' ;/g" -i 'qml/redak/common/script.js'
+	sed -e "s/^VERSION.*/VERSION=${version}/g" -i redak.pro
+	sed -e "s/^Version:.*/Version: ${version}/g" -i redak.spec
+
 
 check/release:
 	@echo "# check version in script.js debian/changelog "
-	grep -r -i version .
+	grep -r -i 'g_version' qml/redak/common/script.js
+	grep 'Version:' ${package}.spec
 
 
 rule/local/%:

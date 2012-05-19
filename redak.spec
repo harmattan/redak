@@ -3,7 +3,7 @@
 %define qmake qmake
 
 Name: redak
-Version: 0.4.0
+Version: 0.0.0
 Release:%{patchversion}%{?dist}
 Summary: Basic text editor to be used on touchscreen using QML
 Group: Utils

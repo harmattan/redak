@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
 
-    qmlRegisterType<Redak>("Redak", 1, 0, "Redak");
+    qmlRegisterType<Redak>("Redak", 1, 1, "Redak");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);

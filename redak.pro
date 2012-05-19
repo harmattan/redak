@@ -4,8 +4,8 @@
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************/
 
-# The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp \
+SOURCES += \
+    main.cpp \
     redak.cpp \
     config.cpp
 
@@ -49,15 +49,15 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 symbian {
 # default version for selfsigned binaries :
-symbian:TARGET.UID3 = 0xE65F5F5E
+#symbian:TARGET.UID3 = 0xE65F5F5E
 
-# symbian:TARGET.UID3 = 0x20062277
+TARGET.UID3 += 0x20062277
 
 #symbian:VER_MAJ=0
 #symbian:VER_MIN=0
 #symbian:VER_PAT=0
-#symbian:VERSION=0.5.1
-symbian:VERSION=0.0.0
+#symbian:VERSION=0.5.2
+VERSION=0.0.0
 
 
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")

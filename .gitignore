@@ -19,6 +19,8 @@ redak_template.pkg
 *.o
 *.so
 moc_*.cpp
+*.class
+*.so
 
 android/assets/
 android/libs/
@@ -28,3 +30,4 @@ android/proguard-project.txt
 
 *.tmp
 *.autosave
+*.sis

@@ -10,8 +10,8 @@ import "../common/script.js" as Script
 Page {
     id: editPage
     property alias content: textArea.text
-    //property alias isEdit : textArea.enabled;
-    property bool isEdit : true;
+    property alias isEdit : textArea.enabled;
+    //property bool isEdit : true;
 
     signal contents(string contents)
     property bool isChanged: false;
@@ -37,7 +37,8 @@ Page {
     function toggleEdit()
     {
         Script.log("#{ toggleEdit : " + isEdit )
-        isEdit = textArea.readOnly;
+        isEdit = ! isEdit;
+        // isEdit = textArea.readOnly;
         // isEdit = ! textArea.enableSoftwareInputPanel ;
         // textArea.enabled = !textArea.enabled ;
         // textArea.enableSoftwareInputPanel = isEdit;
@@ -48,11 +49,20 @@ Page {
         //flickable.enabled = !isEdit;
         //flickable.focus = !isEdit;
         //flickable.returnToBounds();
-        flickable.interactive = !isEdit;
+        //flickable.interactive = !isEdit;
+        //
 
-        flickable.focus=!isEdit;
+        //flickable.focus=!isEdit;
         textArea.focus=isEdit;
-        if ( isEdit ) textArea.forceActiveFocus();
+
+        if ( isEdit ) {
+            flickable.interactive = true;
+            textArea.forceActiveFocus();
+        } else {
+            flickable.interactive = !isEdit;
+            flickable.focus= !isEdit;
+            flickable.forceActiveFocus();
+        }
 
         //textArea.cursorPosition = textArea.cursorPosition;
         //var b = textArea.selectionStart;
@@ -71,7 +81,7 @@ Page {
         height: parent.height
         clip: true
         // interactive: !textArea.enabled
-        interactive: false
+//      interactive: false
         //boundsBehavior: Flickable.DragOverBounds;
 
         // contentWidth: textArea.paintedWidth
@@ -91,12 +101,12 @@ Page {
 
         onFocusChanged: Script.log("Flickable.focus="+focus);
 
-        onMovementStarted: {
-            textArea.focus=false;
-        }
-        onMovementEnded: {
-            textArea.focus=true;
-        }
+//        onMovementStarted: {
+//          textArea.focus=false;
+//        }
+//        onMovementEnded: {
+//          textArea.focus=true;
+//        }
 
         TextArea {
             id: textArea
@@ -134,14 +144,14 @@ Page {
             //onFocusChanged: flickable.interactive = ( textArea.focus ) ;
             onFocusChanged: Script.log("TextArea.focus="+focus);
 
-            MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        Script.log("MouseArea.OnClicked")
-                        parent.forceActiveFocus();
-                        parent.openSoftwareInputPanel();
-                    }
-            }
+//            MouseArea {
+  //                  anchors.fill: parent
+    //                onClicked: {
+      //                  Script.log("MouseArea.OnClicked")
+        //                parent.forceActiveFocus();
+          //              //parent.openSoftwareInputPanel();
+            //        }
+//            }
         }
     }
 }

@@ -21,6 +21,12 @@ check online
 
 http://rzr.online.fr/q/redak# [Announce] redak : text editor (Qt/QML, harmattan, n950, n9, opensource, GPL-3) 
 
-thanks to itsnotabigtruck for testing on n9
-
 LocalThemeDaemonClient: Looking for assets in "/usr/local/opt/QtSDK/Simulator/Qt/gcc//harmattanthemes/blanco/meegotouch"
+
+### THANKS ###
+
+Testers :
+
+* <virtuald> : n9 PR1.2 (30.2012.07....)
+* <itsnotabigtruck> : n9
+* <Sniper_swe> : n9
