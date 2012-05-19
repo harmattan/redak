@@ -1,12 +1,26 @@
-redak (0.0.0-0) UNRELEASED; urgency=low
+redak (0.5.1-0) precise; urgency=low
 
-  * URL: http://rzr.online.fr/q/redak
-  * devel version should be on top and discarded on release
-  * Fix: start on n9 but kb integration issues :
-    host=RM696-34-1_PR_005
-    qt=4.7.4~git20110517-0maemo12+0m6
+  * Add: released file=redak-0.5.1_unsigned.sis
+  * Fix: compat symbian
+  * Add: wizard necessitas-0.3-online-sdk-installer-linux
+  * Add: constructor
+  * Add: start on android-ics
+  * Fix: start on n9 but kb integration issues :     host=RM696-34-1_PR_005     qt=4.7.4~git20110517-0maemo12+0m6
+  * Fix: support n9-pr1.2
+  * Add: meego: support nemo
 
- -- Philippe Coval <rzr@gna.org>  Sat, 19 May 2012 23:01:23 +0200
+ -- Philippe Coval <rzr@gna.org>  Sun, 20 May 2012 00:28:48 +0200
+
+redak (0.5.0-0) precise; urgency=low
+
+  * Fix: symbian: fix import
+  * Add: wizard necessitas-0.3-online-sdk-installer-linux
+  * Add: constructor
+  * Add: start on android-ics
+  * Fix: meego: start on n9 but kb integration issues :     host=RM696-34-1_PR_005     qt=4.7.4~git20110517-0maemo12+0m6
+  * Fix: meego: support n9-pr1.2
+
+ -- Philippe Coval <rzr@gna.org>  Sun, 20 May 2012 00:23:58 +0200
 
 redak (0.5.0-0) harmattan; urgency=low
 

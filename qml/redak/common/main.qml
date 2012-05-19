@@ -4,7 +4,6 @@
  *****************************************************************************/
 import QtQuick 1.1
 
-//import Redak 1.0
 import "../common/script.js" as Script
 //import "../common"
 //import "./"

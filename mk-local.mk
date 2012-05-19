@@ -36,8 +36,10 @@ clean:
 distclean: clean
 	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
 	rm -rvf *.user *.zip *.sis *~ *.so
-	rm -rvf obj
+	rm -rvf obj ./android/bin android/assets/qml/redak android/libs/armeabi
 	find . -iname "*~" -exec rm -v '{}' \;
+	find . -iname "*.class" -exec rm -v '{}' \;
+	find . -iname "*.apk" -exec rm -v '{}' \;
 	chmod a-rx *.cpp *.h *.pro *.png *.svg *.spec *.txt
 	chmod a-rx COPYING
 	chmod -Rv a+rX .
@@ -97,7 +99,7 @@ release: distclean rule/local/release
 
 rule/version:
 #	echo '${version}' | tee -a VERSION.txt
-	sed -e "s/^g_version.*/g_version = '${version}' ;/g" -i 'qml/redak/common/script.js'
+	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'qml/redak/common/script.js'
 	sed -e "s/^VERSION.*/VERSION=${version}/g" -i redak.pro
 	sed -e "s/^Version:.*/Version: ${version}/g" -i redak.spec
 
