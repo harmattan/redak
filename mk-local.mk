@@ -35,7 +35,7 @@ clean:
 
 distclean: clean
 	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
-	rm -rvf *.user *.zip *.sis *~ *.so
+	rm -rvf *.user *.zip *.sis *~ *.so *.tmp
 	rm -rvf obj ./android/bin android/assets/qml/redak android/libs/armeabi
 	find . -iname "*~" -exec rm -v '{}' \;
 	find . -iname "*.class" -exec rm -v '{}' \;

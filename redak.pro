@@ -57,7 +57,7 @@ TARGET.UID3 += 0x20062277
 #symbian:VER_MIN=0
 #symbian:VER_PAT=0
 #symbian:VERSION=0.5.2
-VERSION=0.5.1
+VERSION=0.0.0
 
 
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
