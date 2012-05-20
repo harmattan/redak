@@ -24,7 +24,7 @@ void Redak::registerTypes(const char *uri)
     qDebug()<<uri;
     // Q_ASSERT(uri == QLatin1String("redak"));
     uri="redak";
-    qmlRegisterType<Redak>(uri, 1, 0, "Redak");
+    qmlRegisterType<Redak>(uri, 1, 1, "Redak");
 }
 
 

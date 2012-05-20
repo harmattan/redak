@@ -12,8 +12,8 @@ var g_color_normal = "#00AAAAAA";
 var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
 var g_color_border = "gray"
-
-var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: 0.5.0\n";
+var g_version = "0.5.1" ;
+var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: " + g_version + "\n";
 
 
 function log(text)
@@ -53,7 +53,7 @@ function loadUrl(filename)
 
 function handleFolderChanged(path)
 {
-    console.log("handleFolderChanged: "+path);
+    log("handleFolderChanged: "+path);
     appWindow.folderPath=path;
 }
 

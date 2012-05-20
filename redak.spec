@@ -1,22 +1,24 @@
+# file://./redak.spec
+
 %define patchversion 0
 %define package_letter r
 %define qmake qmake
 
 Name: redak
-Version: 0.4.0
+Version: 0.5.1
 Release:%{patchversion}%{?dist}
 Summary: Basic text editor to be used on touchscreen using QML
 Group: Utils
 License: GPL-3
 URL: http://rzr.online.fr/q/redak
 Source0: http://rzr.online.fr/ubuntu/pool/main/%{package_letter}/%{name}/%{name}_%{version}.orig.tar.gz
-Patch0: http://rzr.online.fr/ubuntu/pool/main/%{package_letter}/%{name}/%{name}_%{version}-%{patchversion}.debian.tar.gz
+Patch0: http://rzr.online.fr/ubuntu/pool/main/%{package_letter}/%{name}/%{name}_%{version}-%{patchversion}.diff.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  pkgconfig(QtCore) >= 4.7.0
 BuildRequires:  pkgconfig(QtGui)
-BuildRequires:  pkgconfig(QtQuick)
+#BuildRequires:  pkgconfig(QtQuick)
 BuildRequires:  desktop-file-utils
 #BuildRequires: qt-qmake
 #BuildRequires: libqt-devel
@@ -25,7 +27,7 @@ BuildRequires:  desktop-file-utils
 
 
 %description
-Finger friendly text editor to load save and edit text on your handset
+Finger friendly text editor to load save and edit text on your touchscreen device
 
 
 %prep

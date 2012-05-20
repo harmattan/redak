@@ -1,31 +1,46 @@
 ### TODO ###
 
-* Task : Bugs / Features / Wishes
-** TODO : path : filename/ dir / parent
-** TODO : error handling
-** TODO : margin : edit / menu
-** DONE : cut and paste
-** TODO : load large file scroll down , menu about, scroll up :-(
-** TODO : uninstall on desktop
-** TODO : argv[1] : http://stackoverflow.com/questions/5770154/qt-qapplication-appargc-argv
-
-* Task : Support
-** TODO : WIP symbian
-** TODO : lighthouse port nescessitas
-** TODO : harmattan : uninstall : XB-Maemo-Flags: visible  XB-MeeGo-Desktop-Entry-Name
+* Unclassed :
+* when choosing folder it should add / at the end of path if user want to change folder and type own name. 
+* also needs a save button. no enter on kwyboard is only way to save after edit name
 
 * Task Meego
 ** QGraphicsItem::ungrabMouse: not a mouse grabber
+** TODO [#A] : BUG: host=RM696-34-1_PR_005 kb integration and view mode
+
+* Task Symbian
+** TODO [#A] support Qml
+   http://developer.qt.nokia.com/wiki/Qt_4_7_4_Compatibility_Issues#a43452ddef3f92d193dbca3b139a01b2
+** https://publish.ovi.com/download_items/show/475539#item
+
+* Task Others
+** TODO : lighthouse port nescessitas
+** TODO : lighthouse port bb10
+** TODO : lighthouse port iOS
+
+* Task : Bugs / Features / Wishes
+** TODO [#A] : QGraphicsItem::ungrabMouse: not a mouse grabber on NokiaN950 N9
+** TODO [#C] : mkdir in browser view
+** TODO [#C] : path : filename/ dir / parent
+** TODO [#C] : margin : edit / menu
+** TODO [#B] : load large file scroll down , menu about, scroll up :-(
+** TODO [#C] : uninstall on desktop
+** TODO [#C] : confirm popups on discarding, overwrite file
+** TODO [#B] : argv[1] : http://stackoverflow.com/questions/5770154/qt-qapplication-appargc-argv
+
+* Task : Refatoring
+** Tabs vs pagestack ?
+
+* Task : Support
+** TODO : harmattan : uninstall : XB-Maemo-Flags: visible  XB-MeeGo-Desktop-Entry-Name
+
+** TODO : desktop : http://doc.qt.nokia.com/4.7-snapshot/declarative-tutorials-extending-chapter6-plugins.html
+** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
 
-### NOTES ###
+### DONE ###
 
-
-http://rzr.online.fr/q/redak# [Announce] redak : text editor (Qt/QML, harmattan, n950, n9, opensource, GPL-3) 
-
-
-check online
-
-thanks to itsnotabigtruck for testing on n9
-
-LocalThemeDaemonClient: Looking for assets in "/usr/local/opt/QtSDK/Simulator/Qt/gcc//harmattanthemes/blanco/meegotouch"
+** DONE : cut and paste
+** DONE : WIP symbian
+** DONE : cut and paste
+** DONE : error handling

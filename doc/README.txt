@@ -104,11 +104,13 @@ but feel free to build form sources too...
 
 == MORE ==
 
+
 * http://rzr.online.fr/q/redak
 * http://rzr.online.fr/q/qt
 * http://rzr.online.fr/q/handset
 * http://rzr.online.fr/q/harmattan
 * http://rzr.online.fr/q/symbian
+
 * http://www.developer.nokia.com/Community/Wiki/Special:WhatLinksHere/Redak
 * http://stackoverflow.com/questions/8696448/emit-signals-from-javascript-to-qml
 * http://www.developer.nokia.com/Community/Discussion/showthread.php?173714-how-to-create-XB-Maemo-Icon-26
@@ -143,4 +145,8 @@ but feel free to build form sources too...
 |creationdate= 20120207  <!-- Format YYYYMMDD -->
 |author= [[User:www.rzr.online.fr]]
 }}
+=======
+* http://qt.nokia.com/learning/guides/
+* http://www.developer.nokia.com/Community/Wiki/Porting_Symbian_Qt_Apps_to_Nokia_N9
+>>>>>>> Stashed changes
 

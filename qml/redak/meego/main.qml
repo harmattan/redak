@@ -4,7 +4,7 @@
  *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import Redak 1.0
+import Redak 1.1
 import "../common/script.js" as Script
 
 

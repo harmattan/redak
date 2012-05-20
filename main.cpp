@@ -15,36 +15,37 @@ int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
 
-    qmlRegisterType<Redak>("Redak", 1, 0, "Redak");
+    qmlRegisterType<Redak>("Redak", 1, 1, "Redak");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
 
-    QString string="";
+    QString filepath="";
     if ( argc > 1 ) {
         char const * const p = argv[1];
-        string = QString(p);
+        filepath = QString(p);
     }
-    QVariant variant(string); // variant
+    QVariant variant(filepath); // variant
     viewer.rootContext()->setContextProperty("parentFilePath", variant );
 
     QString platform("common");
 
-    platform = QString("meego");
 
 #if defined Q_WS_SIMULATOR
-//# define Q_OS_SYMBIAN 1
-# define Q_WS_HARMATTAN 1
+# define Q_OS_SYMBIAN 1
+//# define Q_WS_HARMATTAN 1
 #endif
 
 #if defined(Q_WS_MAEMO_5)
 #elif defined(Q_WS_S60)
 #endif
 
-#if defined Q_WS_HARMATTAN && defined Q_OS_LINUX
+#if defined Q_WS_X11 && defined Q_OS_LINUX && defined Q_WS_HARMATTAN
     platform = QString("meego");
 #elif defined Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
     platform = QString("symbian");
+#elif defined CONFIG_LOCAL_PLATFORM_ANDROID
+//  platform = QString("symbian");
 #endif
 
     QString filename("qml/redak/");

@@ -4,10 +4,9 @@
  *****************************************************************************/
 import QtQuick 1.1
 
-//import Redak 1.0
 import "../common/script.js" as Script
-import "../common"
-import "./"
+//import "../common"
+//import "./"
 
 
 Rectangle {
@@ -15,6 +14,7 @@ Rectangle {
     id: appWindow
 
     //initialPage: editPage
+    property alias pageStack: appWindow
     property alias content: editPage.content
     property alias folderPath: editPage.folderPath
     property variant filePath: '' ( null != parentFilePath ) ? parentFilePath : "default.txt";
