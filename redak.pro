@@ -13,12 +13,6 @@ HEADERS += \
     redak.h \
     config.h
 
-# Add more folders to ship with the application, here
-qmlfiles.source = qml/redak
-qmlfiles.target = qml
-
-DEPLOYMENTFOLDERS = qmlfiles
-
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
@@ -32,12 +26,16 @@ INCLUDEPATH += /usr/include/applauncherd
 # MOBILITY +=
 
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
-CONFIG += qdeclarative-boostable
 CONFIG += qt-components
+CONFIG += qdeclarative-boostable
 CONFIG += plugin
 
+config += qt-components
+
 # Add dependency to Symbian components
-# CONFIG += qt-components
+CONFIG += qt-components
+#For older SDKs you may need:
+#CONFIG += qtquickcomponents
 
 greaterThan(QT_MAJOR_VERSION, 4) {
        QT += widgets
@@ -56,27 +54,41 @@ TARGET.UID3 += 0x20062277
 #symbian:VER_MAJ=0
 #symbian:VER_MIN=0
 #symbian:VER_PAT=0
-#symbian:VERSION=0.5.2
-VERSION=0.0.0
+VERSION=0.5.2
+#VERSION=0.0.0
 
 
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
+
 my_deployment.pkg_prerules += vendorinfo
-DEPLOYMENT += my_deployment
+
 vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
+# http://qt-project.org/forums/viewthread/9302
+my_deployment.pkg_prerules += \
+  "; Dependency to Symbian Qt Quick components" \
+  "(0x200346DE), 1, 0, 0, {\"Qt Quick components\"}"
 
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
 # fail to install if self-signed. By default qmake uses the unprotected
 # range value if unprotected UID is defined for the application and
 # 0x2002CCCF value if protected UID is given to the application
-#symbian:DEPLOYMENT.installer_header = 0x2002CCCF
+#DEPLOYMENT.installer_header = 0x2002CCCF
 
 #symbian:TARGET.CAPABILITY += AllFiles
 #symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
 
+# Add more folders to ship with the application, here
+qmlfiles.source = qml/redak/symbian qml/redak/common
+qmlfiles.target = qml
+
+DEPLOYMENTFOLDERS = qmlfiles
+
+DEPLOYMENT += my_deployment
+
 } #else
+
 
 contains(MEEGO_EDITION,harmattan) { #maemo6
 
@@ -108,6 +120,12 @@ OTHER_FILES += \
     qtc_packaging/debian_fremantle/compat \
     qtc_packaging/debian_fremantle/changelog \
     redak64.png
+
+# Add more folders to ship with the application, here
+qmlfiles.source = qml/redak
+qmlfiles.target = qml
+
+DEPLOYMENTFOLDERS = qmlfiles
 
 } else:android {
 
@@ -145,6 +163,12 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/origo/QtActivity.java \
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/version.xml
+
+# Add more folders to ship with the application, here
+qmlfiles.source = qml/redak
+qmlfiles.target = qml
+
+DEPLOYMENTFOLDERS = qmlfiles
 
 }
 
