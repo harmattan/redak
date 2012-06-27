@@ -29,7 +29,7 @@ rule/android/configure:
 	/usr/local/opt/android-sdk-linux/tools/android  update project -t android-7 -p android
 
 clean:
-	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile 
+	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile
 	-cat 'debian/clean' | while read t ; do rm -rv "$${t}" ; done
 
 

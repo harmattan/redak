@@ -13,7 +13,7 @@ HEADERS += \
     redak.h \
     config.h
 
-# Additional import path used to resolve QML modules in Creator's code model
+# Additional import path used to resolve QML modules in Creators code model
 QML_IMPORT_PATH =
 
 #TEMPLATE = lib
@@ -60,12 +60,12 @@ VERSION=0.5.2
 
 PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
 
-my_deployment.pkg_prerules += vendorinfo
+redak_installer.pkg_prerules += vendorinfo
 
 vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
 # http://qt-project.org/forums/viewthread/9302
-my_deployment.pkg_prerules += \
+redak_installer.pkg_prerules += \
   "; Dependency to Symbian Qt Quick components" \
   "(0x200346DE), 1, 0, 0, {\"Qt Quick components\"}"
 
@@ -74,7 +74,8 @@ my_deployment.pkg_prerules += \
 # fail to install if self-signed. By default qmake uses the unprotected
 # range value if unprotected UID is defined for the application and
 # 0x2002CCCF value if protected UID is given to the application
-#DEPLOYMENT.installer_header = 0x2002CCCF
+DEPLOYMENT.installer_header = 0x2002CCCF
+
 
 #symbian:TARGET.CAPABILITY += AllFiles
 #symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
@@ -85,7 +86,9 @@ qmlfiles.target = qml
 
 DEPLOYMENTFOLDERS = qmlfiles
 
-DEPLOYMENT += my_deployment
+DEPLOYMENT += redak_installer
+
+OTHER_FILES += redak.pkg
 
 } #else
 
