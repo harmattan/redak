@@ -12,6 +12,7 @@
 ** TODO [#A] support Qml
    http://developer.qt.nokia.com/wiki/Qt_4_7_4_Compatibility_Issues#a43452ddef3f92d193dbca3b139a01b2
 ** https://publish.ovi.com/download_items/show/475539#item
+** publish redak_install.sis to ovi
 
 * Task Others
 ** TODO : lighthouse port nescessitas
