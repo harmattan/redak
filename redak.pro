@@ -92,7 +92,7 @@ OTHER_FILES += redak.pkg
 
 } #else
 
-
+# !isEmpty(MEEGO_VERSION_MAJOR)
 contains(MEEGO_EDITION,harmattan) { #maemo6
 
 #qmlfiles.source = qml/redak/common qml/redak/meego

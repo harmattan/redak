@@ -5,7 +5,7 @@
 %define qmake qmake
 
 Name: redak
-Version: 0.0.0
+Version: 0.5.2
 Release:%{patchversion}%{?dist}
 Summary: Basic text editor to be used on touchscreen using QML
 Group: Utils
@@ -18,8 +18,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  pkgconfig(QtCore) >= 4.7.0
 BuildRequires:  pkgconfig(QtGui)
-#BuildRequires:  pkgconfig(QtQuick)
 BuildRequires:  desktop-file-utils
+#BuildRequires:  pkgconfig(QtQuick)
 #BuildRequires: qt-qmake
 #BuildRequires: libqt-devel
 #BuildRequires: libqtdeclarative4
@@ -59,6 +59,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+
+* Sat Jul 14 2012 Philippe Coval <rzr@gna.org> 0.5.2
+- porting to mer
 
 * Sun Mar 02 2012 Philippe Coval <rzr@gna.org> 0.0.0
 - wip

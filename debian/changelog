@@ -1,9 +1,9 @@
-redak (0.0.0-0) UNRELEASED; urgency=low
+redak (0.5.2-0) precise; urgency=low
 
-  * URL: http://rzr.online.fr/q/redak
-  * devel version should be on top and discarded on release
+  * Fix: symbian: build smart_installer
+  * Wip: android, mer
 
- -- Philippe Coval <rzr@gna.org>  Sun, 20 May 2012 02:54:08 +0200
+ -- Philippe Coval <rzr@gna.org>  Sat, 14 Jul 2012 15:14:45 +0200
 
 redak (0.5.1-0) precise; urgency=low
 
