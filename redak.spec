@@ -45,11 +45,9 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
+#rm -rf %{buildroot}
 make install DESTDIR=%{buildroot} INSTALL_ROOT=%{buildroot}
-
-%clean
-rm -rf %{buildroot}
+#make install DESTDIR=%{buildroot}
 
 
 %files
@@ -57,11 +55,3 @@ rm -rf %{buildroot}
 /opt/%{name}
 %doc
 
-
-%changelog
-
-* Sat Jul 14 2012 Philippe Coval <rzr@gna.org> 0.5.2
-- porting to mer
-
-* Sun Mar 02 2012 Philippe Coval <rzr@gna.org> 0.0.0
-- wip

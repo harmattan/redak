@@ -20,20 +20,20 @@ QML_IMPORT_PATH =
 
 INCLUDEPATH += /usr/include/applauncherd
 
+
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
 # CONFIG += mobility
 # MOBILITY +=
 
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
-CONFIG += qt-components
 CONFIG += qdeclarative-boostable
-CONFIG += plugin
 
-config += qt-components
+CONFIG += plugin
 
 # Add dependency to Symbian components
 CONFIG += qt-components
+config += qt-components
 #For older SDKs you may need:
 #CONFIG += qtquickcomponents
 
@@ -46,93 +46,54 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 
 symbian {
-# default version for selfsigned binaries :
-#symbian:TARGET.UID3 = 0xE65F5F5E
 
-TARGET.UID3 += 0x20062277
+  # default version for selfsigned binaries :
+  #symbian:TARGET.UID3 = 0xE65F5F5E
 
-#symbian:VER_MAJ=0
-#symbian:VER_MIN=0
-#symbian:VER_PAT=0
-VERSION=0.5.2
-#VERSION=0.0.0
+  TARGET.UID3 += 0x20062277
+
+  #symbian:VER_MAJ=0
+  #symbian:VER_MIN=0
+  #symbian:VER_PAT=0
+  VERSION=0.5.2
+  #VERSION=0.0.0
 
 
-PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
+  PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
 
-redak_installer.pkg_prerules += vendorinfo
+  redak_installer.pkg_prerules += vendorinfo
 
-vendorinfo += "%{\"rzr\"}" ":\"rzr\""
+  vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
-# http://qt-project.org/forums/viewthread/9302
-redak_installer.pkg_prerules += \
+  # http://qt-project.org/forums/viewthread/9302
+  redak_installer.pkg_prerules += \
   "; Dependency to Symbian Qt Quick components" \
   "(0x200346DE), 1, 0, 0, {\"Qt Quick components\"}"
 
-# Smart Installer package's UID
-# This UID is from the protected range and therefore the package will
-# fail to install if self-signed. By default qmake uses the unprotected
-# range value if unprotected UID is defined for the application and
-# 0x2002CCCF value if protected UID is given to the application
-DEPLOYMENT.installer_header = 0x2002CCCF
+  # Smart Installer package's UID
+  # This UID is from the protected range and therefore the package will
+  # fail to install if self-signed. By default qmake uses the unprotected
+  # range value if unprotected UID is defined for the application and
+  # 0x2002CCCF value if protected UID is given to the application
+  DEPLOYMENT.installer_header = 0x2002CCCF
 
 
-#symbian:TARGET.CAPABILITY += AllFiles
-#symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
+  #symbian:TARGET.CAPABILITY += AllFiles
+  #symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
 
-# Add more folders to ship with the application, here
-qmlfiles.source = qml/redak/symbian qml/redak/common
-qmlfiles.target = qml
+  # Add more folders to ship with the application, here
+  qmlfiles.source = qml/redak/symbian qml/redak/common
+  qmlfiles.target = qml
 
-DEPLOYMENTFOLDERS = qmlfiles
+  DEPLOYMENT += redak_installer
 
-DEPLOYMENT += redak_installer
+  OTHER_FILES += redak.pkg
 
-OTHER_FILES += redak.pkg
-
-} #else
-
-# !isEmpty(MEEGO_VERSION_MAJOR)
-contains(MEEGO_EDITION,harmattan) { #maemo6
-
-#qmlfiles.source = qml/redak/common qml/redak/meego
-#qmlfiles.target = /opt/redak/qml
-
-DEFINES += Q_WS_HARMATTAN=1
-
-OTHER_FILES += \
-    README.txt \
-    TODO.txt \
-    mk-local.mk \
-    debian/ \
-    debian/control \
-    debian/changelog \
-    debian/rules \
-    debian/links \
-    qtc_packaging/debian_harmattan/rules \
-    qtc_packaging/debian_harmattan/README \
-    qtc_packaging/debian_harmattan/manifest.aegis \
-    qtc_packaging/debian_harmattan/copyright \
-    qtc_packaging/debian_harmattan/control \
-    qtc_packaging/debian_harmattan/compat \
-    qtc_packaging/debian_harmattan/changelog \
-    qtc_packaging/debian_fremantle/rules \
-    qtc_packaging/debian_fremantle/README \
-    qtc_packaging/debian_fremantle/copyright \
-    qtc_packaging/debian_fremantle/control \
-    qtc_packaging/debian_fremantle/compat \
-    qtc_packaging/debian_fremantle/changelog \
-    redak64.png
-
-# Add more folders to ship with the application, here
-qmlfiles.source = qml/redak
-qmlfiles.target = qml
-
-DEPLOYMENTFOLDERS = qmlfiles
 
 } else:android {
 
-OTHER_FILES += \
+
+  OTHER_FILES += \
     android/res/values-zh-rCN/strings.xml \
     android/res/drawable/logo.png \
     android/res/drawable/icon.png \
@@ -167,15 +128,61 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/version.xml
 
-# Add more folders to ship with the application, here
-qmlfiles.source = qml/redak
-qmlfiles.target = qml
+} else {
 
-DEPLOYMENTFOLDERS = qmlfiles
+  contains(MEEGO_EDITION,harmattan) { #maemo6
+
+  DEFINES += Q_WS_HARMATTAN=1 
+
+  OTHER_FILES += \
+    debian/ \
+    debian/control \
+    debian/changelog \
+    debian/rules \
+    debian/links \
+    qtc_packaging/debian_harmattan/rules \
+    qtc_packaging/debian_harmattan/README \
+    qtc_packaging/debian_harmattan/manifest.aegis \
+    qtc_packaging/debian_harmattan/copyright \
+    qtc_packaging/debian_harmattan/control \
+    qtc_packaging/debian_harmattan/compat \
+    qtc_packaging/debian_harmattan/changelog \
+    qtc_packaging/debian_fremantle/rules \
+    qtc_packaging/debian_fremantle/README \
+    qtc_packaging/debian_fremantle/copyright \
+    qtc_packaging/debian_fremantle/control \
+    qtc_packaging/debian_fremantle/compat \
+    qtc_packaging/debian_fremantle/changelog \
+  #
+  }
+
+
+  !isEmpty(MEEGO_VERSION_MAJOR) { #mer
+
+    qmlfiles.source = qml/redak/common qml/redak/meego
+#   qmlfiles.target = /opt/redak/qml
+    qmlfiles.target = qml
+
+  } else {
+
+    qmlfiles.source = qml/redak
+    qmlfiles.target = qml
+
+  }
 
 }
 
+OTHER_FILES += \
+    README.txt \
+    TODO.txt \
+    mk-local.mk \
+    redak64.png
+
+
+DEPLOYMENTFOLDERS = qmlfiles
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
+
+#eof

@@ -14,6 +14,10 @@
 ** https://publish.ovi.com/download_items/show/475539#item
 ** publish redak_install.sis to ovi
 
+* Task Mer/Nemo
+** TODO [#A] : file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-close
+
+
 * Task Others
 ** TODO : lighthouse port nescessitas
 ** TODO : lighthouse port bb10

@@ -5,9 +5,9 @@ XS-Debian-Section: utils
 Priority: optional
 Maintainer: Philippe Coval <rzr@gna.org>
 Build-Depends: debhelper (>= 5), pkg-config,
-  libqt4-dev, 
+  libqt4-dev,
   libqt4-declarative-dev | libqt4-declarative-folderlistmodel, 
-  applauncherd-dev
+  applauncherd-dev | libqt4-dev
 Standards-Version: 3.9.2
 Homepage: http://rzr.online.fr/q/redak
 Vcs-Git: git://git@gitorious.org:/redak/redak.git

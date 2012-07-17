@@ -28,8 +28,9 @@ int main(int argc, char *argv[])
     QVariant variant(filepath); // variant
     viewer.rootContext()->setContextProperty("parentFilePath", variant );
 
-    QString platform("common");
+    QString filename("qml/redak/");
 
+    QString platform("common");
 
 #if defined Q_WS_SIMULATOR
 # define Q_OS_SYMBIAN 1
@@ -40,15 +41,15 @@ int main(int argc, char *argv[])
 #elif defined(Q_WS_S60)
 #endif
 
-#if defined Q_WS_X11 && defined Q_OS_LINUX && defined Q_WS_HARMATTAN
-    platform = QString("meego");
-#elif defined Q_OS_SYMBIAN  //def Q_WS_HARMATTAN
+#if defined Q_OS_SYMBIAN 
     platform = QString("symbian");
-#elif defined CONFIG_LOCAL_PLATFORM_ANDROID
+#else // #if defined Q_WS_X11 && defined Q_OS_LINUX && // && defined Q_WS_HARMATTAN
+    platform = QString("meego");
+//#elif defined CONFIG_LOCAL_PLATFORM_ANDROID
 //  platform = QString("symbian");
 #endif
 
-    QString filename("qml/redak/");
+
     filename += platform;
     filename += "/main.qml";
 
