@@ -15,8 +15,11 @@
 ** publish redak_install.sis to ovi
 
 * Task Mer/Nemo
-** TODO [#A] : file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-close
-
+** TODO [#A] : http://qt-project.org/wiki/How_to_Remove_Toolbar_from_MeeGo_Harmattan_Application
+** http://harmattan-dev.nokia.com/docs/library/html/qt-components/qt-components-meego-pagestackwindow.html#showStatusBar-prop
+** TODO [#B] : file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-close
+*** https://bugs.nemomobile.org/show_bug.cgi?id=81
+*** https://bugs.nemomobile.org/buglist.cgi?product=Middleware&component=qt-components&resolution=---
 
 * Task Others
 ** TODO : lighthouse port nescessitas

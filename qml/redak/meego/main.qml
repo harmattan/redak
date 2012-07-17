@@ -18,6 +18,7 @@ PageStackWindow {
     property variant filePath: ( null != parentFilePath ) ? parentFilePath : "default.txt";
     signal filenameSelected(string filename)
     property int mode: 0 //0=load 1=save
+    showStatusBar: false;
 
     Component.onCompleted: {
         Script.log("onCompleted:" + filePath );

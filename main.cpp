@@ -37,6 +37,11 @@ int main(int argc, char *argv[])
 //# define Q_WS_HARMATTAN 1
 #endif
 
+#if defined(MEEGO_EDITION_HARMATTAN)
+# define Q_WS_HARMATTAN 1
+#endif
+
+
 #if defined(Q_WS_MAEMO_5)
 #elif defined(Q_WS_S60)
 #endif
