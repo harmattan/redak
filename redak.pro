@@ -13,8 +13,13 @@ HEADERS += \
     redak.h \
     config.h
 
+
+#VERSION = 0.0.0
+
 # Additional import path used to resolve QML modules in Creators code model
 QML_IMPORT_PATH =
+
+TEMPLATE = app
 
 #TEMPLATE = lib
 
@@ -128,58 +133,83 @@ symbian {
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/version.xml
 
-} else {
+} else:unix {
 
-  contains(MEEGO_EDITION,harmattan) { #maemo6
-
-  DEFINES += Q_WS_HARMATTAN=1 
-
-  OTHER_FILES += \
-    debian/ \
-    debian/control \
-    debian/changelog \
-    debian/rules \
-    debian/links \
-    qtc_packaging/debian_harmattan/rules \
-    qtc_packaging/debian_harmattan/README \
-    qtc_packaging/debian_harmattan/manifest.aegis \
-    qtc_packaging/debian_harmattan/copyright \
-    qtc_packaging/debian_harmattan/control \
-    qtc_packaging/debian_harmattan/compat \
-    qtc_packaging/debian_harmattan/changelog \
-    qtc_packaging/debian_fremantle/rules \
-    qtc_packaging/debian_fremantle/README \
-    qtc_packaging/debian_fremantle/copyright \
-    qtc_packaging/debian_fremantle/control \
-    qtc_packaging/debian_fremantle/compat \
-    qtc_packaging/debian_fremantle/changelog \
-  #
-  }
-
-
-  !isEmpty(MEEGO_VERSION_MAJOR) { #mer
+  !isEmpty(MEEGO_VERSION_MAJOR) {
 
     qmlfiles.source = qml/redak/common qml/redak/meego
-#   qmlfiles.target = /opt/redak/qml
     qmlfiles.target = qml
 
-  } else {
+    contains(MEEGO_EDITION,harmattan) { #maemo6
+
+      DEFINES += Q_WS_HARMATTAN=1 
+
+      OTHER_FILES += \
+      debian/ \
+      debian/control \
+      debian/changelog \
+      debian/rules \
+      debian/links \
+      qtc_packaging/debian_harmattan/rules \
+      qtc_packaging/debian_harmattan/README \
+      qtc_packaging/debian_harmattan/manifest.aegis \
+      qtc_packaging/debian_harmattan/copyright \
+      qtc_packaging/debian_harmattan/control \
+      qtc_packaging/debian_harmattan/compat \
+      qtc_packaging/debian_harmattan/changelog \
+      qtc_packaging/debian_fremantle/rules \
+      qtc_packaging/debian_fremantle/README \
+      qtc_packaging/debian_fremantle/copyright \
+      qtc_packaging/debian_fremantle/control \
+      qtc_packaging/debian_fremantle/compat \
+      qtc_packaging/debian_fremantle/changelog \
+  #
+    } else { #meego/mer/nemo # rpm?
+
+      OTHER_FILES += \
+      redak.desktop
+
+      INSTALLS+=desktop icon
+
+      desktop.files = redak.desktop
+      desktop.path = /usr/share/applications/
+
+      icon.files = redak80.png
+      icon.path = /usr/share/icons/hicolor/80x80/apps/
+
+    }
+
+
+  } else { # not meego
 
     qmlfiles.source = qml/redak
     qmlfiles.target = qml
 
+    CONFIG += install_desktop
+
+    install_desktop {
+      desktop.files = redak.desktop
+      desktop.path  = /usr/share/applications/
+      INSTALLS += desktop
+    }
+
   }
 
+} else { #windows?
+
 }
+
 
 OTHER_FILES += \
     README.txt \
     TODO.txt \
+    AUTHORS.txt \
     mk-local.mk \
     redak64.png
 
 
-DEPLOYMENTFOLDERS = qmlfiles
+
+DEPLOYMENTFOLDERS+=qmlfiles
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)

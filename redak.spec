@@ -38,6 +38,8 @@ Finger friendly text editor to load save and edit text on your touchscreen devic
 
 
 %build
+
+qmake-qt4 || qmake
 qmake -makefile %{name}.pro
 qmake
 #configure
@@ -53,5 +55,11 @@ make install DESTDIR=%{buildroot} INSTALL_ROOT=%{buildroot}
 %files
 %defattr(-,root,root,-)
 /opt/%{name}
-%doc
+/usr/share/applications/%{name}.desktop
+#%doc docs/*
+#%{_bindir}/*
+#%{_libdir}/*
+#%{_datadir}/*
+
+#%doc
 
