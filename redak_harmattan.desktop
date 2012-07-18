@@ -10,3 +10,6 @@ Icon=/usr/share/icons/hicolor/80x80/apps/redak80.png
 X-Window-Icon=
 X-HildonDesk-ShowInToolbar=true
 X-Osso-Type=application/x-executable
+MimeType=text/plain;
+Categories=Utility;TextEditor;
+Keywords=Text

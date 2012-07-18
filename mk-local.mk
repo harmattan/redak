@@ -6,11 +6,13 @@
 default: help
 
 package?=redak
-version?=0.0.0
+#version?=0.0.0
+version?=0.6.0
 
 
 #TODO: upgrade with yours
-qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
+#qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
+qtcreator?=qtcreator
 
 
 help:
@@ -29,13 +31,13 @@ rule/android/configure:
 	/usr/local/opt/android-sdk-linux/tools/android  update project -t android-7 -p android
 
 clean:
-	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile 
+	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile
 	-cat 'debian/clean' | while read t ; do rm -rv "$${t}" ; done
 
 
 distclean: clean
 	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
-	rm -rvf *.user *.zip *.sis *~ *.so
+	rm -rvf *.user *.zip *.sis *~ *.so *.tmp
 	rm -rvf obj ./android/bin android/assets/qml/redak android/libs/armeabi
 	find . -iname "*~" -exec rm -v '{}' \;
 	find . -iname "*.class" -exec rm -v '{}' \;
@@ -89,9 +91,18 @@ run/py: ${package}.py
 test:distclean all run clean
 
 
-dep:
-	sudo aptitude install -t experimental \
+debuild:distclean
+	fakeroot ./debian/rules binary
+	dpkg --contents ../*.deb
+
+dep/desktop:
+	${sudo} apt-get install \
 	  libqt4-declarative-folderlistmodel libqt4-dev
+
+dep/harmattan:
+	${sudo} apt-get install \
+	  applauncherd-dev pkg-config make
+
 #%: rule/local/%
 
 
@@ -100,8 +111,9 @@ release: distclean rule/local/release
 rule/version:
 #	echo '${version}' | tee -a VERSION.txt
 	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'qml/redak/common/script.js'
-	sed -e "s/^VERSION.*/VERSION=${version}/g" -i redak.pro
+	sed -e "s/^[ ]*VERSION.*/VERSION=${version}/g" -i redak.pro
 	sed -e "s/^Version:.*/Version: ${version}/g" -i redak.spec
+	echo "# TODO: check debian/changelog *.changes *.pkg"
 
 
 check/release:

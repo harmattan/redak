@@ -15,14 +15,17 @@ ToolBar {
 
         ToolIcon {
             // text: "quit"
-            platformIconId: "toolbar-close"
+            // platformIconId: "toolbar-close" //TODO
+            platformIconId: "toolbar-application"; //TODO  
             onClicked: { quitDialog.open(); }
         }
 
         ToolIcon
         {
             // text: "view"
-            platformIconId: ( editPage.isEdit ) ? "toolbar-search" : "toolbar-search-selected";
+            platformIconId: ( editPage.isEdit ) 
+             ? "toolbar-edit" : "toolbar-done"; //TODO
+            // ? "toolbar-search" : "toolbar-search-selected"; //TODO
             onClicked: { editPage.toggleEdit(); }
         }
 
