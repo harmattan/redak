@@ -46,7 +46,48 @@
 ** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
 
+### MEEGO / MER / NEMO ###
+
+file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-close
+file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-backspace
+file:///opt/redak/qml/redak/meego/BrowsePage.qml:159:21: QML Image: Failed to get image from provider: image://theme/icon-s-invitation-pending
+file:///opt/redak/qml/redak/meego/BrowsePage.qml:159:21: QML Image: Failed to get image from provider: image://theme/icon-s-invitation-accept
+file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-search-selected
+
+
+icon-m-common-directory.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/darko/meegotouch/icons/icon-m-content-document.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/darko/meegotouch/icons/icon-s-common-remove.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/darko/meegotouch/icons/icon-m-toolbar-trim-white-selected.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-common-directory.png
+
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-common-drilldown-arrow.png
+
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-done.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-edit.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-common-search.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-search.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-favorite-mark.png
+
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-favorite-unmark.png
+
+/tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-s-common-remove.png
+
+
 ### DONE ###
+
+
 
 ** DONE : cut and paste
 ** DONE : WIP symbian

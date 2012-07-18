@@ -89,9 +89,18 @@ run/py: ${package}.py
 test:distclean all run clean
 
 
-dep:
-	sudo aptitude install -t experimental \
+debuild:distclean
+	fakeroot ./debian/rules binary
+	dpkg --contents ../*.deb
+
+dep/desktop:
+	${sudo} apt-get install \
 	  libqt4-declarative-folderlistmodel libqt4-dev
+
+dep/harmattan:
+	${sudo} apt-get install \
+	  applauncherd-dev pkg-config make
+
 #%: rule/local/%
 
 

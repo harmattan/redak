@@ -55,7 +55,8 @@ Page {
 
         ToolIcon {
             // text: qsTr("..")
-            iconId: "toolbar-backspace"
+            // iconId: "toolbar-backspace" //TODO
+            iconId: "common-directory" //TODO
             //platformIconId: "toolbar-view-menu"
 
             onClicked: {
@@ -65,7 +66,8 @@ Page {
 
         ToolIcon {
             // text: qsTr("..")
-            iconId: "toolbar-search"
+            // iconId: "toolbar-search"
+             iconId: "content-document"
             //platformIconId: "toolbar-view-menu"
 
             onClicked: {
@@ -162,9 +164,12 @@ Page {
                         anchors.verticalCenter: parent.verticalCenter
                         x: Script.g_font_pixelSize / 2
                         smooth: true
+//TODO
                         source: folderModel.isFolder(index)
-                                ? "image://theme/icon-s-invitation-pending"
-                                : "image://theme/icon-s-invitation-accept"
+                                ? "image://theme/icon-s-common-favorite-unmark"
+                                : "image://theme/icon-s-common-favorite-mark";
+//                                ? "image://theme/icon-s-invitation-pending"
+//                                : "image://theme/icon-s-invitation-accept"
                         visible: source != ''
                     }
 

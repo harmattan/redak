@@ -1,5 +1,10 @@
 MANIFEST
 *~
+redak
+*.log
+*.debhelper
+debian/files
+debian/*.substvars
 
 .make.cache
 Makefile

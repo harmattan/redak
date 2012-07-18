@@ -50,7 +50,76 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 }
 
 
-symbian {
+OTHER_FILES += \
+    README.txt \
+    TODO.txt \
+    AUTHORS.txt \
+    mk-local.mk \
+
+
+qmlfiles.source = qml/redak
+qmlfiles.target = qml/
+
+
+unix {
+
+  desktop.files = redak.desktop
+  desktop.path = /usr/share/applications/
+
+  icon64.files = redak64.png
+  icon64.path = /usr/share/icons/hicolor/64x64/apps/
+
+  icon80.files = redak80.png
+  icon80.path = /usr/share/icons/hicolor/80x80/apps/
+
+  INSTALLS+=desktop icon80
+
+  OTHER_FILES += \
+    redak.desktop \
+    redak.png \
+  #
+
+  !isEmpty(MEEGO_VERSION_MAJOR) {
+
+    qmlfiles.source = qml/redak/common qml/redak/meego
+    qmlfiles.target = qml/redak
+
+    contains(MEEGO_EDITION,harmattan) { #maemo6
+
+    desktop.files = redak_harmattan.desktop
+    desktop.path = /usr/share/applications/
+
+      DEFINES += Q_WS_HARMATTAN=1 
+
+      OTHER_FILES += \
+      debian/ \
+      debian/control \
+      debian/changelog \
+      debian/rules \
+      debian/links \
+      qtc_packaging/debian_harmattan/rules \
+      qtc_packaging/debian_harmattan/README \
+      qtc_packaging/debian_harmattan/manifest.aegis \
+      qtc_packaging/debian_harmattan/copyright \
+      qtc_packaging/debian_harmattan/control \
+      qtc_packaging/debian_harmattan/compat \
+      qtc_packaging/debian_harmattan/changelog \
+      qtc_packaging/debian_fremantle/rules \
+      qtc_packaging/debian_fremantle/README \
+      qtc_packaging/debian_fremantle/copyright \
+      qtc_packaging/debian_fremantle/control \
+      qtc_packaging/debian_fremantle/compat \
+      qtc_packaging/debian_fremantle/changelog \
+  #
+    } else { #meego/mer/nemo # rpm?
+
+    }
+
+  } else { # unix but not meego
+
+  }
+
+} else:symbian {
 
   # default version for selfsigned binaries :
   #symbian:TARGET.UID3 = 0xE65F5F5E
@@ -87,8 +156,8 @@ symbian {
   #symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
 
   # Add more folders to ship with the application, here
-  qmlfiles.source = qml/redak/symbian qml/redak/common
-  qmlfiles.target = qml
+  qmlfiles.source = qml/redak/common qml/redak/symbian
+  qmlfiles.target = qml/redak/
 
   DEPLOYMENT += redak_installer
 
@@ -133,80 +202,9 @@ symbian {
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/version.xml
 
-} else:unix {
-
-  !isEmpty(MEEGO_VERSION_MAJOR) {
-
-    qmlfiles.source = qml/redak/common qml/redak/meego
-    qmlfiles.target = qml
-
-    contains(MEEGO_EDITION,harmattan) { #maemo6
-
-      DEFINES += Q_WS_HARMATTAN=1 
-
-      OTHER_FILES += \
-      debian/ \
-      debian/control \
-      debian/changelog \
-      debian/rules \
-      debian/links \
-      qtc_packaging/debian_harmattan/rules \
-      qtc_packaging/debian_harmattan/README \
-      qtc_packaging/debian_harmattan/manifest.aegis \
-      qtc_packaging/debian_harmattan/copyright \
-      qtc_packaging/debian_harmattan/control \
-      qtc_packaging/debian_harmattan/compat \
-      qtc_packaging/debian_harmattan/changelog \
-      qtc_packaging/debian_fremantle/rules \
-      qtc_packaging/debian_fremantle/README \
-      qtc_packaging/debian_fremantle/copyright \
-      qtc_packaging/debian_fremantle/control \
-      qtc_packaging/debian_fremantle/compat \
-      qtc_packaging/debian_fremantle/changelog \
-  #
-    } else { #meego/mer/nemo # rpm?
-
-      OTHER_FILES += \
-      redak.desktop
-
-      INSTALLS+=desktop icon
-
-      desktop.files = redak.desktop
-      desktop.path = /usr/share/applications/
-
-      icon.files = redak80.png
-      icon.path = /usr/share/icons/hicolor/80x80/apps/
-
-    }
-
-
-  } else { # not meego
-
-    qmlfiles.source = qml/redak
-    qmlfiles.target = qml
-
-    CONFIG += install_desktop
-
-    install_desktop {
-      desktop.files = redak.desktop
-      desktop.path  = /usr/share/applications/
-      INSTALLS += desktop
-    }
-
-  }
-
 } else { #windows?
 
 }
-
-
-OTHER_FILES += \
-    README.txt \
-    TODO.txt \
-    AUTHORS.txt \
-    mk-local.mk \
-    redak64.png
-
 
 
 DEPLOYMENTFOLDERS+=qmlfiles
