@@ -1,5 +1,6 @@
-redak (0.5.2-0) precise; urgency=low
+redak (0.6.0-0) precise; urgency=low
 
+  * Add: mer/nemomobile support
   * Fix: symbian: build smart_installer
   * Wip: android, mer
 
@@ -66,7 +67,7 @@ redak (0.1.0-0) harmattan; urgency=low
 
  -- Philippe Coval <rzr@gna.org>  Sun, 26 Feb 2012 14:53:01 +0100
 
-redak (0.0.0-0) UNRELEASED; urgency=low
+redak (0.0.000000-0) UNRELEASED; urgency=low
 
   * URL: http://rzr.online.fr/q/redak
   * devel version should be on top and discarded on release

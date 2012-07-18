@@ -14,7 +14,7 @@ HEADERS += \
     config.h
 
 
-#VERSION = 0.0.0
+VERSION=0.6.0
 
 # Additional import path used to resolve QML modules in Creators code model
 QML_IMPORT_PATH =
@@ -129,7 +129,7 @@ unix {
   #symbian:VER_MAJ=0
   #symbian:VER_MIN=0
   #symbian:VER_PAT=0
-  VERSION=0.5.2
+VERSION=0.6.0
   #VERSION=0.0.0
 
 

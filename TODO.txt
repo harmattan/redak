@@ -45,6 +45,10 @@
 ** TODO : desktop : http://doc.qt.nokia.com/4.7-snapshot/declarative-tutorials-extending-chapter6-plugins.html
 ** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
+### FEATURES ###
+
+<ZogG_laptop> rzr: btw why in load it shows all types of files including jpg and it would be nice to have title with filename or something and maybe line numbers
+
 
 ### MEEGO / MER / NEMO ###
 

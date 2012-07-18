@@ -6,11 +6,13 @@
 default: help
 
 package?=redak
-version?=0.0.0
+#version?=0.0.0
+version?=0.6.0
 
 
 #TODO: upgrade with yours
-qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
+#qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
+qtcreator?=qtcreator
 
 
 help:
@@ -109,8 +111,9 @@ release: distclean rule/local/release
 rule/version:
 #	echo '${version}' | tee -a VERSION.txt
 	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'qml/redak/common/script.js'
-	sed -e "s/^VERSION.*/VERSION=${version}/g" -i redak.pro
+	sed -e "s/^[ ]*VERSION.*/VERSION=${version}/g" -i redak.pro
 	sed -e "s/^Version:.*/Version: ${version}/g" -i redak.spec
+	echo "# TODO: check debian/changelog *.changes *.pkg"
 
 
 check/release:
