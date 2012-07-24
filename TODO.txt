@@ -8,6 +8,9 @@
 ** QGraphicsItem::ungrabMouse: not a mouse grabber
 ** TODO [#A] : BUG: host=RM696-34-1_PR_005 kb integration and view mode
 
+* Task Harmattan
+** debian/links : /usr/bin/redak is not compatible with ovi
+
 * Task Symbian
 ** TODO [#A] support Qml
    http://developer.qt.nokia.com/wiki/Qt_4_7_4_Compatibility_Issues#a43452ddef3f92d193dbca3b139a01b2
@@ -51,6 +54,9 @@
 
 
 ### MEEGO / MER / NEMO ###
+
+age_: rzr: comments to redak. Drop most (if not all) of the # lines, remove comment from rm -rf %{buildroot} in %install one should have that
+
 
 file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-close
 file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-backspace
@@ -97,3 +103,27 @@ icon-m-common-directory.png
 ** DONE : WIP symbian
 ** DONE : cut and paste
 ** DONE : error handling
+
+
+### MISC ###
+
+# file://./redak.spec
+#Group: Utils
+#redak.src: W: specfile-error sh: @__ID_U@: command not found #TODO
+#BuildRequires:  pkgconfig(QtQuick)
+#BuildRequires: qt-qmake
+#BuildRequires: libqt-devel
+#BuildRequires: libqtdeclarative4
+#BuildRequires: QtDeclarative-devel
+#zypper help
+#configure
+#rm -rf %{buildroot}
+#make install DESTDIR=%{buildroot}
+#/usr/share/icons/hicolor/64x64/apps/%{name}.png
+#%doc docs/*
+#%{_bindir}/*
+#%{_libdir}/*
+#%{_datadir}/*
+
+#%doc
+
