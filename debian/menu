@@ -1,2 +1,0 @@
-?package(redak):needs="X11" section="Applications/Utils"\
-  title="redak" command="/usr/bin/redak"
