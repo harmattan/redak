@@ -1,3 +1,9 @@
+redak (0.6.2-0) harmattan; urgency=low
+
+  * fix: uninstall to /usr/bin for ovi
+
+ -- Philippe Coval <rzr@gna.org>  Tue, 24 Jul 2012 19:15:03 +0200
+
 redak (0.6.0-0) precise; urgency=low
 
   * Add: mer/nemomobile support
