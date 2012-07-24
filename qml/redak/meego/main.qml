@@ -4,10 +4,8 @@
  *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import Core 1.0
+import Redak 1.1
 import "../common/script.js" as Script
-import "../common"
-import "./"
 
 
 PageStackWindow {
@@ -16,42 +14,45 @@ PageStackWindow {
 
     initialPage: editPage
     property alias content: editPage.content
-    property alias folderPath: editPage.folderPath
+    property alias folderPath: browsePage.folderPath
     property variant filePath: ( null != parentFilePath ) ? parentFilePath : "default.txt";
     signal filenameSelected(string filename)
     property int mode: 0 //0=load 1=save
+    showStatusBar: false;
 
     Component.onCompleted: {
         Script.log("onCompleted:" + filePath );
         if ( null != filePath ) { filenameSelected( filePath ); }
+        folderPath = ( null != folderPath ) ? folderPath : "file:///";
         // theme.inverted = true
     }
 
     onFilenameSelected: {
         Script.log("onFilenameSelected:" + filename );
         var res = true;
+        //Script.log("onFilenameSelected:" + filename );
         if ( (null != filename) && ( "" != filename ) ) {
-            content = core.load( filename );
+            content = redak.load( filename );
             filePath = filename;
         }
     }
 
     function browse(mode)
     {
-        Script.log("browse:" + content );
+        Script.log("#{ browse: " + folderPath );
         appWindow.mode = mode;
-        var browserPage = Qt.resolvedUrl("BrowserPage.qml");
-        browserPage.parent = pageStack.parent;
-        folderPath = ( null != folderPath ) ? folderPath : "/";
+        folderPath = ( null != folderPath || "" == folderPath ) ? folderPath : "file:///";
 
         pageStack.push
-                ( browserPage ,
-                 { content: content , folderPath: folderPath} )
+                ( browsePage ,
+                 { content: content , folderPath: folderPath} );
+
+        Script.log("#} browse: " + folderPath );
     }
 
 
-    Core {
-        id: core
+    Redak {
+        id: redak
     }
 
     QueryDialog {
@@ -63,7 +64,7 @@ PageStackWindow {
     }
 
     Connections {
-        target:core
+        target:redak
         onError: {
             error.message = text + "\n";
             // console.debug("onError:" +  error.message );
@@ -81,51 +82,68 @@ PageStackWindow {
             id: commonTools
             visible: true
         }
+
     }
 
-    Menu {
-        id: myMenu
-        visualParent: pageStack
+    BrowsePage {
+        id: browsePage;
+        parent: pageStack /*.parent */;
 
-        MenuLayout {
-
-            MenuItem {
-                text: qsTr("Load")
-                onClicked: {
-                    browse(0);
+        onFileSelected: {
+            Script.log("onFileSelected " + mode  + editPage.isChanged );
+            filePath = path;
+            if ( 0 == mode ) {
+                if ( editPage.isChanged ) {
+                    ioDialog.open();
+                } else {
+                    Script.handlePath( filePath );
                 }
-            }
-
-            MenuItem {
-                text: qsTr("Save")
-                onClicked: {
-                    core.save( editPage.content , filePath );
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Save As")
-                onClicked: {
-                    browse(1);
-                }
-            }
-
-            MenuItem {
-                text: qsTr("About")
-                onClicked: {
-                    //myDialog.visible = true;
-                    //myDialog.focus = true;
-                    content = Script.g_info;
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Quit")
-                onClicked: { Qt.quit(); }
+            } else {
+                ioDialog.open();
             }
 
         }
+
+        onFolderChanged: {
+            Script.handleFolderChanged(path); //TODO: path param on pop
+        }
     }
+
+    QueryDialog {
+        id: aboutDialog
+        titleText: "About Redak"
+        message: Script.g_info
+        rejectButtonText: "Back"
+    }
+
+    QueryDialog {
+        id: quitDialog
+        titleText: "Quit: Are you sure ?"
+        message: "Please Confirm"
+        acceptButtonText: "Yes"
+        rejectButtonText: "No"
+        onAccepted: {
+            Qt.quit();
+        }
+    }
+
+    QueryDialog {
+        id: ioDialog
+        titleText: "IO: Are you sure ?"
+        message: "Please Confirm"
+        acceptButtonText: "Yes"
+        rejectButtonText: "No"
+        onAccepted: {
+            Script.handlePath( filePath ); //TODO: use signal
+        }
+    }
+
+    MainMenu
+    {
+        id: myMenu
+        visualParent: pageStack
+    }
+
 
     //    Connections {
     //        target: browserPage

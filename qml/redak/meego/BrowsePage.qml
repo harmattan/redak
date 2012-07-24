@@ -4,15 +4,14 @@
  *****************************************************************************/
 import QtQuick 1.1
 import Qt.labs.folderlistmodel 1.0
-import com.nokia.symbian 1.1
+import com.nokia.meego 1.0
 import "../common/script.js" as Script
 
 
 Page {
     id: browserPage
     property variant content: content
-    property int mode: 0 //0=load 1=save
-    property variant filename: dir.text
+    property variant filename: location.text
     property alias folderPath: folderModel.folder;
 
     signal loaded()
@@ -22,18 +21,22 @@ Page {
     signal folderChanged(string path);
 
     onFolderChanged: {
-        Script.handleFolderChanged(path); //TODO: path param on pop
-        dir.text = path
+        location.text = path
         folderModel.folder = path ;
     }
 
     onFileSelected: {
-        Script.handlePath( path ); //TODO: use signal
+        Script.log( path ); //TODO: use signal
     }
 
     anchors.fill: parent
 
-    //Component.onCompleted: { theme.inverted = !true }
+    Component.onCompleted: {
+        //theme.inverted = !true
+        Script.log("BrowsePage: " + folderPath );
+        //location.text = folderPath ;
+        //folderModel.submit ;
+    }
 
     //    Connections {
     //        target: browserPage
@@ -44,15 +47,16 @@ Page {
 
     tools:
         ToolBarLayout {
-        ToolButton {
+        ToolIcon {
             //text: qsTr("back")
-            iconSource: "toolbar-back"
+            iconId: "toolbar-back"
             onClicked: { pageStack.pop(); }
         }
 
-        ToolButton {
+        ToolIcon {
             // text: qsTr("..")
-            iconSource: "toolbar-previous"
+            // iconId: "toolbar-backspace" //TODO
+            iconId: "common-directory" //TODO
             //platformIconId: "toolbar-view-menu"
 
             onClicked: {
@@ -60,13 +64,14 @@ Page {
             }
         }
 
-        ToolButton {
+        ToolIcon {
             // text: qsTr("..")
-            iconSource: "toolbar-next"
+            // iconId: "toolbar-search"
+             iconId: "content-document"
             //platformIconId: "toolbar-view-menu"
 
             onClicked: {
-                fileSelected( dir.text );
+                fileSelected( location.text );
             }
         }
     }
@@ -86,10 +91,10 @@ Page {
 
         //Row {
         TextField {
-            id: dir
+            id: location
             text: ( null == folderModel.folder ) ? "./" : folderModel.folder
             width:parent.width;
-            // placeholderText: "Directory or File to load"
+            placeholderText: "Directory or File to load"
             focus: false;
 
             Keys.onReturnPressed: {
@@ -97,44 +102,26 @@ Page {
             }
 
             onFocusChanged:  {
-                var start = dir.text.length;
-                dir.select( start , start);
-                dir.focus = true;
+                var start = location.text.length;
+                location.select( start , start);
+                location.focus = true;
             }
 
             // https://bugreports.qt-project.org/browse/QTBUG-16870
-            //onAccepted: {
+            // onAccepted: { //BUG: RM696-34-1_PR_005
             //    folderModel.folder = text;
-            //}
+            // } // Cannot assign to non-existent property "onAccepted"
 
-            //            Keys.onReturnPressed: {
-            //          }
-            //            Rectangle {
-            //                anchors {
-            //                    top: parent.top;
-            //                    right: parent.right;
-            //                    margins: platformStyle.paddingMedium
-            //                }
-            //                id: valid
-            //                //fillMode: Image.PreserveAspectFit
-            //                smooth: true;
-            //                //               visible: dir.text
-            //                //source: "toolbar-back"
-            //                height: parent.height - platformStyle.paddingMedium * 2
-            //                width: parent.height - platformStyle.paddingMedium * 2
-            //                color: "blue"
-            //                MouseArea {
-            //                    anchors {
-            //                        horizontalCenter: parent.horizontalCenter;
-            //                        verticalCenter: parent.verticalCenter
-            //                    }
-            //                    height: valid.height;
-            //                    width: valid.height
-            //                    onClicked: {
-            //                        handlePath( dir.text );
-            //                    }
-            //                }
-            //            }
+            Item { //WORKAROUND:
+                anchors.fill: parent
+                focus: true
+                Keys.onPressed: {
+                    if (event.key == Qt.Key_Return) {
+                        folderModel.folder = text;
+                        event.accepted = true;
+                    }
+                }
+            }
         }
         //}
 
@@ -144,7 +131,7 @@ Page {
             //anchors.top: path.bottom
             //anchors.bottom: parent.bottom
             //anchors.fill: parent
-            height: parent.height - dir.height
+            height: parent.height - location.height
             width: parent.width;
 
             FolderListModel {
@@ -152,6 +139,7 @@ Page {
                 nameFilters: ["*"]
                 showDirs: true
                 showDotAndDotDot: false
+                //folder: (null != folder) ? folder : "file:///";
                 //sortField: "Name"
             }
 
@@ -164,37 +152,25 @@ Page {
                     width: parent.width
                     height: fileNameView.height * 1.5
                     border.color: Script.g_color_border
-                    border.width: 5 // Script.g_font_pixelSize / 10;
-                    radius: 10 //Script.g_font_pixelSize / 5;
-                    color: mouseArea.pressed
+                    border.width: 5
+                    radius: 10
+                    color: ( mouseArea.pressed )
                            ? Script.g_color_bg_pressed
-                           : Script.g_color_bg_normal;
-
-
-                    Rectangle
+                           : folderModel.isFolder(index)
+                             ? "#E0D0D0" : "#D0E0D0" //TODO
+                    Image
                     {
                         id: icon
                         anchors.verticalCenter: parent.verticalCenter
                         x: Script.g_font_pixelSize / 2
                         smooth: true
-                        // source: folderModel.isFolder(index)
-                        // ? "image://theme/icon-s-invitation-pending"
-                        // : "image://theme/icon-s-invitation-accept"
-                        color: folderModel.isFolder(index)
-                               ? "red" : "green"
-                        // visible: source != ''
-
-                        width: Script.g_font_pixelSize
-                        height: Script.g_font_pixelSize
-                        border.color: Script.g_color_border
-                        border.width: Script.g_font_pixelSize / 10;
-                        radius: Script.g_font_pixelSize / 4;
-
-                        //                      Text { text: folderModel.isFolder(index) ? "+" : "-" ;
-                        //                    	font.pixelSize:Script.g_font_pixelSize;
-                        //                  	anchors.verticalCenter: parent.verticalCenter
-                        //                	anchors.horizontalCenter: parent.horizontalCenter
-                        //              }
+//TODO
+                        source: folderModel.isFolder(index)
+                                ? "image://theme/icon-s-common-favorite-unmark"
+                                : "image://theme/icon-s-common-favorite-mark";
+//                                ? "image://theme/icon-s-invitation-pending"
+//                                : "image://theme/icon-s-invitation-accept"
+                        visible: source != ''
                     }
 
                     Text {
@@ -203,7 +179,6 @@ Page {
                         font.pixelSize: Script.g_font_pixelSize
                         anchors.verticalCenter: parent.verticalCenter
                         x: Script.g_font_pixelSize * 2
-                        color: "white"
                     }
 
                     MouseArea {
@@ -213,7 +188,7 @@ Page {
                         onClicked: {
                             fileNameView.color="red"
                             color: platformStyle.colorNormalLight
-                            dir.text = filePath
+                            location.text = filePath
 
                             if ( folderModel.isFolder(index) ) {
                                 folderChanged(filePath);

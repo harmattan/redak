@@ -5,8 +5,6 @@
 import QtQuick 1.1
 import com.nokia.symbian 1.1
 import "../common/script.js" as Script
-import "../common"
-import "./"
 
 
 Page {
@@ -14,7 +12,7 @@ Page {
     property alias content: textArea.text
     property alias isEdit : textArea.enabled;
     signal contents(string contents)
-    property string folderPath: "" //or / ?
+    property bool isChanged: false;
 
     tools: commonTools
 
@@ -23,16 +21,22 @@ Page {
         textArea.text = contents;
     }
 
+    onContentChanged:  {
+        isChanged = true;
+    }
+
     function setContents(contents)
     {
-        textArea.height = 0;
+        //textArea.height = 0;
         textArea.text = contents;
+        isChanged = false;
+        Script.log("#} setContents " + textArea.height );
     }
 
     function toggleEdit()
     {
         textArea.enabled = !textArea.enabled ;
-        //textArea.enableSoftwareInputPanel  = textArea.enabled;
+        // textArea.enableSoftwareInputPanel  = textArea.enabled;
         textArea.focus = textArea.enabled;
         flickable.focus = !textArea.focus;
         return textArea.enabled;
@@ -63,8 +67,8 @@ Page {
 
         TextArea {
             id: textArea
-            width: flickable.width
-            height: flickable.height
+            width: parent.width
+            height: parent.height
             //anchors.leftMargin: Script.g_font_pixelSize/3;
             //anchors.rightMargin: Script.g_font_pixelSize/3;
             //cursorVisible: true
@@ -89,6 +93,7 @@ Page {
             //                    }
             //                }
             //            }
+
         }
     }
 }

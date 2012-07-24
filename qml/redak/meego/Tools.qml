@@ -4,10 +4,9 @@
  *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import Core 1.0
+import Redak 1.1
 import "../common/script.js" as Script
-import "../common"
-import "./"
+
 
 ToolBar {
     anchors.bottom: parent.bottom
@@ -16,19 +15,21 @@ ToolBar {
 
         ToolIcon {
             // text: "quit"
-            platformIconId: "toolbar-close"
-            onClicked: { Qt.quit(); }
+            // platformIconId: "toolbar-close" //TODO
+            platformIconId: "toolbar-application"; //TODO  
+            onClicked: { quitDialog.open(); }
         }
 
         ToolIcon
         {
             // text: "view"
-            platformIconId: ( editPage.isEdit ) ? "toolbar-search" : "toolbar-search-selected";
+            platformIconId: ( editPage.isEdit ) 
+             ? "toolbar-edit" : "toolbar-done"; //TODO
+            // ? "toolbar-search" : "toolbar-search-selected"; //TODO
             onClicked: { editPage.toggleEdit(); }
         }
 
-        ToolIcon
-        {
+        ToolIcon {
             // text: "menu"
             platformIconId: "toolbar-view-menu"
             onClicked: (DialogStatus.Closed == myMenu.status) ? myMenu.open() : myMenu.close()
