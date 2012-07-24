@@ -13,8 +13,10 @@ HEADERS += \
     redak.h \
     config.h
 
-
-VERSION=0.6.0
+VER_MAJ=0
+VER_MIN=6
+VER_PAT=2
+VERSION=0.6.2
 
 # Additional import path used to resolve QML modules in Creators code model
 QML_IMPORT_PATH =
@@ -125,12 +127,6 @@ unix {
   #symbian:TARGET.UID3 = 0xE65F5F5E
 
   TARGET.UID3 += 0x20062277
-
-  #symbian:VER_MAJ=0
-  #symbian:VER_MIN=0
-  #symbian:VER_PAT=0
-VERSION=0.6.0
-  #VERSION=0.0.0
 
 
   PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
