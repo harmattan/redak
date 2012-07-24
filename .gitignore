@@ -12,3 +12,7 @@ redak.rss
 redak_exe.mmp
 *.rss
 *~
+x86
+arm
+MANIFEST
+
