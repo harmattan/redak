@@ -127,10 +127,10 @@ unix {
 } else:symbian {
 
   # default version for selfsigned binaries :
-  #symbian:TARGET.UID3 = 0xE65F5F5E
+  symbian:TARGET.UID3 = 0xE65F5F5E
 
   # ovi
-  TARGET.UID3 += 0x20062277
+  # TARGET.UID3 += 0x20062277
 
 
   PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
