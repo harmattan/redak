@@ -16,6 +16,7 @@ Vcs-Browser: https://gitorious.org/redak/redak
 Package: redak
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: meta-harmattan, rzr
 Description: Libre text editor to be used on touchscreen using QML
  Finger friendly text editor to load save and edit text 
  on your touchscreen device

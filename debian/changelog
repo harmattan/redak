@@ -1,3 +1,11 @@
+redak (0.6.3-0) lucid; urgency=low
+
+  * minor changes,
+  * Fix: symbian port in progress
+  * Wip: bb
+
+ -- Philippe Coval <rzr@gna.org>  Fri, 31 Aug 2012 23:03:01 +0200
+
 redak (0.6.2-0) harmattan; urgency=low
 
   * fix: uninstall to /usr/bin for ovi
