@@ -18,6 +18,8 @@ BuildRequires:  pkgconfig(QtCore) >= 4.7.0
 BuildRequires:  pkgconfig(QtGui)
 BuildRequires:  desktop-file-utils
 
+Requires: libqtdeclarative4-folderlistmodel
+
 
 %description
 Finger friendly text editor to load save and edit text on your touchscreen device
