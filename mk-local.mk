@@ -45,6 +45,8 @@ distclean: clean
 	chmod a-rx *.cpp *.h *.pro *.png *.svg *.spec *.txt
 	chmod a-rx COPYING
 	chmod -Rv a+rX .
+	rm -fv *.pkg
+	rm -fv *.autosave
 
 
 dist: distclean COPYING release rule/local/release
@@ -138,6 +140,10 @@ icon.txt.tmp: redak.svg  mk-local.mk
 	base64 < tmp.png | tr -d '\n' > $@
 	wc $@
 	rm -f tmp.png
+
+
+rule/platform/symbian:
+	md5sum *.sis >> README.txt 
 
 
 -include ~/bin/mk-local.mk

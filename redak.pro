@@ -126,11 +126,12 @@ unix {
 
 } else:symbian {
 
-  # default version for selfsigned binaries :
-  symbian:TARGET.UID3 = 0xE65F5F5E
+  # default version for selfsigned binaries:
+  # symbian:TARGET.UID3 = 0xE65F5F5E
 
-  # ovi
-  # TARGET.UID3 += 0x20062277
+  # ovi #TODO: keep commented
+  TARGET.UID3 += 0x20062276
+  # 0x20062277 # http://www.developer.nokia.com/Resources/Library/Publisher_Guide_en_us/#!appendices/file-validation-errors.htm;#toc_Error105
 
 
   PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
@@ -161,7 +162,7 @@ unix {
 
   DEPLOYMENT += redak_installer
 
-  OTHER_FILES += redak.pkg
+  #OTHER_FILES += redak.pkg
 
 
 } else:android {
@@ -214,3 +215,9 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 #eof
+
+symbian {
+    vendorinfo += "%{\"rzr\"}" ":\"rzr\""
+
+    TARGET.UID3 += 0x20062276
+}

@@ -33,3 +33,8 @@ Testers :
 * <Sniper_swe> : n9
 * <jonni> : symbian
 
+
+### MISC ###
+
+280c9d5a4d8d0c8c6b09b379cb0657cf  redak_installer_unsigned.sis
+842e0215b679fe90ca4043f18ea6b718  redak_unsigned.sis
