@@ -3,6 +3,8 @@
 * Unclassed :
 * when choosing folder it should add / at the end of path if user want to change folder and type own name. 
 * also needs a save button. no enter on kwyboard is only way to save after edit name
+* refresh http://stackoverflow.com/questions/11359854/update-listview-showin-in-tab-bar-layout-qml
+
 
 * Task Meego
 ** QGraphicsItem::ungrabMouse: not a mouse grabber
@@ -45,9 +47,15 @@
 ** TODO : desktop : http://doc.qt.nokia.com/4.7-snapshot/declarative-tutorials-extending-chapter6-plugins.html
 ** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
+
 ### FEATURES ###
 
 <ZogG_laptop> rzr: btw why in load it shows all types of files including jpg and it would be nice to have title with filename or something and maybe line numbers
+
+
+### SYMBIAN ###
+
+rebuild
 
 
 ### MEEGO / MER / NEMO ###

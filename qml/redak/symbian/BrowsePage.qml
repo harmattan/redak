@@ -4,7 +4,8 @@
  *****************************************************************************/
 import QtQuick 1.1
 import com.nokia.symbian 1.1
-import Qt.labs.folderlistmodel 1.1
+//import Qt.labs.folderlistmodel 1.1
+import Qt.labs.folderlistmodel 1.0
 import "../common/script.js" as Script
 
 

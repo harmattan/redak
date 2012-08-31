@@ -1,0 +1,14 @@
+.make.cache
+Makefile
+README.txt~
+TODO.txt~
+bld.inf
+moc/
+redak.loc
+redak.pro.user
+redak.rss
+*.sis
+*.pkg
+redak_exe.mmp
+*.rss
+*~

@@ -54,7 +54,6 @@ int main(int argc, char *argv[])
 //  platform = QString("symbian");
 #endif
 
-
     filename += platform;
     filename += "/main.qml";
 
