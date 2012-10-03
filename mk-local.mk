@@ -45,6 +45,8 @@ distclean: clean
 	chmod a-rx *.cpp *.h *.pro *.png *.svg *.spec *.txt
 	chmod a-rx COPYING
 	chmod -Rv a+rX .
+	rm -fv *.pkg
+	rm -fv *.autosave
 
 
 dist: distclean COPYING release rule/local/release
@@ -138,6 +140,13 @@ icon.txt.tmp: redak.svg  mk-local.mk
 	base64 < tmp.png | tr -d '\n' > $@
 	wc $@
 	rm -f tmp.png
+
+
+# custom rules
+
+rule/check/platform/symbian: qml
+	grep -re "import Qt.labs.folderlistmodel 1.1" qml | grep -ve '[^:]*://'
+	echo "check files in bld.inf"
 
 
 -include ~/bin/mk-local.mk

@@ -51,7 +51,7 @@
 ** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
 
-### FEATURES ###
+x### FEATURES ###
 
 <ZogG_laptop> rzr: btw why in load it shows all types of files including jpg and it would be nice to have title with filename or something and maybe line numbers
 
@@ -59,6 +59,13 @@
 ### SYMBIAN ###
 
 rebuild
+
+ovi will reject if importing wrong versions of qml compononents even if not used
+
+make -f mk-local.mk rule/check/platform/symbian
+
+    grep -re "import .* 1.1" qml | grep -ve '[^:]*://'
+    check files in bld.inf
 
 
 ### MEEGO / MER / NEMO ###
@@ -103,9 +110,17 @@ icon-m-common-directory.png
 /tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-s-common-remove.png
 
 
+### PLATFORM / WINDOWS ###
+
+Q: QtCreator complain this it can not write *.user : Disk full ?
+A: rm *~*
+
+Q: Could not find simulator for Qt version 4.7.4.1
+Invalid parameter passed to C runtime function.
+A: run vcredist_x86.exe of QtSDK
+
+
 ### DONE ###
-
-
 
 ** DONE : cut and paste
 ** DONE : WIP symbian

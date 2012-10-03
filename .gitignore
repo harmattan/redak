@@ -15,3 +15,6 @@ redak_exe.mmp
 x86
 arm
 MANIFEST
+tmp
+tmp*
+#*.autosave
