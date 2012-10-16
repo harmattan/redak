@@ -3,6 +3,10 @@ MANIFEST
 tmp
 tmp*
 *.autosave
+*.stackdump
+#*#
+#*.*#
+\#redak.rss#
 
 #{symbian
 #bld.inf
@@ -26,3 +30,4 @@ Makefile
 x86
 arm
 #}
+

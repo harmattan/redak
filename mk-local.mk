@@ -145,8 +145,9 @@ icon.txt.tmp: redak.svg  mk-local.mk
 # custom rules
 
 rule/check/platform/symbian: qml
-	grep -re "import Qt.labs.folderlistmodel 1.1" qml | grep -ve '[^:]*://'
-	echo "check files in bld.inf"
+	grep -re "import Qt.labs.folderlistmodel 1.1" qml | grep -ve '[^:]*://' || echo "ok" 
+	grep DEPLOY_TARGET bld.inf 
+
 
 
 -include ~/bin/mk-local.mk

@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
     QString filename("qml/redak/");
 
-    QString platform("common");
+    QString platform("desktop");
 
 #if defined Q_WS_SIMULATOR
 # define Q_OS_SYMBIAN 1

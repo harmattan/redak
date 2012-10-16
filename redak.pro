@@ -132,7 +132,7 @@ symbian {
   # symbian:TARGET.UID3 = 0xE65F5F5E
 
   # ovi #TODO: keep commented
-  TARGET.UID3 += 0x20062276
+  # TARGET.UID3 += 0x20062276
   # 0x20062277 # http://www.developer.nokia.com/Resources/Library/Publisher_Guide_en_us/#!appendices/file-validation-errors.htm;#toc_Error105
 
 
@@ -140,7 +140,7 @@ symbian {
 
   redak_installer.pkg_prerules += vendorinfo
 
-  vendorinfo += "%{\"rzr\"}" ":\"rzr\""
+  # vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
   # http://qt-project.org/forums/viewthread/9302
   redak_installer.pkg_prerules += \
@@ -208,16 +208,16 @@ symbian {
 
 }
 
-
 DEPLOYMENTFOLDERS+=qmlfiles
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
-#eof
 symbian {
     vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
     TARGET.UID3 += 0x20062276
 }
+
+#eof
