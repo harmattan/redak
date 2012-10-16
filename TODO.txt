@@ -61,12 +61,17 @@ x### FEATURES ###
 rebuild
 
   make -f mk-local.mk rule/check/platform/symbian
-  rm -vrf *.sis *.pkg *.rss bld.inf moc *.loc
+  rm -vrf *.sis *.pkg *.rss bld.inf moc *.loc redak.rss redak_exe.mmp redak_exe.mmp
 
 qtcreator: publish
 
+echo "upload: redak_installer_unsigned.sis"
 
-	echo "upload: redak_installer_unsigned.sis"
+https://publish.nokia.com/download_items/show/475539#item
+
+Revision 77 of this content file is in editing mode. Submit changes to QA to start the QA review.
+
+
 
 ovi will reject if importing wrong versions of qml compononents even if not used
 
