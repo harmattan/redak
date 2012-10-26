@@ -10,6 +10,7 @@ import "../common/script.js" as Script
 Page {
     id: editPage
     property alias content: textArea.text
+
     property alias isEdit : textArea.enabled;
     //property bool isEdit : true;
 

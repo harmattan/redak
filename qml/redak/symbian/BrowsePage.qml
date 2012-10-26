@@ -3,9 +3,9 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 import QtQuick 1.1
-import com.nokia.symbian 1.1
-//import Qt.labs.folderlistmodel 1.1
 import Qt.labs.folderlistmodel 1.0
+//import Qt.labs.folderlistmodel 1.1
+import com.nokia.symbian 1.1
 import "../common/script.js" as Script
 
 
@@ -156,6 +156,7 @@ Page {
                 nameFilters: ["*"]
                 showDirs: true
                 showDotAndDotDot: false
+                //folder: (null != folder) ? folder : "file:///";
                 //sortField: "Name"
             }
 
@@ -206,7 +207,7 @@ Page {
                         font.pixelSize: Script.g_font_pixelSize
                         anchors.verticalCenter: parent.verticalCenter
                         x: Script.g_font_pixelSize * 2
-                        color: "white"
+                        color: "white" //TODO
                     }
 
                     MouseArea {

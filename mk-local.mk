@@ -146,8 +146,10 @@ icon.txt.tmp: redak.svg  mk-local.mk
 
 rule/check/platform/symbian: qml
 	grep -re "import Qt.labs.folderlistmodel 1.1" qml | grep -ve '[^:]*://' || echo "ok" 
+	@echo "todo: deploy ovi wizard"
 	grep DEPLOY_TARGET bld.inf 
-
+	@echo "todo: https://publish.nokia.com/download_items/show/475539#item"
+	@echo "todo: upload: redak_installer_unsigned.sis"
 
 
 -include ~/bin/mk-local.mk
