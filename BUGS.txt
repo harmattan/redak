@@ -1,0 +1,8 @@
+ces (Wed, 26 Sep 2012 20:55:25 +0000)
+Dear publisher,
+
+While processing your content we found your Qt Quick app's QML imports old, experimental components with "import Qt.labs.components.native 1.0 ".
+
+This import is deprecated and your app will not run properly if newer Qt Quick components for Symbian 1.1 are installed on a customer's phone. Please use "import com.nokia.symbian 1.0" instead and rebuild your app.
+
+You may refer to this Qt Developer wiki page for additional Qt 4.7.4 compatibility issues.

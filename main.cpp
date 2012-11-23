@@ -6,7 +6,6 @@
 #include "config.h"
 #include <QtGui/QApplication>
 #include "qmlapplicationviewer.h"
-
 #include "redak.h"
 
 
@@ -30,7 +29,7 @@ int main(int argc, char *argv[])
 
     QString filename("qml/redak/");
 
-    QString platform("common");
+    QString platform("desktop");
 
 #if defined Q_WS_SIMULATOR
 # define Q_OS_SYMBIAN 1
@@ -53,7 +52,6 @@ int main(int argc, char *argv[])
 //#elif defined CONFIG_LOCAL_PLATFORM_ANDROID
 //  platform = QString("symbian");
 #endif
-
 
     filename += platform;
     filename += "/main.qml";

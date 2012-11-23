@@ -3,7 +3,7 @@
 %define qmake qmake
 
 Name: redak
-Version: 0.6.2
+Version: 0.6.3
 Release:%{patchversion}%{?dist}
 Summary: Libre text editor to be used on touchscreen using QML
 Group: Applications/Editors
@@ -17,6 +17,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  pkgconfig(QtCore) >= 4.7.0
 BuildRequires:  pkgconfig(QtGui)
 BuildRequires:  desktop-file-utils
+
+Requires: libqtdeclarative4-folderlistmodel
 
 
 %description

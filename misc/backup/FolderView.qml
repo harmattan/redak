@@ -4,7 +4,11 @@
  *****************************************************************************/
 import QtQuick 1.1
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
-import Qt.labs.folderlistmodel 1.1
+
+//TODO: make sure it is consitant w/ symbian/BrowserPage
+//import Qt.labs.folderlistmodel 1.1
+import Qt.labs.folderlistmodel 1.0
+
 import Redak 1.1
 import "../common/script.js" as Script
 import "../common"

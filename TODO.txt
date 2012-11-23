@@ -3,6 +3,8 @@
 * Unclassed :
 * when choosing folder it should add / at the end of path if user want to change folder and type own name. 
 * also needs a save button. no enter on kwyboard is only way to save after edit name
+* refresh http://stackoverflow.com/questions/11359854/update-listview-showin-in-tab-bar-layout-qml
+
 
 * Task Meego
 ** QGraphicsItem::ungrabMouse: not a mouse grabber
@@ -48,10 +50,47 @@
 ** TODO : desktop : http://doc.qt.nokia.com/4.7-snapshot/declarative-tutorials-extending-chapter6-plugins.html
 ** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
-### FEATURES ###
+
+x### FEATURES ###
 
 <ZogG_laptop> rzr: btw why in load it shows all types of files including jpg and it would be nice to have title with filename or something and maybe line numbers
 
+
+### SYMBIAN ###
+
+rebuild
+
+  make -f mk-local.mk rule/check/platform/symbian
+  rm -vrf *.sis *.pkg *.rss bld.inf moc *.loc redak.rss redak_exe.mmp redak_exe.mmp
+
+qtcreator: publish
+
+echo "upload: redak_installer_unsigned.sis"
+
+https://publish.nokia.com/download_items/show/475539#item
+
+Revision 77 of this content file is in editing mode. Submit changes to QA to start the QA review.
+
+
+
+ovi will reject if importing wrong versions of qml compononents even if not used
+
+make -f mk-local.mk rule/check/platform/symbian
+
+    grep -re "import .* 1.1" qml | grep -ve '[^:]*://'
+    check files in bld.inf
+
+{
+ces (Wed, 26 Sep 2012 20:55:25 +0000) 
+Dear publisher,
+
+While processing your content we found your Qt Quick app's QML imports old, experimental components with "import Qt.labs.components.native 1.0 ".
+
+This import is deprecated and your app will not run properly if newer Qt Quick components for Symbian 1.1 are installed on a customer's phone. Please use "import com.nokia.symbian 1.0" instead and rebuild your app.
+
+You may refer to this Qt Developer wiki page for additional Qt 4.7.4 compatibility issues.
+
+}
 
 ### MEEGO / MER / NEMO ###
 
@@ -95,9 +134,17 @@ icon-m-common-directory.png
 /tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-s-common-remove.png
 
 
+### PLATFORM / WINDOWS ###
+
+Q: QtCreator complain this it can not write *.user : Disk full ?
+A: rm *~*
+
+Q: Could not find simulator for Qt version 4.7.4.1
+Invalid parameter passed to C runtime function.
+A: run vcredist_x86.exe of QtSDK
+
+
 ### DONE ###
-
-
 
 ** DONE : cut and paste
 ** DONE : WIP symbian

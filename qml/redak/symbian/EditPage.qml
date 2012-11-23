@@ -10,7 +10,9 @@ import "../common/script.js" as Script
 Page {
     id: editPage
     property alias content: textArea.text
+
     property alias isEdit : textArea.enabled;
+
     signal contents(string contents)
     property bool isChanged: false;
 
@@ -30,7 +32,7 @@ Page {
         //textArea.height = 0;
         textArea.text = contents;
         isChanged = false;
-        Script.log("#} setContents " + textArea.height );
+        //Script.log("#} setContents " + textArea.height );
     }
 
     function toggleEdit()

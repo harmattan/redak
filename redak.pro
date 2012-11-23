@@ -13,10 +13,13 @@ HEADERS += \
     redak.h \
     config.h
 
+
+VERSION=0.6.3
+
 VER_MAJ=0
 VER_MIN=6
-VER_PAT=2
-VERSION=0.6.2
+VER_PAT=3
+
 
 # Additional import path used to resolve QML modules in Creators code model
 QML_IMPORT_PATH =
@@ -59,8 +62,8 @@ OTHER_FILES += \
     mk-local.mk \
 
 
-qmlfiles.source = qml/redak
-qmlfiles.target = qml/
+#qmlfiles.source = qml/redak
+#qmlfiles.target = qml/
 
 
 unix {
@@ -121,19 +124,23 @@ unix {
 
   }
 
-} else:symbian {
+} #else:
 
-  # default version for selfsigned binaries :
-  #symbian:TARGET.UID3 = 0xE65F5F5E
+symbian {
 
-  TARGET.UID3 += 0x20062277
+  # default version for selfsigned binaries:
+  # symbian:TARGET.UID3 = 0xE65F5F5E
+
+  # ovi #TODO: keep commented
+  # TARGET.UID3 += 0x20062276
+  # 0x20062277 # http://www.developer.nokia.com/Resources/Library/Publisher_Guide_en_us/#!appendices/file-validation-errors.htm;#toc_Error105
 
 
   PRIVATEDIR=$$replace(TARGET.UID3, "^0x", "")
 
   redak_installer.pkg_prerules += vendorinfo
 
-  vendorinfo += "%{\"rzr\"}" ":\"rzr\""
+  # vendorinfo += "%{\"rzr\"}" ":\"rzr\""
 
   # http://qt-project.org/forums/viewthread/9302
   redak_installer.pkg_prerules += \
@@ -147,6 +154,7 @@ unix {
   # 0x2002CCCF value if protected UID is given to the application
   DEPLOYMENT.installer_header = 0x2002CCCF
 
+  DEPLOYMENT += redak_installer
 
   #symbian:TARGET.CAPABILITY += AllFiles
   #symbian:TARGET.CAPABILITY += WriteUserData ReadUserData NetworkServices
@@ -155,9 +163,7 @@ unix {
   qmlfiles.source = qml/redak/common qml/redak/symbian
   qmlfiles.target = qml/redak/
 
-  DEPLOYMENT += redak_installer
-
-  OTHER_FILES += redak.pkg
+  #OTHER_FILES += redak.pkg
 
 
 } else:android {
@@ -202,11 +208,16 @@ unix {
 
 }
 
-
 DEPLOYMENTFOLDERS+=qmlfiles
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
+
+symbian {
+    vendorinfo += "%{\"rzr\"}" ":\"rzr\""
+
+    TARGET.UID3 += 0x20062276
+}
 
 #eof

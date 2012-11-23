@@ -140,7 +140,7 @@ PageStackWindow {
     MainMenu
     {
         id: myMenu
-        visualParent: appWindow
+        visualParent: appWindow //TODO vs pageStack
     }
 
 }

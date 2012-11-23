@@ -45,6 +45,8 @@ distclean: clean
 	chmod a-rx *.cpp *.h *.pro *.png *.svg *.spec *.txt
 	chmod a-rx COPYING
 	chmod -Rv a+rX .
+	rm -fv *.pkg
+	rm -fv *.autosave
 
 
 dist: distclean COPYING release rule/local/release
@@ -138,6 +140,20 @@ icon.txt.tmp: redak.svg  mk-local.mk
 	base64 < tmp.png | tr -d '\n' > $@
 	wc $@
 	rm -f tmp.png
+
+
+# custom rules
+
+rule/build/platform/symbian: qml
+	grep -re "import Qt.labs.folderlistmodel 1.1" qml | grep -ve '[^:]*://' || echo "ok" 
+	@echo "todo: deploy ovi wizard"
+
+
+rule/install/platform/symbian: qml
+	grep DEPLOY_TARGET bld.inf 
+	md5sum *.sis | tee -a README.txt
+	@echo "todo: upload: redak_installer_unsigned.sis"
+	@echo "todo: https://publish.nokia.com/download_items/show/475539#item"
 
 
 -include ~/bin/mk-local.mk

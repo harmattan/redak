@@ -152,8 +152,8 @@ Page {
                     width: parent.width
                     height: fileNameView.height * 1.5
                     border.color: Script.g_color_border
-                    border.width: 5
-                    radius: 10
+                    border.width: 5 // Script.g_font_pixelSize / 10;
+                    radius: 10 //Script.g_font_pixelSize / 5;
                     color: ( mouseArea.pressed )
                            ? Script.g_color_bg_pressed
                            : folderModel.isFolder(index)
